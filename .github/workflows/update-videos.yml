@@ -6,7 +6,6 @@ on:
     - cron: '0 */3 * * *'
   workflow_dispatch: {}
   push:
-    branches: [main]
     paths:
       - 'scripts/fetch-videos.mjs'
       - '.github/workflows/update-videos.yml'
@@ -22,8 +21,14 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      # Trabalhamos sempre sobre "main" — é o branch que o GitHub Pages
+      # publica — independentemente do branch a partir do qual o
+      # agendamento disparou.
+      - name: Checkout do branch main
         uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -44,5 +49,5 @@ jobs:
             echo "Sem novos vídeos — nada a atualizar."
           else
             git commit -m "chore: atualizar vídeos automaticamente"
-            git push
+            git push origin HEAD:main
           fi
