@@ -9,7 +9,7 @@
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#071130; --bg-2:#0b1c48; --surface:#102254; --surface-2:#172c66;
@@ -24,7 +24,7 @@
 *,*::before,*::after{box-sizing:border-box;}
 html{scroll-behavior:smooth;}
 body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-h1,h2,h3{font-family:'Syne',system-ui,sans-serif;font-weight:800;line-height:1.12;margin:0 0 .5em;letter-spacing:-.015em;text-wrap:balance;}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;line-height:1.12;margin:0 0 .5em;letter-spacing:-.015em;text-wrap:balance;}
 p{margin:0 0 1em;color:var(--muted);}
 a{color:inherit;text-decoration:none;}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
@@ -67,7 +67,7 @@ body.rv [data-rv].on{opacity:1;transform:none;}
 .top{position:sticky;top:0;z-index:60;border-bottom:1px solid transparent;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);}
 .top.stuck{background:rgba(7,17,48,.82);backdrop-filter:blur(16px) saturate(140%);border-color:var(--border);}
 .top-in{display:flex;align-items:center;gap:16px;height:70px;}
-.brand{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:700;}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;}
 .mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;font-size:.76rem;font-weight:800;transition:transform var(--fast) var(--ease);}
 .brand:hover .mark{transform:rotate(-8deg) scale(1.07);}
 .brand em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
@@ -78,7 +78,7 @@ body.rv [data-rv].on{opacity:1;transform:none;}
 .hero-in{display:grid;grid-template-columns:1.08fr .92fr;gap:64px;align-items:center;}
 .badge{display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border-radius:999px;background:rgba(255,194,77,.11);border:1px solid rgba(255,194,77,.34);color:var(--gold);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-bottom:22px;}
 .badge::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(255,194,77,.22);}
-.hero h1{font-size:clamp(2.3rem,5.2vw,3.7rem);}
+.hero h1{font-size:clamp(2.3rem,5.2vw,3.7rem);color:var(--gold);}
 .gr{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
 .lede{font-size:1.13rem;max-width:52ch;}
 .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin:30px 0 22px;}
@@ -96,10 +96,10 @@ body.rv [data-rv].on{opacity:1;transform:none;}
 .spine{position:absolute;left:-13px;top:0;bottom:0;width:13px;background:linear-gradient(180deg,#0a1740,#2a1a52);transform:rotateY(-90deg);transform-origin:right center;border-radius:3px 0 0 3px;}
 .pages{position:absolute;right:-8px;top:5px;bottom:5px;width:8px;background:repeating-linear-gradient(180deg,#e8edfa 0 2px,#c3cde6 2px 4px);transform:rotateY(90deg);transform-origin:left center;border-radius:0 3px 3px 0;}
 .c-top{position:relative;font-size:.66rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase;color:rgba(238,243,255,.72);}
-.c-title{position:relative;font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(1.6rem,5.6vw,2.05rem);line-height:1.05;color:#fff;margin:auto 0 0;letter-spacing:-.02em;}
+.c-title{position:relative;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:clamp(1.6rem,5.6vw,2.05rem);line-height:1.05;color:#fff;margin:auto 0 0;letter-spacing:-.02em;}
 .c-rule{position:relative;width:52px;height:3px;border-radius:2px;background:var(--gold);margin:16px 0 13px;}
 .c-sub{position:relative;font-size:.79rem;line-height:1.5;color:rgba(238,243,255,.86);margin:0 0 20px;}
-.c-author{position:relative;font-family:'Syne',sans-serif;font-weight:700;font-size:.86rem;color:#fff;}
+.c-author{position:relative;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.86rem;color:#fff;}
 .c-year{position:relative;font-size:.68rem;color:rgba(238,243,255,.6);margin-top:3px;}
 .book-glow{position:absolute;inset:-14%;background:var(--grad);opacity:.3;filter:blur(58px);z-index:-1;border-radius:50%;}
 
@@ -111,7 +111,7 @@ section{padding:84px 0;position:relative;}
 .head{max-width:700px;margin-bottom:46px;}
 .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:15px;}
 .eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px rgba(224,36,125,.22);}
-.head h2{font-size:clamp(1.75rem,3.6vw,2.5rem);}
+.head h2{font-size:clamp(1.75rem,3.6vw,2.5rem);color:var(--gold);}
 .head p{font-size:1.04rem;}
 
 /* ---------- dor → promessa ---------- */
@@ -146,7 +146,7 @@ section{padding:84px 0;position:relative;}
 .steps{display:grid;gap:18px;counter-reset:s;}
 .step{display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:start;padding:24px 26px;border-radius:var(--r);background:var(--surface);border:1px solid var(--border);transition:transform var(--fast) var(--ease),border-color var(--fast) var(--ease);}
 .step:hover{transform:translateX(6px);border-color:var(--border-strong);}
-.step-n{counter-increment:s;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--grad);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;}
+.step-n{counter-increment:s;display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--grad);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:1rem;}
 .step-n::before{content:counter(s);}
 .step h3{font-size:1.02rem;margin-bottom:6px;}
 .step p{margin:0;font-size:.93rem;}
@@ -163,10 +163,11 @@ section{padding:84px 0;position:relative;}
 
 /* ---------- autora ---------- */
 .author{display:grid;grid-template-columns:.82fr 1.18fr;gap:52px;align-items:center;}
+.author h2{color:var(--gold);}
 .portrait{position:relative;aspect-ratio:4/5;border-radius:22px;overflow:hidden;background:var(--surface-2);box-shadow:0 26px 56px -24px #000;}
 .portrait img{width:100%;height:100%;object-fit:cover;object-position:50% 14%;}
 .portrait::after{content:"";position:absolute;inset:0;border-radius:22px;box-shadow:inset 0 0 0 1px var(--border-strong);}
-.portrait-fb{position:absolute;inset:0;display:none;place-items:center;background:var(--grad);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:3rem;}
+.portrait-fb{position:absolute;inset:0;display:none;place-items:center;background:var(--grad);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:3rem;}
 .portrait.none img{display:none;}
 .portrait.none .portrait-fb{display:grid;}
 .author-links{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px;}
@@ -177,7 +178,7 @@ section{padding:84px 0;position:relative;}
 .faq{display:grid;gap:12px;max-width:820px;}
 details{border:1px solid var(--border);border-radius:14px;background:var(--surface);overflow:hidden;transition:border-color var(--fast) var(--ease);}
 details[open]{border-color:var(--border-strong);}
-summary{padding:20px 24px;cursor:pointer;font-family:'Syne',sans-serif;font-weight:700;font-size:1rem;display:flex;align-items:center;gap:14px;list-style:none;transition:color var(--fast) var(--ease);}
+summary{padding:20px 24px;cursor:pointer;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:1rem;display:flex;align-items:center;gap:14px;list-style:none;transition:color var(--fast) var(--ease);}
 summary::-webkit-details-marker{display:none;}
 summary:hover{color:var(--blue);}
 summary::after{content:"";margin-left:auto;width:9px;height:9px;border-right:2px solid var(--faint);border-bottom:2px solid var(--faint);transform:rotate(45deg);transition:transform var(--dur) var(--ease);flex-shrink:0;}
@@ -188,10 +189,24 @@ details p{margin:0;padding:0 24px 22px;font-size:.94rem;}
 .order{position:relative;border-radius:26px;padding:56px 44px;background:var(--surface);border:1px solid var(--border-strong);overflow:hidden;text-align:center;}
 .order-glow{position:absolute;inset:-42%;background:var(--grad);opacity:.2;filter:blur(70px);}
 .order > *{position:relative;}
-.order h2{font-size:clamp(1.65rem,3.4vw,2.35rem);margin-bottom:14px;}
+.order h2{font-size:clamp(1.65rem,3.4vw,2.35rem);margin-bottom:14px;color:var(--gold);}
 .order p{max-width:56ch;margin:0 auto 28px;font-size:1.04rem;}
-.mail-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center;}
-.mail-chip{display:inline-flex;align-items:center;gap:11px;padding:13px 22px;border-radius:999px;background:rgba(7,17,48,.55);border:1px dashed var(--border-strong);font-weight:700;font-size:.97rem;color:var(--text);}
+.order-form{max-width:560px;margin:30px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:16px;text-align:left;}
+.field{display:flex;flex-direction:column;gap:7px;}
+.field-full{grid-column:1/-1;}
+.order-form label{font-size:.82rem;font-weight:700;color:var(--text);letter-spacing:.01em;}
+.order-form label .opt{color:var(--faint);font-weight:600;}
+.order-form input,.order-form textarea{width:100%;padding:13px 15px;border-radius:12px;background:rgba(7,17,48,.55);border:1px solid var(--border-strong);color:var(--text);font:inherit;font-size:.95rem;transition:border-color var(--fast) var(--ease),box-shadow var(--fast) var(--ease);}
+.order-form input::placeholder,.order-form textarea::placeholder{color:var(--faint);}
+.order-form input:focus,.order-form textarea:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(90,162,255,.25);}
+.order-form textarea{resize:vertical;min-height:76px;}
+.order-form input:user-invalid{border-color:var(--pink);}
+.form-error{grid-column:1/-1;margin:0;color:#ff8fb6;font-size:.85rem;font-weight:600;}
+.btn-submit{grid-column:1/-1;width:100%;margin-top:2px;}
+.form-hint{grid-column:1/-1;margin:6px 0 0;font-size:.85rem;color:var(--faint);line-height:1.6;text-align:center;}
+.form-hint a{color:var(--blue);font-weight:700;}
+.form-hint a:hover{color:var(--pink);}
+.mail-chip{display:inline-flex;align-items:center;gap:9px;padding:5px 6px 5px 13px;border-radius:999px;background:rgba(7,17,48,.6);border:1px dashed var(--border-strong);font-weight:700;font-size:.85rem;color:var(--text);vertical-align:middle;}
 .copy{padding:7px 13px;border-radius:999px;background:var(--surface-2);border:1px solid var(--border);font-size:.79rem;font-weight:700;transition:background var(--fast) var(--ease),transform var(--fast) var(--ease);}
 .copy:hover{background:var(--blue);color:#071130;transform:translateY(-2px);}
 .copy.done{background:var(--gold);color:#071130;}
@@ -223,6 +238,7 @@ footer{border-top:1px solid var(--border);padding:44px 0 40px;}
   body{padding-bottom:84px;}
   .order{padding:40px 24px;}
   .step{grid-template-columns:1fr;gap:14px;}
+  .order-form{grid-template-columns:1fr;}
 }
 </style>
 </head>
@@ -488,18 +504,41 @@ footer{border-top:1px solid var(--border);padding:44px 0 40px;}
       <div class="order" data-rv>
         <div class="order-glow" aria-hidden="true"></div>
         <p class="eyebrow" style="justify-content:center">Pedir o livro</p>
-        <h2>Manda-me um email. Eu trato do resto.</h2>
-        <p>Escreve-me a dizer que queres <strong>A IA na Educação</strong> e a disciplina que lecionas — respondo-te com os detalhes e faço-te chegar o exemplar.</p>
-        <div class="mail-row">
-          <a class="btn btn-main" id="cta-mail" href="#">
-            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="M3 6.5l9 6 9-6"/></svg>
-            <span>Escrever a Fátima</span>
-          </a>
-          <span class="mail-chip">
-            <span id="mail-text">techforyou110@gmail.com</span>
-            <button class="copy" id="copy-btn" type="button">Copiar</button>
-          </span>
-        </div>
+        <h2>Preenche e envia. Eu trato do resto.</h2>
+        <p>Deixa os teus dados — abre-se o teu email já preenchido, é só carregar em enviar. Respondo-te com os detalhes e faço-te chegar o exemplar.</p>
+
+        <form class="order-form" id="order-form" novalidate>
+          <div class="field">
+            <label for="f-nome">Nome</label>
+            <input id="f-nome" name="nome" type="text" autocomplete="name" placeholder="O teu nome" required>
+          </div>
+          <div class="field">
+            <label for="f-email">O teu email</label>
+            <input id="f-email" name="email" type="email" autocomplete="email" placeholder="nome@exemplo.com" required>
+          </div>
+          <div class="field">
+            <label for="f-disc">Disciplina / ciclo que lecionas</label>
+            <input id="f-disc" name="disciplina" type="text" placeholder="Ex.: Matemática, 3.º ciclo" required>
+          </div>
+          <div class="field field-full">
+            <label for="f-msg">Mensagem <span class="opt">(opcional)</span></label>
+            <textarea id="f-msg" name="mensagem" rows="3" placeholder="Alguma pergunta ou observação?"></textarea>
+          </div>
+          <p class="form-error" id="form-error" hidden>Preenche o nome, um email válido e a disciplina.</p>
+          <button class="btn btn-main btn-submit" type="submit">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/></svg>
+            <span>Enviar o meu pedido</span>
+          </button>
+          <p class="form-hint">
+            Ao enviar, abre-se o teu programa de email com tudo preenchido.
+            <br>Se preferires, escreve diretamente para
+            <span class="mail-chip">
+              <span id="mail-text">techforyou110@gmail.com</span>
+              <button class="copy" id="copy-btn" type="button">Copiar</button>
+            </span>
+            ou <a id="gmail-link" href="#" target="_blank" rel="noopener">abrir no Gmail ↗</a>.
+          </p>
+        </form>
       </div>
     </div>
   </section>
@@ -552,14 +591,52 @@ footer{border-top:1px solid var(--border);padding:44px 0 40px;}
   // email — montado em partes para dificultar a recolha automática por robôs
   const user = 'techforyou110', host = 'gmail.com';
   const addr = user + '@' + host;
-  const assunto = encodeURIComponent('Quero o livro "A IA na Educação"');
-  const corpo = encodeURIComponent(
-    'Olá Fátima,\n\nGostava de receber o livro "A IA na Educação".\n\n' +
-    'Nome:\nDisciplina / ciclo que leciono:\nEscola (opcional):\n\nObrigado(a)!'
-  );
-  const link = document.getElementById('cta-mail');
-  link.href = 'mailto:' + addr + '?subject=' + assunto + '&body=' + corpo;
   document.getElementById('mail-text').textContent = addr;
+
+  // formulário de pedido → abre o email já preenchido
+  const form = document.getElementById('order-form');
+  const errBox = document.getElementById('form-error');
+  const gmailLink = document.getElementById('gmail-link');
+
+  const buildEmail = () => {
+    const nome = document.getElementById('f-nome').value.trim();
+    const email = document.getElementById('f-email').value.trim();
+    const disc = document.getElementById('f-disc').value.trim();
+    const msg = document.getElementById('f-msg').value.trim();
+    const assunto = 'Quero o livro "A IA na Educação"';
+    const corpo =
+      'Olá Fátima,\n\nGostava de receber o livro "A IA na Educação".\n\n' +
+      'Nome: ' + nome + '\n' +
+      'Email: ' + email + '\n' +
+      'Disciplina / ciclo: ' + disc + '\n' +
+      (msg ? '\nMensagem: ' + msg + '\n' : '') +
+      '\nObrigada!';
+    return { assunto, corpo };
+  };
+
+  // mantém a ligação "abrir no Gmail" sempre atualizada
+  const refreshGmail = () => {
+    const { assunto, corpo } = buildEmail();
+    gmailLink.href = 'https://mail.google.com/mail/?view=cm&fs=1&to=' +
+      encodeURIComponent(addr) + '&su=' + encodeURIComponent(assunto) +
+      '&body=' + encodeURIComponent(corpo);
+  };
+  refreshGmail();
+  form.addEventListener('input', refreshGmail);
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!form.checkValidity()) {
+      errBox.hidden = false;
+      form.querySelector(':invalid')?.focus();
+      return;
+    }
+    errBox.hidden = true;
+    const { assunto, corpo } = buildEmail();
+    window.location.href = 'mailto:' + addr +
+      '?subject=' + encodeURIComponent(assunto) +
+      '&body=' + encodeURIComponent(corpo);
+  });
 
   // copiar endereço
   const btn = document.getElementById('copy-btn');
