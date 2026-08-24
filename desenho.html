@@ -967,11 +967,23 @@ elPlay.addEventListener('click', toggle);
 elRestart.addEventListener('click', () => { resetDrawing(); play(); });
 elSave.addEventListener('click', () => {
   try {
-    view.toBlob(blob => {
+    view.toBlob(async blob => {
       if (!blob){ toast('Não foi possível guardar.'); return; }
+      const name = 'desenho-techforyou.png';
+      // no visualizador de artefactos a transferência passa pelo anfitrião
+      if (window.claude && typeof window.claude.use === 'function'){
+        try {
+          const dl = await window.claude.use('downloads');
+          if (dl){
+            try { await dl.save({ filename:name, data:blob }); toast('Imagem guardada.'); }
+            catch(err){ if (!err || err.code !== 'declined') toast('Não foi possível guardar.'); }
+            return;
+          }
+        } catch(e){ /* segue para o método normal */ }
+      }
       const url = URL.createObjectURL(blob);
       const a = document.createElement('a');
-      a.href = url; a.download = 'desenho-techforyou.png';
+      a.href = url; a.download = name;
       document.body.appendChild(a); a.click(); a.remove();
       setTimeout(() => URL.revokeObjectURL(url), 4000);
       toast('Imagem guardada.');
