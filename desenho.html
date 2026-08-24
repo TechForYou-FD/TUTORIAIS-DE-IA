@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Foto → Desenho | TechForYou</title>
-<meta name="description" content="Carrega uma foto e vê a IA desenhar as linhas e pintar com cor, com o som suave da caneta a riscar o papel.">
+<meta name="description" content="Carrega uma foto e vê uma mão desenhá-la e pintá-la em 5 segundos, com o som suave da caneta, até se transformar na fotografia original.">
 <meta name="theme-color" content="#070912">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -86,6 +86,12 @@ a{color:var(--blue-2)}
 canvas#view{display:block; max-width:100%; max-height:min(66vh,640px); width:auto; height:auto;
   image-rendering:auto; touch-action:none}
 canvas#view.empty{display:none}
+
+.hand{position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; opacity:0;
+  transform-origin:0 0; transition:opacity .28s var(--ease); z-index:3;
+  filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
+.hand.on{opacity:1}
+.hand svg{display:block; overflow:visible}
 
 .drop{position:absolute; inset:0; display:grid; place-items:center; text-align:center; padding:1.6rem;
   border-radius:14px; transition:.25s var(--ease)}
@@ -177,8 +183,9 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
   <section class="intro">
     <p class="eyebrow">Foto → Desenho</p>
     <h1>A tua foto, <span>desenhada à mão</span></h1>
-    <p>Carrega uma fotografia: a app encontra os contornos, desenha-os traço a traço com o som suave
-       da caneta no papel e depois pinta tudo com as cores da imagem.</p>
+    <p>Carrega uma fotografia: uma mão desenha os contornos com o som suave da caneta no papel,
+       pinta por cima com as cores da imagem e o desenho acaba por se transformar na foto original —
+       tudo em cerca de 5 segundos.</p>
   </section>
 
   <div class="app">
@@ -199,6 +206,46 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
             <p class="hint">Também podes colar com <kbd>Ctrl</kbd> + <kbd>V</kbd></p>
           </div>
         </div>
+      </div>
+
+      <div class="hand" id="hand" aria-hidden="true">
+        <svg viewBox="-150 -430 540 640" width="540" height="640">
+          <defs>
+            <linearGradient id="pen-body" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#171d33"/><stop offset=".55" stop-color="#2a3355"/><stop offset="1" stop-color="#141a2e"/>
+            </linearGradient>
+            <linearGradient id="pen-cap" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#ff2fd0"/><stop offset="1" stop-color="#3fb2ff"/>
+            </linearGradient>
+            <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#f2c3a2"/><stop offset="1" stop-color="#dda07c"/>
+            </linearGradient>
+            <linearGradient id="cuff" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#20284a"/><stop offset="1" stop-color="#151a30"/>
+            </linearGradient>
+          </defs>
+          <g transform="rotate(31)" stroke="rgba(60,30,20,.28)" stroke-width="2.5">
+            <!-- manga -->
+            <g transform="rotate(26 150 20)">
+              <rect x="118" y="-46" width="330" height="150" rx="40" fill="url(#cuff)" stroke="rgba(10,14,30,.6)"/>
+              <rect x="118" y="-46" width="26" height="150" rx="13" fill="url(#pen-cap)" opacity=".85" stroke="none"/>
+            </g>
+            <!-- costas da mão -->
+            <rect x="40" y="-116" width="126" height="164" rx="56" fill="url(#skin)"/>
+            <!-- dedos inferiores -->
+            <g transform="rotate(5 40 26)"><rect x="40" y="8" width="66" height="25" rx="12.5" fill="#dc9f7b"/></g>
+            <g transform="rotate(-2 30 -18)"><rect x="28" y="-32" width="80" height="27" rx="13.5" fill="#e5aa86"/></g>
+            <g transform="rotate(-7 20 -58)"><rect x="14" y="-72" width="94" height="29" rx="14.5" fill="#ebb28e"/></g>
+            <!-- caneta -->
+            <path d="M -6 -40 L 0 0 L 6 -40 Z" fill="#cfd8f5" stroke="rgba(10,14,30,.5)"/>
+            <path d="M -9 -38 L 9 -38 L 11 -262 Q 11 -284 0 -292 Q -11 -284 -11 -262 Z" fill="url(#pen-body)" stroke="rgba(10,14,30,.55)"/>
+            <rect x="-11" y="-120" width="22" height="34" rx="6" fill="url(#pen-cap)" stroke="none"/>
+            <path d="M -6 -46 L -7.5 -256" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-linecap="round" fill="none"/>
+            <!-- indicador e polegar -->
+            <g transform="rotate(-15 40 -100)"><rect x="-8" y="-116" width="112" height="32" rx="16" fill="url(#skin)"/></g>
+            <g transform="rotate(16 0 -78)"><rect x="-34" y="-94" width="70" height="29" rx="14.5" fill="#f0bd9b"/></g>
+          </g>
+        </svg>
       </div>
 
       <div class="progress">
@@ -229,6 +276,10 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
         </div>
         <label class="switch"><span>Pintar com cor</span>
           <input type="checkbox" id="usecolor" checked></label>
+        <label class="switch"><span>Mostrar a mão</span>
+          <input type="checkbox" id="usehand" checked></label>
+        <label class="switch"><span>Terminar na foto</span>
+          <input type="checkbox" id="usephoto" checked></label>
       </div>
 
       <div class="group">
@@ -242,8 +293,8 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
           <input type="range" id="thick" min="4" max="30" value="10">
         </div>
         <div class="field">
-          <label for="speed">Velocidade <b id="speed-v">1.4×</b></label>
-          <input type="range" id="speed" min="3" max="40" value="14">
+          <label for="dur">Duração <b id="dur-v">5,0 s</b></label>
+          <input type="range" id="dur" min="30" max="200" value="50">
         </div>
       </div>
 
@@ -252,12 +303,12 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
         <label class="switch"><span>Som da caneta</span>
           <input type="checkbox" id="sound" checked></label>
         <div class="field">
-          <label for="vol">Volume <b id="vol-v">55</b></label>
-          <input type="range" id="vol" min="0" max="100" value="55">
+          <label for="vol">Volume <b id="vol-v">40</b></label>
+          <input type="range" id="vol" min="0" max="100" value="40">
         </div>
       </div>
 
-      <p class="note"><kbd>Espaço</kbd> pausa ou continua · o detalhe e a espessura recalculam o desenho.</p>
+      <p class="note"><kbd>Espaço</kbd> pausa ou continua · o desenho corre em cerca de 5 segundos e termina na fotografia original.</p>
     </aside>
   </div>
 </main>
@@ -278,11 +329,12 @@ const raf = () => new Promise(r => requestAnimationFrame(r));
    Elementos
    ============================================================ */
 const view   = $('#view'), vctx = view.getContext('2d');
-const hold   = $('#hold'), drop = $('#drop');
+const hold   = $('#hold'), drop = $('#drop'), stage = $('#stage');
 const fileEl = $('#file');
 const elPlay = $('#play'), elRestart = $('#restart'), elSave = $('#save'), elChange = $('#change');
-const elDetail = $('#detail'), elThick = $('#thick'), elSpeed = $('#speed'), elVol = $('#vol');
-const elSound = $('#sound'), elColor = $('#usecolor');
+const elDetail = $('#detail'), elThick = $('#thick'), elDur = $('#dur'), elVol = $('#vol');
+const elSound = $('#sound'), elColor = $('#usecolor'), elHand = $('#usehand'), elPhoto = $('#usephoto');
+const handEl = $('#hand');
 const elBar = $('#barfill'), elChip = $('#chip'), elStats = $('#stats'), elToast = $('#toast');
 
 let toastTimer = 0;
@@ -319,12 +371,13 @@ const S = {
   lineC:null, lineCtx:null, fillC:null, fillCtx:null,
   strokes:[], totalLen:0,
   dabs:[],
-  phase:'idle',            // idle | lines | fill | done
+  phase:'idle',            // idle | lines | fill | reveal | done
   si:0, drawn:0, di:0,
-  lift:0, pen:null,
+  rev:0, pen:null,
+  handX:0, handY:0, handTilt:0, handOK:false,
   playing:false, busy:false,
-  lineSecs:20, fillSecs:14,
-  last:0, loopId:0
+  tLines:2.6, tFill:1.7, tRev:0.7, pxPerSec:1000, dabRate:1000,
+  rect:null, last:0, loopId:0
 };
 
 const MAXDIM = 980;
@@ -358,12 +411,13 @@ const Audio_ = (() => {
 
     const src = ctx.createBufferSource(); src.buffer = buf; src.loop = true;
 
-    penBp = ctx.createBiquadFilter(); penBp.type='bandpass'; penBp.frequency.value=2300; penBp.Q.value=.75;
-    const penHp = ctx.createBiquadFilter(); penHp.type='highpass'; penHp.frequency.value=900;
+    penBp = ctx.createBiquadFilter(); penBp.type='bandpass'; penBp.frequency.value=1250; penBp.Q.value=.5;
+    const penHp = ctx.createBiquadFilter(); penHp.type='highpass'; penHp.frequency.value=320;
+    const penLp = ctx.createBiquadFilter(); penLp.type='lowpass'; penLp.frequency.value=2400; penLp.Q.value=.4;
     penGain = ctx.createGain(); penGain.gain.value = 0;
-    src.connect(penBp); penBp.connect(penHp); penHp.connect(penGain); penGain.connect(master);
+    src.connect(penBp); penBp.connect(penHp); penHp.connect(penLp); penLp.connect(penGain); penGain.connect(master);
 
-    brLp = ctx.createBiquadFilter(); brLp.type='lowpass'; brLp.frequency.value=760; brLp.Q.value=.6;
+    brLp = ctx.createBiquadFilter(); brLp.type='lowpass'; brLp.frequency.value=560; brLp.Q.value=.5;
     brGain = ctx.createGain(); brGain.gain.value = 0;
     src.connect(brLp); brLp.connect(brGain); brGain.connect(master);
 
@@ -386,16 +440,16 @@ const Audio_ = (() => {
     setVolume(v){ volume = v; if (master) try { master.gain.setTargetAtTime(v, ctx.currentTime, .05); } catch(e){} },
     pen(intensity){
       if (!started || !enabled) return;
-      set(penGain, intensity * 0.30, .025);
+      set(penGain, intensity * 0.075, .07);          // riscar leve, sem sibilância
       if (intensity > 0.02){
-        try { penBp.frequency.setTargetAtTime(1700 + Math.random()*1500, ctx.currentTime, .06); } catch(e){}
+        try { penBp.frequency.setTargetAtTime(1000 + Math.random()*700, ctx.currentTime, .14); } catch(e){}
       }
     },
     brush(intensity){
       if (!started || !enabled) return;
-      set(brGain, intensity * 0.22, .05);
+      set(brGain, intensity * 0.055, .1);
       if (intensity > 0.02){
-        try { brLp.frequency.setTargetAtTime(520 + Math.random()*520, ctx.currentTime, .1); } catch(e){}
+        try { brLp.frequency.setTargetAtTime(400 + Math.random()*300, ctx.currentTime, .18); } catch(e){}
       }
     },
     silence(){ set(penGain,0,.03); set(brGain,0,.03); }
@@ -670,8 +724,11 @@ function buildDabs(data,w,h){
 /* ============================================================
    3. Render
    ============================================================ */
+const easeInOut = t => t<.5 ? 2*t*t : 1 - Math.pow(-2*t+2,2)/2;
+
 function render(){
   const P = paper();
+  const rev = S.rev;
   vctx.setTransform(1,0,0,1,0,0);
   vctx.globalCompositeOperation = 'source-over';
   vctx.globalAlpha = 1;
@@ -682,36 +739,71 @@ function render(){
   if (S.fillC) vctx.drawImage(S.fillC, 0, 0);
 
   if (S.lineC){
-    if (P.glow && supportsFilter){
-      vctx.globalCompositeOperation = 'lighter';
-      vctx.globalAlpha = .60;
-      vctx.filter = 'blur(7px)';
+    const la = 1 - rev;
+    if (la > 0.01){
+      if (P.glow && supportsFilter){
+        vctx.globalCompositeOperation = 'lighter';
+        vctx.globalAlpha = .60 * la;
+        vctx.filter = 'blur(7px)';
+        vctx.drawImage(S.lineC, 0, 0);
+        vctx.filter = 'none';
+      }
+      vctx.globalCompositeOperation = P.lineComposite;
+      vctx.globalAlpha = la;
       vctx.drawImage(S.lineC, 0, 0);
-      vctx.filter = 'none';
-      vctx.globalAlpha = 1;
     }
-    vctx.globalCompositeOperation = P.lineComposite;
-    vctx.drawImage(S.lineC, 0, 0);
   }
 
   vctx.globalCompositeOperation = 'source-over';
-  if (S.pen && S.playing){                         // ponta da caneta / pincel
-    const p = S.pen;
-    vctx.beginPath();
-    vctx.arc(p.x, p.y, p.r || 3.2, 0, Math.PI*2);
-    vctx.fillStyle = P.tip;
-    vctx.shadowColor = P.tip; vctx.shadowBlur = 14;
-    vctx.fill();
-    vctx.shadowBlur = 0;
+  if (rev > 0 && S.src){                        // culminar na fotografia original
+    vctx.globalAlpha = easeInOut(rev);
+    vctx.drawImage(S.src, 0, 0);
   }
   vctx.globalAlpha = 1;
+}
+
+/* ---- mão a segurar a caneta ---- */
+function measure(){
+  const r = view.getBoundingClientRect(), st = stage.getBoundingClientRect();
+  S.rect = { x:r.left - st.left, y:r.top - st.top, w:r.width, h:r.height };
+}
+
+function placeHand(force){
+  const show = elHand.checked && S.pen && S.playing && S.phase !== 'reveal';
+  handEl.classList.toggle('on', !!show);
+  if (!show || !S.rect || !S.rect.w) return;
+  const k = S.rect.w / S.W;
+  const tx = S.rect.x + S.handX * k;
+  const ty = S.rect.y + S.handY * k;
+  const scale = Math.min(S.rect.h * 0.62, S.rect.w * 1.15) / 640;
+  handEl.style.transform =
+    'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) rotate(' + S.handTilt.toFixed(2) + 'deg)' +
+    ' scale(' + scale.toFixed(3) + ') translate(-150px,-430px)';
+}
+
+function moveHand(x,y,snap){
+  if (snap || !S.handOK){ S.handX = x; S.handY = y; S.handOK = true; }
+  else { S.handX += (x - S.handX) * 0.34; S.handY += (y - S.handY) * 0.34; }
+  const drift = (S.handX / Math.max(1,S.W) - .5) * 6;
+  S.handTilt += (drift - S.handTilt) * 0.12;
 }
 
 /* ============================================================
    4. Animação
    ============================================================ */
-const speedMul = () => (+elSpeed.value) / 10;
+const durSecs = () => (+elDur.value) / 10;
 const thickMul = () => (+elThick.value) / 10;
+
+function pacing(){
+  const D = durSecs();
+  const withColor = elColor.checked && S.dabs.length > 0;
+  const withPhoto = elPhoto.checked && !!S.src;
+  let fl = withColor ? 0.50 : 0.84, ff = withColor ? 0.34 : 0, fr = withPhoto ? 0.16 : 0;
+  const tot = fl + ff + fr || 1;
+  S.tLines = D*fl/tot; S.tFill = D*ff/tot; S.tRev = D*fr/tot;
+  S.pxPerSec = S.totalLen / Math.max(.25, S.tLines);
+  S.dabRate  = S.dabs.length / Math.max(.25, S.tFill);
+}
 
 function inkWidth(st){
   const base = Math.max(1.2, Math.min(S.W,S.H)/320) * thickMul();
@@ -719,10 +811,9 @@ function inkWidth(st){
 }
 
 function stepLines(dt){
-  if (S.lift > 0){ S.lift -= dt; Audio_.pen(0.05); Audio_.brush(0); return; }
-  let budget = S.pxPerSec * speedMul() * dt;
+  let budget = S.pxPerSec * dt;
   const ctx = S.lineCtx;
-  let moved = 0;
+  let moved = 0, lastX = S.pen ? S.pen.x : 0, lastY = S.pen ? S.pen.y : 0;
 
   while (budget > 0 && S.si < S.strokes.length){
     const st = S.strokes[S.si];
@@ -735,28 +826,27 @@ function stepLines(dt){
       const x0 = a.x + (b.x-a.x)*t0, y0 = a.y + (b.y-a.y)*t0;
       const x1 = a.x + (b.x-a.x)*t1 + (Math.random()-.5)*j, y1 = a.y + (b.y-a.y)*t1 + (Math.random()-.5)*j;
       ctx.beginPath(); ctx.moveTo(x0,y0); ctx.lineTo(x1,y1); ctx.stroke();
-      S.pen = {x:x1, y:y1, r:Math.max(2.4, ctx.lineWidth*1.5)};
+      lastX = x1; lastY = y1;
       st.t += step; budget -= step; S.drawn += step; moved += step;
       if (st.t >= L - 1e-6){ st.i++; st.t = 0; }
     }
-    if (st.i >= st.pts.length-1){
-      S.si++;
-      if (st.len > 26){                              // levantar a caneta entre traços longos
-        S.lift = (0.03 + Math.random()*0.05) / Math.max(.5, speedMul());
-        break;
-      }
-    }
+    if (st.i >= st.pts.length-1) S.si++;
+  }
+
+  if (moved > 0){
+    S.pen = { x:lastX, y:lastY };
+    moveHand(lastX, lastY, false);
   }
   Audio_.brush(0);
-  Audio_.pen(moved > 0 ? 0.55 + Math.random()*0.45 : 0.05);
+  Audio_.pen(moved > 0 ? 0.72 + Math.random()*0.28 : 0.06);
   if (S.si >= S.strokes.length) nextPhase();
 }
 
 function stepFill(dt){
-  const n = Math.max(1, Math.round(S.dabRate * speedMul() * dt));
+  const n = Math.max(1, Math.round(S.dabRate * dt));
   const ctx = S.fillCtx;
   const alpha = paper().fillAlpha;
-  let painted = 0;
+  let painted = 0, lx = 0, ly = 0;
   for (let c=0; c<n && S.di < S.dabs.length; c++, S.di++){
     const d = S.dabs[S.di];
     ctx.fillStyle = d.col;
@@ -764,20 +854,25 @@ function stepFill(dt){
     ctx.beginPath(); ctx.arc(d.x, d.y, d.r*1.2, 0, Math.PI*2); ctx.fill();
     ctx.globalAlpha = alpha * 0.9;
     ctx.beginPath(); ctx.arc(d.x, d.y, d.r*0.72, 0, Math.PI*2); ctx.fill();
-    S.pen = {x:d.x, y:d.y, r:d.r*1.1};
-    painted++;
+    lx = d.x; ly = d.y; painted++;
   }
   ctx.globalAlpha = 1;
+  if (painted){ S.pen = {x:lx, y:ly}; moveHand(lx, ly, false); }
   Audio_.pen(0);
-  Audio_.brush(painted > 0 ? 0.6 + Math.random()*0.4 : 0);
+  Audio_.brush(painted > 0 ? 0.7 + Math.random()*0.3 : 0);
   if (S.di >= S.dabs.length) nextPhase();
 }
 
+function stepReveal(dt){
+  S.rev = Math.min(1, S.rev + dt / Math.max(.2, S.tRev));
+  Audio_.pen(0.03 * (1 - S.rev));
+  Audio_.brush(0.25 * (1 - S.rev));
+  if (S.rev >= 1) nextPhase();
+}
+
 function nextPhase(){
-  if (S.phase === 'lines' && elColor.checked && S.dabs.length){
-    S.phase = 'fill'; S.lift = 0.35;
-    return;
-  }
+  if (S.phase === 'lines' && elColor.checked && S.dabs.length){ S.phase = 'fill'; return; }
+  if (S.phase !== 'reveal' && elPhoto.checked && S.src && S.tRev > 0){ S.phase = 'reveal'; return; }
   S.phase = 'done';
   S.playing = false;
   S.pen = null;
@@ -785,7 +880,7 @@ function nextPhase(){
   cancelAnimationFrame(S.loopId); S.loopId = 0;
   elPlay.textContent = 'Desenhar de novo';
   elPlay.disabled = false;
-  render(); updateProgress();
+  render(); placeHand(); updateProgress();
 }
 
 function loop(ts){
@@ -794,8 +889,9 @@ function loop(ts){
   const dt = clamp((ts - S.last)/1000 || 0, 0, 0.06);
   S.last = ts;
   if (S.phase === 'lines') stepLines(dt);
-  else if (S.phase === 'fill') { if (S.lift > 0){ S.lift -= dt; Audio_.pen(0); Audio_.brush(0); } else stepFill(dt); }
-  if (S.playing){ render(); updateProgress(); }
+  else if (S.phase === 'fill') stepFill(dt);
+  else if (S.phase === 'reveal') stepReveal(dt);
+  if (S.playing){ render(); placeHand(); updateProgress(); }
 }
 
 function startLoop(){
@@ -805,16 +901,17 @@ function startLoop(){
 }
 
 function updateProgress(){
-  const wLines = elColor.checked && S.dabs.length ? 0.62 : 1;
-  const pl = S.totalLen ? clamp(S.drawn/S.totalLen, 0, 1) : 0;
-  const pf = S.dabs.length ? clamp(S.di/S.dabs.length, 0, 1) : 0;
-  const pct = Math.round((pl*wLines + pf*(1-wLines)) * 100);
+  const D = Math.max(.001, S.tLines + S.tFill + S.tRev);
+  const pl = S.totalLen ? clamp(S.drawn/S.totalLen, 0, 1) : 1;
+  const pf = S.dabs.length ? clamp(S.di/S.dabs.length, 0, 1) : 1;
+  const pct = Math.round(((pl*S.tLines) + (pf*S.tFill) + (S.rev*S.tRev)) / D * 100);
   elBar.style.width = pct + '%';
   const label =
-    S.phase === 'lines' ? 'A desenhar as linhas…' :
-    S.phase === 'fill'  ? 'A pintar com cor…' :
-    S.phase === 'done'  ? 'Desenho terminado' : 'Pronto a desenhar';
-  elChip.textContent = label + (S.phase === 'done' ? '' : ' ' + pct + '%');
+    S.phase === 'lines'  ? 'A desenhar as linhas…' :
+    S.phase === 'fill'   ? 'A pintar com cor…' :
+    S.phase === 'reveal' ? 'A revelar a fotografia…' :
+    S.phase === 'done'   ? 'Desenho terminado' : 'Pronto a desenhar';
+  elChip.textContent = label + (S.phase === 'done' || S.phase === 'idle' ? '' : ' ' + pct + '%');
   elChip.classList.toggle('on', S.playing);
   elStats.textContent = S.strokes.length
     ? S.strokes.length.toLocaleString('pt-PT') + ' traços · ' + S.dabs.length.toLocaleString('pt-PT') + ' pinceladas'
@@ -843,9 +940,7 @@ async function analyse(){
   await raf();
   S.dabs = buildDabs(S.srcData, S.W, S.H);
 
-  S.lineSecs = 16; S.fillSecs = 11;
-  S.pxPerSec = clamp(S.totalLen / S.lineSecs, 260, 26000);
-  S.dabRate  = clamp(S.dabs.length / S.fillSecs, 40, 9000);
+  pacing();
   S.busy = false;
 }
 
@@ -853,17 +948,19 @@ function resetDrawing(){
   cancelAnimationFrame(S.loopId); S.loopId = 0;
   setupLayers();
   for (const st of S.strokes){ st.i = 0; st.t = 0; }
-  S.si = 0; S.drawn = 0; S.di = 0; S.lift = 0; S.pen = null;
+  S.si = 0; S.drawn = 0; S.di = 0; S.rev = 0; S.pen = null; S.handOK = false;
   S.phase = 'lines';
   S.playing = false;
   Audio_.silence();
-  render(); updateProgress();
+  pacing(); measure();
+  render(); placeHand(); updateProgress();
 }
 
 function play(){
   if (!S.strokes.length || S.busy) return;
   if (S.phase === 'done') resetDrawing();
   Audio_.ensure();
+  pacing(); measure();
   S.playing = true;
   elPlay.textContent = 'Pausa';
   startLoop();
@@ -875,8 +972,7 @@ function pause(){
   Audio_.silence();
   cancelAnimationFrame(S.loopId); S.loopId = 0;
   elPlay.textContent = 'Continuar';
-  S.pen = null;
-  render(); updateProgress();
+  render(); placeHand(); updateProgress();
 }
 
 function toggle(){ if (S.playing) pause(); else play(); }
@@ -900,7 +996,9 @@ async function useBitmap(bmp){
   drop.classList.add('hide');
 
   setupLayers();
+  S.rev = 0;
   render();
+  measure();
 
   await analyse();
   resetDrawing();
@@ -1034,13 +1132,16 @@ $('#paper-light').addEventListener('click', () => setPaper('light'));
 
 elDetail.addEventListener('input', () => { $('#detail-v').textContent = elDetail.value; scheduleReanalyse(); });
 elThick.addEventListener('input',  () => { $('#thick-v').textContent = thickMul().toFixed(1) + '×'; scheduleRestart(); });
-elSpeed.addEventListener('input',  () => { $('#speed-v').textContent = speedMul().toFixed(1) + '×'; });
+elDur.addEventListener('input',    () => { $('#dur-v').textContent = durSecs().toFixed(1).replace('.', ',') + ' s'; pacing(); });
 elVol.addEventListener('input',    () => { $('#vol-v').textContent = elVol.value; Audio_.setVolume((+elVol.value)/100); });
 elSound.addEventListener('change', () => { Audio_.setEnabled(elSound.checked); if (elSound.checked && S.playing) Audio_.ensure(); });
-elColor.addEventListener('change', () => { scheduleRestart(); updateProgress(); });
+elColor.addEventListener('change', () => { scheduleRestart(); });
+elPhoto.addEventListener('change', () => { scheduleRestart(); });
+elHand.addEventListener('change',  () => { placeHand(); });
+window.addEventListener('resize',  () => { measure(); placeHand(); });
 
 Audio_.setVolume((+elVol.value)/100);
-$('#speed-v').textContent = speedMul().toFixed(1) + '×';
+$('#dur-v').textContent = durSecs().toFixed(1).replace('.', ',') + ' s';
 $('#thick-v').textContent = thickMul().toFixed(1) + '×';
 updateProgress();
 })();
