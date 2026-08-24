@@ -89,9 +89,24 @@ canvas#view.empty{display:none}
 
 .hand{position:absolute; left:0; top:0; width:0; height:0; pointer-events:none; opacity:0;
   transform-origin:0 0; transition:opacity .28s var(--ease); z-index:3;
-  filter:drop-shadow(0 14px 22px rgba(0,0,0,.5))}
+  filter:drop-shadow(0 12px 20px rgba(0,0,0,.34))}
 .hand.on{opacity:1}
 .hand svg{display:block; overflow:visible}
+.hand img{display:none; position:absolute; left:0; top:0; max-width:none}
+.hand.custom img{display:block}
+.hand.custom svg{display:none}
+
+/* escolher a ponta da caneta numa mão personalizada */
+.tipper{position:fixed; inset:0; z-index:90; display:grid; place-items:center; padding:1.4rem;
+  background:rgba(4,6,14,.86); backdrop-filter:blur(6px)}
+.tipper[hidden]{display:none}
+.tipper-box{background:var(--surface-2); border:1px solid var(--border-strong); border-radius:var(--radius);
+  padding:1.1rem; display:grid; gap:.8rem; justify-items:center; max-width:min(92vw,640px)}
+.tipper-box p{margin:0; color:var(--muted); font-size:.95rem; text-align:center}
+.tipper-box p b{color:var(--text)}
+.tipper-img{position:relative; border-radius:12px; overflow:hidden; border:1px solid var(--border);
+  background:repeating-conic-gradient(#1a2140 0 25%, #131a33 0 50%) 0 0/22px 22px}
+.tipper-img img{display:block; max-width:100%; max-height:56vh; cursor:crosshair}
 
 .drop{position:absolute; inset:0; display:grid; place-items:center; text-align:center; padding:1.6rem;
   border-radius:14px; transition:.25s var(--ease)}
@@ -209,41 +224,63 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
       </div>
 
       <div class="hand" id="hand" aria-hidden="true">
-        <svg viewBox="-150 -430 540 640" width="540" height="640">
+        <img id="handimg" alt="">
+        <svg id="handsvg" viewBox="-150 -430 540 640" width="540" height="640">
           <defs>
-            <linearGradient id="pen-body" x1="0" y1="1" x2="1" y2="0">
-              <stop offset="0" stop-color="#171d33"/><stop offset=".55" stop-color="#2a3355"/><stop offset="1" stop-color="#141a2e"/>
+            <linearGradient id="sk" x1=".15" y1="0" x2=".85" y2="1">
+              <stop offset="0" stop-color="#f6d3b4"/><stop offset=".45" stop-color="#eab68e"/><stop offset="1" stop-color="#c98a63"/>
             </linearGradient>
-            <linearGradient id="pen-cap" x1="0" y1="1" x2="1" y2="0">
+            <linearGradient id="sk2" x1="0" y1="0" x2=".6" y2="1">
+              <stop offset="0" stop-color="#f2c8a5"/><stop offset="1" stop-color="#d29a72"/>
+            </linearGradient>
+            <linearGradient id="sk3" x1="0" y1="0" x2=".7" y2="1">
+              <stop offset="0" stop-color="#eebd97"/><stop offset="1" stop-color="#c68a62"/>
+            </linearGradient>
+            <linearGradient id="nail" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#fae3d2"/><stop offset="1" stop-color="#e3b193"/>
+            </linearGradient>
+            <linearGradient id="barrel" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0" stop-color="#0e1424"/><stop offset=".42" stop-color="#39436b"/><stop offset="1" stop-color="#101728"/>
+            </linearGradient>
+            <linearGradient id="band" x1="0" y1="1" x2="1" y2="0">
               <stop offset="0" stop-color="#ff2fd0"/><stop offset="1" stop-color="#3fb2ff"/>
             </linearGradient>
-            <linearGradient id="skin" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#f2c3a2"/><stop offset="1" stop-color="#dda07c"/>
-            </linearGradient>
-            <linearGradient id="cuff" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0" stop-color="#4b5687"/><stop offset="1" stop-color="#333c66"/>
+            <linearGradient id="cuff2" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#5a67a0"/><stop offset="1" stop-color="#2e3760"/>
             </linearGradient>
           </defs>
-          <g transform="rotate(31)" stroke="rgba(60,30,20,.28)" stroke-width="2.5">
-            <!-- manga -->
-            <g transform="rotate(26 150 20)">
-              <rect x="118" y="-46" width="330" height="150" rx="40" fill="url(#cuff)" stroke="rgba(10,14,30,.6)"/>
-              <rect x="118" y="-46" width="26" height="150" rx="13" fill="url(#pen-cap)" opacity=".85" stroke="none"/>
-            </g>
+          <g transform="rotate(30)">
+            <!-- antebraço / manga -->
+            <path d="M 146 4 C 186 22 226 54 262 96 L 906 462 L 884 502 L 92 84 C 108 50 124 20 146 4 Z"
+                  fill="url(#cuff2)"/>
+            <path d="M 118 -12 C 152 4 182 28 206 58 L 156 104 C 134 78 108 56 84 42 Z" fill="url(#sk3)"/>
+
             <!-- costas da mão -->
-            <rect x="40" y="-116" width="126" height="164" rx="56" fill="url(#skin)"/>
-            <!-- dedos inferiores -->
-            <g transform="rotate(5 40 26)"><rect x="40" y="8" width="66" height="25" rx="12.5" fill="#dc9f7b"/></g>
-            <g transform="rotate(-2 30 -18)"><rect x="28" y="-32" width="80" height="27" rx="13.5" fill="#e5aa86"/></g>
-            <g transform="rotate(-7 20 -58)"><rect x="14" y="-72" width="94" height="29" rx="14.5" fill="#ebb28e"/></g>
+            <path d="M 76 -112 C 122 -116 158 -94 176 -58 C 194 -22 194 30 174 62 C 154 94 112 100 82 80 C 52 60 40 16 46 -30 C 52 -76 56 -110 76 -112 Z" fill="url(#sk)"/>
+            <path d="M 84 -92 C 118 -90 148 -74 162 -48" stroke="rgba(150,92,58,.22)" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+            <!-- mindinho e anelar enrolados -->
+            <path d="M 66 62 C 44 56 30 40 34 24 C 38 10 60 4 82 12 C 104 20 118 34 114 50 C 110 66 88 70 66 62 Z" fill="url(#sk3)"/>
+            <path d="M 52 18 C 28 10 14 -8 20 -24 C 26 -40 50 -46 74 -38 C 98 -30 112 -14 106 2 C 100 18 76 26 52 18 Z" fill="url(#sk2)"/>
+
+            <!-- dedo médio, enrolado por baixo da caneta -->
+            <path d="M 30 -30 C 4 -38 -10 -56 -4 -72 C 2 -88 28 -92 54 -84 C 80 -76 94 -58 88 -42 C 82 -26 56 -22 30 -30 Z" fill="url(#sk2)"/>
+
             <!-- caneta -->
-            <path d="M -6 -40 L 0 0 L 6 -40 Z" fill="#cfd8f5" stroke="rgba(10,14,30,.5)"/>
-            <path d="M -9 -38 L 9 -38 L 11 -262 Q 11 -284 0 -292 Q -11 -284 -11 -262 Z" fill="url(#pen-body)" stroke="rgba(10,14,30,.55)"/>
-            <rect x="-11" y="-120" width="22" height="34" rx="6" fill="url(#pen-cap)" stroke="none"/>
-            <path d="M -6 -46 L -7.5 -256" stroke="rgba(255,255,255,.28)" stroke-width="3" stroke-linecap="round" fill="none"/>
-            <!-- indicador e polegar -->
-            <g transform="rotate(-15 40 -100)"><rect x="-8" y="-116" width="112" height="32" rx="16" fill="url(#skin)"/></g>
-            <g transform="rotate(16 0 -78)"><rect x="-34" y="-94" width="70" height="29" rx="14.5" fill="#f0bd9b"/></g>
+            <path d="M -5.5 -34 L 0 0 L 5.5 -34 Z" fill="#20263c"/>
+            <path d="M -8 -32 L 8 -32 L 9.5 -60 L -9.5 -60 Z" fill="#aab4d6"/>
+            <path d="M -9.5 -58 L 9.5 -58 L 11.5 -250 C 11.5 -272 6 -284 0 -288 C -6 -284 -11.5 -272 -11.5 -250 Z" fill="url(#barrel)"/>
+            <path d="M -9.8 -78 L 9.8 -78 L 10.2 -112 L -10.2 -112 Z" fill="url(#band)"/>
+            <path d="M -6.5 -70 C -7.4 -140 -7.8 -200 -7.4 -246" stroke="rgba(255,255,255,.30)" stroke-width="3.4" fill="none" stroke-linecap="round"/>
+
+            <!-- indicador por cima da caneta -->
+            <path d="M 54 -108 C 86 -106 108 -90 108 -70 C 108 -50 84 -40 52 -44 C 26 -47 0 -58 -8 -74 C -13 -87 6 -104 24 -106 Z" fill="url(#sk)"/>
+            <ellipse cx="0" cy="-80" rx="11" ry="13.5" transform="rotate(-18 0 -80)" fill="url(#nail)"/>
+            <path d="M 40 -100 C 44 -86 44 -70 40 -52" stroke="rgba(150,92,58,.22)" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+
+            <!-- polegar -->
+            <path d="M 40 -140 C 18 -148 -6 -138 -18 -120 C -28 -104 -22 -88 -6 -84 C 12 -80 32 -94 44 -112 C 54 -126 54 -136 40 -140 Z" fill="url(#sk2)"/>
+            <ellipse cx="-8" cy="-110" rx="10" ry="13" transform="rotate(38 -8 -110)" fill="url(#nail)"/>
           </g>
         </svg>
       </div>
@@ -271,15 +308,24 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
       <div class="group">
         <h3>Estilo do papel</h3>
         <div class="seg" role="group" aria-label="Estilo do papel">
-          <button type="button" id="paper-neon" aria-pressed="true">Néon</button>
-          <button type="button" id="paper-light" aria-pressed="false">Papel claro</button>
+          <button type="button" id="paper-neon" aria-pressed="false">Néon</button>
+          <button type="button" id="paper-light" aria-pressed="true">Papel claro</button>
         </div>
         <label class="switch"><span>Pintar com cor</span>
           <input type="checkbox" id="usecolor" checked></label>
-        <label class="switch"><span>Mostrar a mão</span>
-          <input type="checkbox" id="usehand" checked></label>
         <label class="switch"><span>Terminar na foto</span>
           <input type="checkbox" id="usephoto" checked></label>
+      </div>
+
+      <div class="group">
+        <h3>A mão</h3>
+        <label class="switch"><span>Mostrar a mão</span>
+          <input type="checkbox" id="usehand" checked></label>
+        <div class="btn-row">
+          <button class="btn btn-ghost full" id="handpick" type="button">Usar a minha mão (PNG)</button>
+          <button class="btn btn-ghost full" id="handreset" type="button" hidden>Voltar à mão original</button>
+        </div>
+        <p class="hint">Uma foto da tua mão com caneta, em PNG com fundo transparente. Depois marcas a ponta da caneta.</p>
       </div>
 
       <div class="group">
@@ -316,7 +362,16 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
 <footer class="foot wrap">TechForYou · Fátima Diogo — tudo processado no teu navegador.</footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<div class="tipper" id="tipper" hidden>
+  <div class="tipper-box">
+    <p>Clica na <b>ponta da caneta</b> da tua imagem para a mão desenhar no sítio certo.</p>
+    <div class="tipper-img"><img id="tipimg" alt="A tua mão"></div>
+    <button class="btn btn-ghost" id="tipcancel" type="button">Cancelar</button>
+  </div>
+</div>
+
 <input type="file" id="file" accept="image/*" class="sr">
+<input type="file" id="handfile" accept="image/png,image/webp,image/*" class="sr">
 
 <script>
 (() => {
@@ -334,7 +389,8 @@ const fileEl = $('#file');
 const elPlay = $('#play'), elRestart = $('#restart'), elSave = $('#save'), elChange = $('#change');
 const elDetail = $('#detail'), elThick = $('#thick'), elDur = $('#dur'), elVol = $('#vol');
 const elSound = $('#sound'), elColor = $('#usecolor'), elHand = $('#usehand'), elPhoto = $('#usephoto');
-const handEl = $('#hand');
+const handEl = $('#hand'), handImg = $('#handimg');
+const tipper = $('#tipper'), tipImg = $('#tipimg'), handFile = $('#handfile');
 const elBar = $('#barfill'), elChip = $('#chip'), elStats = $('#stats'), elToast = $('#toast');
 
 let toastTimer = 0;
@@ -359,7 +415,7 @@ const PAPERS = {
     tip:'#d81fae'
   }
 };
-let paperKey = 'neon';
+let paperKey = 'light';
 const paper = () => PAPERS[paperKey];
 
 /* ============================================================
@@ -374,7 +430,7 @@ const S = {
   phase:'idle',            // idle | lines | fill | reveal | done
   si:0, drawn:0, di:0,
   rev:0, pen:null,
-  handX:0, handY:0, handTilt:0, handOK:false,
+  handX:0, handY:0, handTilt:0, handOK:false, hand:null,
   playing:false, busy:false,
   tLines:2.6, tFill:1.7, tRev:0.7, pxPerSec:1000, dabRate:1000,
   rect:null, last:0, loopId:0
@@ -775,10 +831,14 @@ function placeHand(force){
   const k = S.rect.w / S.W;
   const tx = S.rect.x + S.handX * k;
   const ty = S.rect.y + S.handY * k;
-  const scale = Math.min(S.rect.h * 0.62, S.rect.w * 1.15) / 640;
+  const art = S.hand ? S.hand.h : 640;
+  const scale = Math.min(S.rect.h * 0.62, S.rect.w * 1.15) / art;
+  const anchor = S.hand
+    ? 'translate(' + (-S.hand.tipX) + 'px,' + (-S.hand.tipY) + 'px)'
+    : 'translate(-150px,-430px)';
   handEl.style.transform =
     'translate(' + tx.toFixed(1) + 'px,' + ty.toFixed(1) + 'px) rotate(' + S.handTilt.toFixed(2) + 'deg)' +
-    ' scale(' + scale.toFixed(3) + ') translate(-150px,-430px)';
+    ' scale(' + scale.toFixed(3) + ') ' + anchor;
 }
 
 function moveHand(x,y,snap){
@@ -1138,6 +1198,46 @@ elSound.addEventListener('change', () => { Audio_.setEnabled(elSound.checked); i
 elColor.addEventListener('change', () => { scheduleRestart(); });
 elPhoto.addEventListener('change', () => { scheduleRestart(); });
 elHand.addEventListener('change',  () => { placeHand(); });
+
+/* ---- mão personalizada ---- */
+let pendingHand = null;
+$('#handpick').addEventListener('click', () => handFile.click());
+handFile.addEventListener('change', () => {
+  const f = handFile.files && handFile.files[0];
+  handFile.value = '';
+  if (!f || !/^image\//.test(f.type)){ toast('Escolhe uma imagem PNG da tua mão.'); return; }
+  const url = URL.createObjectURL(f);
+  const im = new Image();
+  im.onload = () => {
+    pendingHand = { url, w:im.naturalWidth, h:im.naturalHeight };
+    tipImg.src = url;
+    tipper.hidden = false;
+  };
+  im.onerror = () => toast('Não consegui abrir essa imagem.');
+  im.src = url;
+});
+tipImg.addEventListener('click', e => {
+  if (!pendingHand) return;
+  const r = tipImg.getBoundingClientRect();
+  const tipX = (e.clientX - r.left) / r.width  * pendingHand.w;
+  const tipY = (e.clientY - r.top)  / r.height * pendingHand.h;
+  S.hand = { url:pendingHand.url, w:pendingHand.w, h:pendingHand.h, tipX, tipY };
+  handImg.src = pendingHand.url;
+  handEl.classList.add('custom');
+  $('#handreset').hidden = false;
+  tipper.hidden = true;
+  pendingHand = null;
+  measure(); placeHand();
+  toast('Mão personalizada pronta.');
+});
+$('#tipcancel').addEventListener('click', () => { tipper.hidden = true; pendingHand = null; });
+$('#handreset').addEventListener('click', () => {
+  S.hand = null;
+  handEl.classList.remove('custom');
+  handImg.removeAttribute('src');
+  $('#handreset').hidden = true;
+  measure(); placeHand();
+});
 window.addEventListener('resize',  () => { measure(); placeHand(); });
 
 Audio_.setVolume((+elVol.value)/100);
