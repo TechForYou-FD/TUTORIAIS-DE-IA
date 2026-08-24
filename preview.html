@@ -1,0 +1,372 @@
+<title>TechForYou</title>
+<style>
+:root{
+  --bg:#f4f6fc;--bg-alt:#eceffa;--surface:#ffffff;--surface-2:#f4f7ff;
+  --border:rgba(30,41,82,.10);--border-strong:rgba(30,41,82,.20);
+  --text:#0b1330;--text-muted:#47547a;--text-faint:#7484ab;
+  --primary:#2d5fe0;--primary-2:#6a3ff0;--accent:#d6237f;
+  --gradient-brand:linear-gradient(135deg,#2d5fe0 0%,#6a3ff0 48%,#d6237f 100%);
+  --shadow-color:222 40% 60%;
+  --shadow-soft:0 8px 24px -10px hsl(var(--shadow-color)/.6);
+  --shadow-lift:0 20px 45px -18px hsl(var(--shadow-color)/.75);
+  --radius:18px;--radius-sm:12px;--ease:cubic-bezier(.16,.84,.44,1);
+  --dur-fast:.18s;--dur:.4s;--dur-slow:.7s;color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#050a14;--bg-alt:#0a1226;--surface:#0e1830;--surface-2:#121e3d;
+    --border:rgba(148,178,224,.14);--border-strong:rgba(148,178,224,.28);
+    --text:#eaf0fb;--text-muted:#93a3c4;--text-faint:#5b6a8c;
+    --primary:#4a8fff;--primary-2:#7c5cff;--accent:#ff3fb0;
+    --gradient-brand:linear-gradient(135deg,#4a8fff 0%,#7c5cff 48%,#ff3fb0 100%);
+    --shadow-color:220 70% 3%;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#050a14;--bg-alt:#0a1226;--surface:#0e1830;--surface-2:#121e3d;
+  --border:rgba(148,178,224,.14);--border-strong:rgba(148,178,224,.28);
+  --text:#eaf0fb;--text-muted:#93a3c4;--text-faint:#5b6a8c;
+  --primary:#4a8fff;--primary-2:#7c5cff;--accent:#ff3fb0;
+  --gradient-brand:linear-gradient(135deg,#4a8fff 0%,#7c5cff 48%,#ff3fb0 100%);
+  --shadow-color:220 70% 3%;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;transition:background var(--dur) var(--ease),color var(--dur) var(--ease);overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Syne',system-ui,sans-serif;font-weight:700;line-height:1.15;margin:0 0 .5em;letter-spacing:-.01em;}
+p{margin:0 0 1em;color:var(--text-muted);}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
+::selection{background:var(--accent);color:#fff;}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;}}
+.bg-fx{position:fixed;inset:0;z-index:-1;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(90px);opacity:.30;will-change:transform;}
+:root[data-theme="light"] .blob{opacity:.14;}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .blob{opacity:.14;}}
+.blob-a{width:520px;height:520px;background:var(--primary);top:-180px;left:-120px;animation:fa 22s ease-in-out infinite;}
+.blob-b{width:460px;height:460px;background:var(--accent);top:20%;right:-160px;animation:fb 26s ease-in-out infinite;}
+.blob-c{width:400px;height:400px;background:var(--primary-2);bottom:-160px;left:30%;animation:fc 30s ease-in-out infinite;}
+@keyframes fa{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(60px,80px) scale(1.15);}}
+@keyframes fb{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-70px,60px) scale(1.1);}}
+@keyframes fc{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(50px,-40px) scale(1.2);}}
+.grain{position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,transparent 0%,var(--bg) 85%);}
+.preview-ribbon{position:relative;z-index:2;background:var(--gradient-brand);color:#fff;text-align:center;font-size:.82rem;font-weight:600;padding:9px 16px;}
+.site-header{position:sticky;top:0;z-index:100;transition:background var(--dur) var(--ease),box-shadow var(--dur) var(--ease),border-color var(--dur) var(--ease);border-bottom:1px solid transparent;}
+.site-header.is-scrolled{background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(16px) saturate(140%);border-color:var(--border);box-shadow:var(--shadow-soft);}
+.header-inner{display:flex;align-items:center;gap:24px;height:72px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;flex-shrink:0;}
+.brand-mark{display:grid;place-items:center;width:36px;height:36px;border-radius:10px;background:var(--gradient-brand);color:#fff;font-size:.8rem;font-weight:800;box-shadow:0 6px 18px -6px rgba(74,143,255,.55);transition:transform var(--dur-fast) var(--ease);}
+.brand:hover .brand-mark{transform:rotate(-8deg) scale(1.06);}
+.brand-name em{font-style:normal;background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.main-nav{display:flex;gap:6px;margin-left:8px;}
+.main-nav a{padding:8px 14px;border-radius:999px;font-size:.92rem;font-weight:600;color:var(--text-muted);transition:color var(--dur-fast) var(--ease),background var(--dur-fast) var(--ease);}
+.main-nav a:hover{color:var(--text);background:var(--surface);}
+.header-actions{display:flex;align-items:center;gap:10px;margin-left:auto;}
+.theme-toggle{position:relative;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--surface);border:1px solid var(--border);transition:transform var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease);}
+.theme-toggle:hover{transform:translateY(-2px) rotate(-8deg);border-color:var(--border-strong);box-shadow:var(--shadow-soft);}
+.theme-toggle .icon{position:absolute;width:19px;height:19px;stroke:var(--text);stroke-width:1.8;fill:none;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);}
+.theme-toggle .icon-sun{opacity:1;transform:rotate(0) scale(1);}
+.theme-toggle .icon-moon{opacity:0;transform:rotate(90deg) scale(.4);}
+:root[data-theme="dark"] .theme-toggle .icon-sun{opacity:0;transform:rotate(-90deg) scale(.4);}
+:root[data-theme="dark"] .theme-toggle .icon-moon{opacity:1;transform:rotate(0) scale(1);}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .theme-toggle .icon-sun{opacity:0;transform:rotate(-90deg) scale(.4);}:root:not([data-theme="light"]) .theme-toggle .icon-moon{opacity:1;transform:rotate(0) scale(1);}}
+.btn{position:relative;display:inline-flex;align-items:center;gap:8px;padding:11px 20px;border-radius:999px;font-weight:700;font-size:.92rem;white-space:nowrap;transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),background var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease);overflow:hidden;}
+.btn svg{transition:transform var(--dur-fast) var(--ease);}
+.btn:hover{transform:translateY(-3px);}
+.btn:active{transform:translateY(-1px) scale(.98);}
+.btn-primary{background:var(--gradient-brand);color:#fff;box-shadow:0 10px 24px -10px rgba(124,92,255,.55);}
+.btn-primary:hover{box-shadow:0 16px 34px -12px rgba(124,92,255,.7);}
+.btn-primary:hover svg{transform:translateX(2px);}
+.btn-ghost{background:var(--surface);color:var(--text);border:1px solid var(--border);}
+.btn-ghost:hover{border-color:var(--border-strong);box-shadow:var(--shadow-soft);}
+.btn-lg{padding:14px 26px;font-size:1rem;}
+[data-animate]{opacity:0;transform:translateY(22px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
+[data-animate].in-view{opacity:1;transform:translateY(0);}
+.hero{padding:88px 0 72px;}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--primary);margin-bottom:16px;}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 20%,transparent);}
+.hero h1{font-size:clamp(2.2rem,5.4vw,3.8rem);max-width:16ch;text-wrap:balance;}
+.grad-text{background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-lede{max-width:56ch;font-size:1.1rem;}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin:28px 0 48px;}
+.hero-stats{display:flex;gap:40px;flex-wrap:wrap;margin:0;padding-top:28px;border-top:1px solid var(--border);}
+.hero-stats dt{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;margin:0;background:var(--gradient-brand);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.hero-stats dd{margin:2px 0 0;font-size:.85rem;color:var(--text-faint);}
+section{padding:80px 0;}
+.section-head{max-width:720px;margin-bottom:40px;}
+.section-head h2{font-size:clamp(1.7rem,3.4vw,2.4rem);text-wrap:balance;}
+.section-lede{font-size:1.02rem;}
+.section-lede a{color:var(--primary);font-weight:600;border-bottom:1px solid currentColor;}
+.tabs{position:relative;display:inline-flex;gap:4px;padding:5px;background:var(--surface);border:1px solid var(--border);border-radius:999px;margin-bottom:28px;}
+.tab-btn{position:relative;z-index:2;padding:10px 22px;border-radius:999px;font-weight:700;font-size:.9rem;color:var(--text-muted);transition:color var(--dur-fast) var(--ease);}
+.tab-btn[aria-selected="true"]{color:#fff;}
+.tab-indicator{position:absolute;top:5px;left:5px;height:calc(100% - 10px);border-radius:999px;background:var(--gradient-brand);transition:transform var(--dur) var(--ease),width var(--dur) var(--ease);z-index:1;box-shadow:0 8px 20px -8px rgba(124,92,255,.6);}
+.panel{display:none;}
+.panel.is-active{display:block;animation:pin .5s var(--ease);}
+@keyframes pin{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.playlist-meta{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:22px;}
+.playlist-meta h3{margin:0;font-size:1.15rem;}
+.playlist-meta a{font-size:.85rem;font-weight:700;color:var(--primary);}
+.video-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px;}
+.video-card{position:relative;display:block;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease);}
+.video-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-lift);border-color:var(--border-strong);}
+.video-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:linear-gradient(135deg,var(--primary),var(--primary-2) 55%,var(--accent));}
+.video-thumb::after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 30% 25%,rgba(255,255,255,.22),transparent 55%);}
+.video-play{position:absolute;inset:0;display:grid;place-items:center;z-index:2;}
+.video-play svg{width:56px;height:56px;color:#fff;filter:drop-shadow(0 6px 16px rgba(0,0,0,.35));transition:transform var(--dur-fast) var(--ease);opacity:.95;}
+.video-card:hover .video-play svg{transform:scale(1.14);}
+.video-body{padding:16px 18px 18px;}
+.video-title{font-family:'Syne',sans-serif;font-weight:700;font-size:.98rem;line-height:1.35;margin:0 0 8px;color:var(--text);}
+.video-date{font-size:.78rem;color:var(--text-faint);font-weight:600;text-transform:uppercase;letter-spacing:.04em;}
+.note-card{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px;padding:20px 24px;background:var(--surface-2);border:1px dashed var(--border-strong);border-radius:var(--radius);margin-bottom:6px;}
+.note-card p{margin:0;flex:1;min-width:240px;font-size:.9rem;}
+.note-card strong{color:var(--text);}
+.tutorials-section{background:var(--bg-alt);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.tutorial-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;}
+.tutorial-card{position:relative;display:flex;flex-direction:column;gap:12px;padding:22px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-sm);transition:transform var(--dur-fast) var(--ease),box-shadow var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease);}
+.tutorial-card:hover{transform:translateY(-5px) scale(1.015);box-shadow:var(--shadow-lift);border-color:var(--border-strong);}
+.tutorial-icon{display:grid;place-items:center;width:44px;height:44px;border-radius:12px;background:var(--gradient-brand);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:1rem;transition:transform var(--dur-fast) var(--ease);}
+.tutorial-card:hover .tutorial-icon{transform:rotate(-6deg) scale(1.08);}
+.tutorial-card h3{margin:0;font-size:1rem;font-family:'Syne',sans-serif;}
+.tutorial-card p{margin:0;font-size:.85rem;color:var(--text-muted);flex:1;}
+.tutorial-arrow{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;color:var(--primary);}
+.tutorial-arrow svg{transition:transform var(--dur-fast) var(--ease);}
+.tutorial-card:hover .tutorial-arrow svg{transform:translate(3px,-3px);}
+.tutorials-cta{display:flex;justify-content:center;margin-top:40px;}
+.about-inner{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center;}
+.about-copy h2{font-size:clamp(1.6rem,3vw,2.1rem);}
+.about-links{display:flex;gap:12px;margin-top:20px;flex-wrap:wrap;}
+.about-card{position:relative;padding:40px 32px;border-radius:24px;background:var(--surface);border:1px solid var(--border);overflow:hidden;}
+.about-card-glow{position:absolute;inset:-40%;background:var(--gradient-brand);opacity:.18;filter:blur(60px);}
+.about-card-mark{position:relative;display:inline-grid;place-items:center;width:64px;height:64px;border-radius:18px;background:var(--gradient-brand);color:#fff;font-family:'Syne',sans-serif;font-weight:800;font-size:1.3rem;margin-bottom:24px;}
+.about-card-quote{position:relative;font-family:'Syne',sans-serif;font-size:1.25rem;font-weight:600;line-height:1.45;color:var(--text);margin:0;}
+.site-footer{border-top:1px solid var(--border);padding:48px 0 40px;}
+.footer-inner{display:flex;flex-wrap:wrap;gap:28px;justify-content:space-between;align-items:flex-start;}
+.footer-brand{display:flex;flex-wrap:wrap;align-items:center;gap:10px;font-family:'Syne',sans-serif;font-weight:700;max-width:320px;}
+.footer-brand p{width:100%;font-family:'DM Sans',sans-serif;font-weight:400;font-size:.85rem;margin:6px 0 0;}
+.footer-links{display:flex;gap:22px;flex-wrap:wrap;}
+.footer-links a{font-size:.88rem;font-weight:600;color:var(--text-muted);transition:color var(--dur-fast) var(--ease);}
+.footer-links a:hover{color:var(--primary);}
+.footer-copy{width:100%;font-size:.78rem;color:var(--text-faint);margin-top:24px;border-top:1px solid var(--border);padding-top:20px;}
+@media (max-width:920px){.about-inner{grid-template-columns:1fr;}}
+@media (max-width:760px){.main-nav{display:none;}.hero{padding:48px 0;}section{padding:56px 0;}.hero-stats{gap:26px;}}
+</style>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+<div class="bg-fx" aria-hidden="true">
+  <span class="blob blob-a"></span><span class="blob blob-b"></span><span class="blob blob-c"></span>
+  <span class="grain"></span>
+</div>
+
+<div class="preview-ribbon">✨ Pré-visualização do design — no site publicado os teus vídeos reais aparecem automaticamente</div>
+
+<header class="site-header" id="site-header">
+  <div class="wrap header-inner">
+    <a href="#" class="brand"><span class="brand-mark">TF</span><span class="brand-name">Tech<em>For</em>You</span></a>
+    <nav class="main-nav">
+      <a href="#videos">Vídeos</a><a href="#tutoriais">Tutoriais</a><a href="#sobre">Sobre</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Alternar tema claro/escuro">
+        <svg class="icon icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2.5v2.5M12 19v2.5M4.6 4.6l1.8 1.8M17.6 17.6l1.8 1.8M2.5 12H5M19 12h2.5M4.6 19.4l1.8-1.8M17.6 6.4l1.8-1.8" stroke-linecap="round"/></svg>
+        <svg class="icon icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
+      </button>
+      <a class="btn btn-primary" href="https://www.youtube.com/@TechForYou-ww3zt?sub_confirmation=1" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.4 3.5 12 3.5 12 3.5s-7.4 0-9.4.6A3 3 0 0 0 .5 6.2 31 31 0 0 0 0 12a31 31 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c2 .6 9.4.6 9.4.6s7.4 0 9.4-.6a3 3 0 0 0 2.1-2.1A31 31 0 0 0 24 12a31 31 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12Z"/></svg>
+        <span>Subscrever</span>
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <p class="eyebrow" data-animate>Fátima Diogo · TechForYou</p>
+      <h1 data-animate>Inteligência Artificial <span class="grad-text">ao alcance</span> de qualquer professor.</h1>
+      <p class="hero-lede" data-animate>Lives, sessões práticas e tutoriais passo-a-passo sobre ferramentas de IA para transformar a tua sala de aula — tudo num só lugar, atualizado automaticamente à medida que saem novos vídeos.</p>
+      <div class="hero-actions" data-animate>
+        <a href="#videos" class="btn btn-primary btn-lg"><span>Ver os vídeos</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4l12 8-12 8V4z"/></svg></a>
+        <a href="#tutoriais" class="btn btn-ghost btn-lg"><span>Explorar tutoriais</span></a>
+      </div>
+      <dl class="hero-stats" data-animate>
+        <div><dt>2</dt><dd>playlists ativas</dd></div>
+        <div><dt>25</dt><dd>tutoriais escritos</dd></div>
+        <div><dt>∞</dt><dd>atualização automática</dd></div>
+      </dl>
+    </div>
+  </section>
+
+  <section class="videos-section" id="videos">
+    <div class="wrap">
+      <header class="section-head" data-animate>
+        <p class="eyebrow">Canal de YouTube</p>
+        <h2>Os vídeos mais recentes</h2>
+        <p class="section-lede">Sincronizado com o canal <a href="https://www.youtube.com/@TechForYou-ww3zt" target="_blank" rel="noopener">@TechForYou-ww3zt</a>. Clica num vídeo para o abrir.</p>
+      </header>
+      <div class="tabs" role="tablist" id="playlist-tabs"><span class="tab-indicator" aria-hidden="true"></span></div>
+      <div id="playlist-panels"></div>
+    </div>
+  </section>
+
+  <section class="tutorials-section" id="tutoriais">
+    <div class="wrap">
+      <header class="section-head" data-animate>
+        <p class="eyebrow">Biblioteca escrita</p>
+        <h2>Tutoriais online</h2>
+        <p class="section-lede">Guias passo-a-passo, publicados em <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener">techforyou-fd.github.io</a>, para dominares as ferramentas de IA mais úteis em contexto educativo.</p>
+      </header>
+      <div class="tutorial-grid" id="tutorial-grid" data-animate></div>
+      <div class="tutorials-cta" data-animate>
+        <a class="btn btn-primary btn-lg" href="https://techforyou-fd.github.io" target="_blank" rel="noopener"><span>Ver todos os tutoriais</span><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="about-section" id="sobre">
+    <div class="wrap about-inner">
+      <div class="about-copy" data-animate>
+        <p class="eyebrow">Sobre</p>
+        <h2>Olá, sou a Fátima Diogo 👋</h2>
+        <p>Crio conteúdo em português sobre Inteligência Artificial aplicada à educação — da sala de aula à gestão do teu tempo como professor. No canal <strong>TechForYou</strong> partilho lives, testes de ferramentas e sessões práticas; aqui reúno tudo num único espaço, sempre atualizado.</p>
+        <div class="about-links">
+          <a class="btn btn-primary" href="https://www.youtube.com/@TechForYou-ww3zt" target="_blank" rel="noopener">Canal no YouTube</a>
+          <a class="btn btn-ghost" href="https://techforyou-fd.github.io" target="_blank" rel="noopener">Tutoriais escritos</a>
+        </div>
+      </div>
+      <div class="about-card" data-animate>
+        <div class="about-card-glow" aria-hidden="true"></div>
+        <span class="about-card-mark">TF</span>
+        <p class="about-card-quote">“A IA não substitui o professor — mas o professor que a sabe usar ganha tempo, criatividade e alcance.”</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand"><span class="brand-mark">TF</span><span class="brand-name">Tech<em>For</em>You</span><p>Por Fátima Diogo · Inteligência Artificial para professores.</p></div>
+    <nav class="footer-links">
+      <a href="https://www.youtube.com/@TechForYou-ww3zt" target="_blank" rel="noopener">YouTube</a>
+      <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener">Tutoriais</a>
+      <a href="#videos">Vídeos</a><a href="#sobre">Sobre</a>
+    </nav>
+    <p class="footer-copy">© <span id="year"></span> TechForYou — Fátima Diogo. Todos os direitos reservados.</p>
+  </div>
+</footer>
+
+<script>
+(() => {
+  const root = document.documentElement;
+  const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  // Theme (in-memory only for the preview sandbox)
+  let theme = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  const applyTheme = t => root.setAttribute('data-theme', t);
+  applyTheme(theme);
+  document.getElementById('theme-toggle').addEventListener('click', () => {
+    theme = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    applyTheme(theme);
+  });
+
+  // Header shadow
+  const header = document.getElementById('site-header');
+  const onScroll = () => header.classList.toggle('is-scrolled', scrollY > 8);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Reveal
+  const animated = document.querySelectorAll('[data-animate]');
+  if ('IntersectionObserver' in window && !prefersReduced) {
+    const io = new IntersectionObserver((es) => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in-view'); io.unobserve(e.target); } }), { threshold: .12, rootMargin: '0px 0px -60px 0px' });
+    animated.forEach(el => io.observe(el));
+  } else animated.forEach(el => el.classList.add('in-view'));
+
+  const playSvg = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="11" fill="rgba(0,0,0,.28)"/><path d="M10 8.5l6 3.5-6 3.5v-7z" fill="#fff"/></svg>';
+
+  const playlists = [
+    { title: 'Lives de IA', slug: 'a', url: 'https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC',
+      sample: ['Live de IA — sessão em direto', 'Live de IA — ferramentas na prática', 'Live de IA — perguntas e respostas'] },
+    { title: 'Uso Inteligente de IA', slug: 'b', url: 'https://youtube.com/playlist?list=PL5FIAcrKghKZ4rNcGt5yGAI4xfQ9c0L5l',
+      sample: ['Uso Inteligente de IA — dica prática', 'Uso Inteligente de IA — poupar tempo', 'Uso Inteligente de IA — passo a passo'] },
+  ];
+
+  const tabs = document.getElementById('playlist-tabs');
+  const indicator = tabs.querySelector('.tab-indicator');
+  const panels = document.getElementById('playlist-panels');
+
+  const moveIndicator = btn => { indicator.style.width = btn.offsetWidth + 'px'; indicator.style.transform = `translateX(${btn.offsetLeft - 5}px)`; };
+  const activate = slug => {
+    tabs.querySelectorAll('.tab-btn').forEach(b => { const on = b.dataset.slug === slug; b.setAttribute('aria-selected', on); if (on) moveIndicator(b); });
+    panels.querySelectorAll('.panel').forEach(p => p.classList.toggle('is-active', p.dataset.slug === slug));
+  };
+
+  playlists.forEach((pl, i) => {
+    const btn = document.createElement('button');
+    btn.type = 'button'; btn.className = 'tab-btn'; btn.dataset.slug = pl.slug;
+    btn.setAttribute('role', 'tab'); btn.setAttribute('aria-selected', i === 0);
+    btn.textContent = pl.title;
+    btn.addEventListener('click', () => activate(pl.slug));
+    tabs.insertBefore(btn, indicator);
+
+    const panel = document.createElement('div');
+    panel.className = 'panel' + (i === 0 ? ' is-active' : ''); panel.dataset.slug = pl.slug;
+    panel.setAttribute('role', 'tabpanel');
+    panel.innerHTML = `<div class="playlist-meta"><h3>${pl.title}</h3><a href="${pl.url}" target="_blank" rel="noopener">Ver playlist completa no YouTube →</a></div>`;
+
+    const grid = document.createElement('div'); grid.className = 'video-grid';
+    grid.innerHTML = `<div class="note-card"><p><strong>Exemplos de como fica.</strong> No site publicado, cada vídeo real das tuas playlists aparece aqui automaticamente, com a miniatura, e abre ao clicar.</p><a class="btn btn-ghost" href="${pl.url}" target="_blank" rel="noopener">Abrir playlist</a></div>`;
+    pl.sample.forEach(title => {
+      const a = document.createElement('a');
+      a.className = 'video-card'; a.href = pl.url; a.target = '_blank'; a.rel = 'noopener';
+      a.innerHTML = `<div class="video-thumb"><div class="video-play">${playSvg}</div></div><div class="video-body"><h4 class="video-title">${title}</h4><p class="video-date">Exemplo</p></div>`;
+      grid.appendChild(a);
+    });
+    panel.appendChild(grid);
+    panels.appendChild(panel);
+  });
+  requestAnimationFrame(() => moveIndicator(tabs.querySelector('.tab-btn[aria-selected="true"]')));
+  addEventListener('resize', () => moveIndicator(tabs.querySelector('.tab-btn[aria-selected="true"]')));
+
+  const tutorials = [
+    ['NB','NotebookLM','Resumos, podcasts e respostas a partir dos teus documentos.','tutorial-notebooklm.html'],
+    ['AI','Google AI Studio','Testa os modelos Gemini para criar atividades e materiais.','tutorial-google-ai-studio.html'],
+    ['GS','Gemini Storybook','Cria histórias ilustradas com IA em poucos minutos.','tutorial-gemini-storybook.html'],
+    ['CV','Canva','Desenha recursos visuais com o assistente de IA do Canva.','tutorial-canva.html'],
+    ['GM','Gamma','Gera apresentações completas a partir de um simples texto.','tutorial-gamma.html'],
+    ['SU','Suno AI','Compõe músicas originais com IA para as tuas aulas.','tutorial-suno.html'],
+    ['UD','Udio','Cria faixas musicais personalizadas a partir de descrições.','tutorial-udio.html'],
+    ['PX','PixVerse','Gera vídeos curtos e animações a partir de texto ou imagens.','tutorial-pixverse.html'],
+    ['AD','Animated Drawings','Anima automaticamente os desenhos dos alunos.','tutorial-animated-drawings.html'],
+    ['NK','Napkin AI','Converte texto em esquemas e infografias visuais.','tutorial-napkin.html'],
+    ['BC','Book Creator','Cria livros digitais interativos com os teus alunos.','tutorial-book-creator.html'],
+    ['TM','Teachable Machine','Introduz o treino de modelos de IA de forma visual.','tutorial-teachable.html'],
+    ['DF','Diffit','Adapta textos a diferentes níveis de leitura.','tutorial-diffit.html'],
+    ['EA','Eduaide.Ai','Cria planos de aula, testes e recursos com IA.','tutorial-eduaide.html'],
+    ['EC','EdCafe AI','Assistente para preparar aulas e gerir a turma.','tutorial-edcafe.html'],
+    ['MZ','Mizou','Cria chatbots educativos para os alunos praticarem.','tutorial-mizou.html'],
+    ['CP','ClassPoint','Transforma o PowerPoint em aulas interativas.','tutorial-classpoint.html'],
+    ['PP','Prompts para Professores','Prompts prontos a usar no dia a dia da sala de aula.','tutorial-prompts-professores.html'],
+    ['GL','Gliglish','Pratica línguas em conversação com um tutor de IA.','tutorial-gliglish.html'],
+    ['MT','Microsoft Translator','Traduz aulas e conversas em tempo real.','tutorial-microsoft-translator.html'],
+    ['FF','Fireflies.ai','Transcreve e resume reuniões e aulas.','tutorial-fireflies.html'],
+    ['TS','TurboScribe','Converte áudio e vídeo em texto com rapidez.','tutorial-turboscribe.html'],
+    ['GE','Gravar o Ecrã','Aprende a gravar o ecrã para criar tutoriais em vídeo.','tutorial-gravar-ecra.html'],
+    ['BR','Brisk Teaching','Extensão de IA para criar e corrigir materiais.','tutorial-brisk.html'],
+    ['MH','MyHeritage','Restaura, coloriza e anima fotografias antigas.','tutorial-myheritage.html'],
+  ];
+  const grid = document.getElementById('tutorial-grid');
+  tutorials.forEach(([ini, title, desc, file]) => {
+    const a = document.createElement('a');
+    a.className = 'tutorial-card'; a.href = 'https://techforyou-fd.github.io/' + file; a.target = '_blank'; a.rel = 'noopener';
+    a.innerHTML = `<span class="tutorial-icon">${ini}</span><h3>${title}</h3><p>${desc}</p><span class="tutorial-arrow">Ler tutorial <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M7 7h10v10"/></svg></span>`;
+    grid.appendChild(a);
+  });
+})();
+</script>
