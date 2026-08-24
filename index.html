@@ -145,11 +145,16 @@
           <a class="btn btn-ghost" href="https://techforyou-fd.github.io" target="_blank" rel="noopener">Tutoriais escritos</a>
         </div>
       </div>
-      <div class="about-card" data-animate>
+      <figure class="about-card" data-animate>
         <div class="about-card-glow" aria-hidden="true"></div>
-        <span class="about-card-mark">TF</span>
-        <p class="about-card-quote">“A IA não substitui o professor — mas o professor que a sabe usar ganha tempo, criatividade e alcance.”</p>
-      </div>
+        <div class="about-portrait" id="about-portrait">
+          <img src="assets/img/fatima-diogo.jpg" alt="Fátima Diogo, criadora do TechForYou"
+               width="640" height="800" loading="lazy"
+               onerror="document.getElementById('about-portrait').classList.add('no-photo')">
+          <span class="about-portrait-fallback" aria-hidden="true">TF</span>
+        </div>
+        <figcaption class="about-card-quote">“A IA não substitui o professor — mas o professor que a sabe usar ganha tempo, criatividade e alcance.”</figcaption>
+      </figure>
     </div>
   </section>
 
