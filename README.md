@@ -13,6 +13,7 @@ assets/js/app.js           → lógica: tema, tabs, carregar dados, modal de ví
 assets/img/favicon.svg     → ícone do site
 data/videos.json           → vídeos das playlists (gerado automaticamente)
 data/tutorials.json        → lista de tutoriais (editar manualmente ao adicionar novos)
+desenho.html               → app "Foto → Desenho": desenha os contornos de uma foto e pinta-a
 scripts/fetch-videos.mjs   → script Node que atualiza data/videos.json
 .github/workflows/update-videos.yml → corre o script a cada 3h no GitHub Actions
 ```
