@@ -1,0 +1,24 @@
+{
+  "updatedAt": null,
+  "channel": {
+    "name": "TechForYou",
+    "handle": "@TechForYou-ww3zt",
+    "url": "https://www.youtube.com/@TechForYou-ww3zt"
+  },
+  "playlists": [
+    {
+      "id": "PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
+      "title": "Lives de IA",
+      "slug": "lives-de-ia",
+      "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
+      "videos": []
+    },
+    {
+      "id": "PL5FIAcrKghKZ4rNcGt5yGAI4xfQ9c0L5l",
+      "title": "Uso Inteligente de IA",
+      "slug": "uso-inteligente-de-ia",
+      "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ4rNcGt5yGAI4xfQ9c0L5l",
+      "videos": []
+    }
+  ]
+}

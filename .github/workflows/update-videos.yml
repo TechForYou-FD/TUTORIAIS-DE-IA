@@ -1,0 +1,48 @@
+name: Atualizar vídeos do YouTube
+
+on:
+  schedule:
+    # A cada 3 horas
+    - cron: '0 */3 * * *'
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/fetch-videos.mjs'
+      - '.github/workflows/update-videos.yml'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-videos
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Obter vídeos mais recentes
+        env:
+          YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+        run: node scripts/fetch-videos.mjs
+
+      - name: Guardar alterações (se existirem)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/videos.json
+          if git diff --cached --quiet; then
+            echo "Sem novos vídeos — nada a atualizar."
+          else
+            git commit -m "chore: atualizar vídeos automaticamente"
+            git push
+          fi
