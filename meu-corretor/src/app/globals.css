@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg: #FAF7F2;
+    --surface: #FFFFFF;
+    --card: #FFFFFF;
+    --border: #E8DCC8;
+    --text-primary: #1A1208;
+    --text-secondary: #5C4A2A;
+    --text-muted: #8C7A5A;
+    --accent: #C8860A;
+    --accent-fg: #FFFFFF;
+  }
+
+  .dark {
+    --bg: #0F0F1A;
+    --surface: #1A1A2E;
+    --card: #242438;
+    --border: #2E2E4A;
+    --text-primary: #F0EBE0;
+    --text-secondary: #C4B896;
+    --text-muted: #8A7E6A;
+    --accent: #F0A830;
+    --accent-fg: #1A1208;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--bg);
+    color: var(--text-primary);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    transition: background-color 0.2s, color 0.2s;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), var(--font-inter), system-ui, sans-serif;
+  }
+}
+
+@layer utilities {
+  .bg-surface { background-color: var(--surface); }
+  .bg-card { background-color: var(--card); }
+  .border-base { border-color: var(--border); }
+  .text-primary { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted { color: var(--text-muted); }
+
+  .prose-correction p { margin-bottom: 0.75rem; }
+  .prose-correction strong { color: #E07B39; }
+  .prose-correction em { color: #6B4FA0; }
+}
+
+/* Fraud overlay */
+.fraud-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(176, 0, 32, 0.95);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+}
