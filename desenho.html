@@ -6,7 +6,7 @@
 <title>Foto → Desenho | TechForYou</title>
 <meta name="description" content="Carrega uma foto e vê uma mão desenhá-la e pintá-la em 5 segundos, com o som suave da caneta, até se transformar na fotografia original.">
 <meta name="theme-color" content="#070912">
-<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✏️</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700&display=swap" rel="stylesheet">
@@ -178,6 +178,25 @@ input[type=range]{width:100%; accent-color:var(--magenta); height:22px; cursor:p
 
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:var(--faint); font-size:.86rem; text-align:center}
+
+/* ---------- botão email + modal ---------- */
+.email-btn{display:inline-flex;align-items:center;gap:.45rem;font:inherit;font-size:.88rem;font-weight:700;cursor:pointer;
+  color:#fff;padding:.44rem .95rem;border:none;border-radius:999px;background:var(--grad);
+  transition:.25s var(--ease);box-shadow:0 6px 18px -6px rgba(255,47,208,.65);white-space:nowrap}
+.email-btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px -6px rgba(255,47,208,.8)}
+.email-modal{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:1.4rem;
+  background:rgba(4,6,14,.88);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:.32s var(--ease)}
+.email-modal.open{opacity:1;pointer-events:all}
+.email-modal-box{background:var(--surface-2);border:1px solid var(--border-strong);border-radius:var(--radius);
+  padding:1.4rem 1.4rem 1.1rem;display:grid;gap:.85rem;justify-items:center;width:min(92vw,560px);
+  transform:translateY(22px);transition:.32s var(--ease)}
+.email-modal.open .email-modal-box{transform:none}
+.email-modal-box h2{font-size:1.15rem;font-weight:800;text-align:center;margin:0}
+.email-modal-box p{margin:0;color:var(--muted);font-size:.93rem;text-align:center;max-width:44ch}
+.email-modal-box iframe{border:none;border-radius:12px;width:100%;height:480px;background:#fff}
+.email-modal-close{font:inherit;cursor:pointer;background:rgba(255,255,255,.07);border:1px solid var(--border);
+  color:var(--muted);padding:.48rem 1.3rem;border-radius:999px;font-size:.88rem;transition:.2s var(--ease)}
+.email-modal-close:hover{color:var(--text);border-color:var(--border-strong)}
 @media (prefers-reduced-motion:reduce){ *{animation-duration:.001ms!important; transition-duration:.001ms!important} }
 </style>
 </head>
@@ -189,7 +208,7 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
       <span class="brand-mark">TF</span>
       <span>Tech<em>For</em>You</span>
     </a>
-    <a class="back" href="index.html">← Voltar ao site</a>
+    <button class="email-btn" id="emailOpen" type="button">✉ Receber novidades</button>
   </div>
 </header>
 
@@ -367,6 +386,16 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
     <p>Clica na <b>ponta da caneta</b> da tua imagem para a mão desenhar no sítio certo.</p>
     <div class="tipper-img"><img id="tipimg" alt="A tua mão"></div>
     <button class="btn btn-ghost" id="tipcancel" type="button">Cancelar</button>
+  </div>
+</div>
+
+<div class="email-modal" id="emailModal" role="dialog" aria-modal="true" aria-label="Formulário de email">
+  <div class="email-modal-box">
+    <h2>✉ Fica a par das novidades</h2>
+    <p>Deixa o teu email e recebe as próximas ferramentas da TechForYou em primeira mão.</p>
+    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSed0QD80WV4Gq_7M9znXn5g043WN9xJ0vj7yms3g5fEDUTXZQ/viewform?embedded=true"
+      title="Formulário de email TechForYou" loading="lazy"></iframe>
+    <button class="email-modal-close" id="emailClose" type="button">Fechar</button>
   </div>
 </div>
 
@@ -1180,6 +1209,7 @@ function nextPhase(){
   elPlay.textContent = 'Desenhar de novo';
   elPlay.disabled = false;
   render(); placeHand(); updateProgress();
+  if (!S._emailShown){ S._emailShown = true; setTimeout(() => document.getElementById('emailModal').classList.add('open'), 2200); }
 }
 
 function loop(ts){
@@ -1484,6 +1514,15 @@ Audio_.setVolume((+elVol.value)/100);
 $('#dur-v').textContent = durSecs().toFixed(1).replace('.', ',') + ' s';
 $('#thick-v').textContent = thickMul().toFixed(1) + '×';
 updateProgress();
+
+/* ---------- modal de email ---------- */
+const emailModal = $('#emailModal');
+function openEmail(){ emailModal.classList.add('open'); }
+function closeEmail(){ emailModal.classList.remove('open'); }
+$('#emailOpen').addEventListener('click', openEmail);
+$('#emailClose').addEventListener('click', closeEmail);
+emailModal.addEventListener('click', e => { if (e.target === emailModal) closeEmail(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeEmail(); });
 })();
 </script>
 </body>
