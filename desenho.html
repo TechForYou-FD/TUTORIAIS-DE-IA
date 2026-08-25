@@ -665,13 +665,140 @@ function rdp(pts, eps){
   return out;
 }
 
+/* ---- limpar salpicos: apagar componentes ligados demasiado pequenos ---- */
+function despeckle(map,w,h,minPix){
+  const seen = new Uint8Array(w*h), comp = [], stack = [];
+  for (let i=0;i<map.length;i++){
+    if (!map[i] || seen[i]) continue;
+    comp.length = 0; stack.length = 0; stack.push(i); seen[i] = 1;
+    while (stack.length){
+      const j = stack.pop(); comp.push(j);
+      const x = j % w, y = (j/w)|0;
+      for (let dy=-1;dy<=1;dy++) for (let dx=-1;dx<=1;dx++){
+        const nx = x+dx, ny = y+dy;
+        if (nx<0||ny<0||nx>=w||ny>=h) continue;
+        const k = ny*w+nx;
+        if (map[k] && !seen[k]){ seen[k] = 1; stack.push(k); }
+      }
+    }
+    if (comp.length < minPix) for (let c=0;c<comp.length;c++) map[comp[c]] = 0;
+  }
+}
+
+/* ---- costurar fragmentos: pontas próximas e na mesma direção viram um só traço ---- */
+function dirAt(pts, tail){
+  const n = pts.length;
+  const a = tail ? pts[Math.max(0,n-6)] : pts[Math.min(5,n-1)];
+  const b = tail ? pts[n-1] : pts[0];
+  const dx = tail ? b.x-a.x : a.x-b.x, dy = tail ? b.y-a.y : a.y-b.y;
+  const L = Math.hypot(dx,dy) || 1;
+  return { x:dx/L, y:dy/L };
+}
+
+function joinStrokes(list, maxGap, minDot, passes){
+  let items = list.map(pts => ({ pts, dead:false }));
+  for (let pass=0; pass<passes; pass++){
+    const cell = Math.max(6, maxGap*2);
+    const grid = new Map();
+    const put = (x,y,v) => {
+      const k = ((x/cell)|0) + ':' + ((y/cell)|0);
+      let a = grid.get(k); if (!a){ a = []; grid.set(k,a); }
+      a.push(v);
+    };
+    items.forEach((s,idx) => {
+      if (s.dead || s.pts.length < 2) return;
+      put(s.pts[0].x, s.pts[0].y, { idx, rev:false });
+      const n = s.pts.length;
+      put(s.pts[n-1].x, s.pts[n-1].y, { idx, rev:true });
+    });
+
+    let merged = 0;
+    for (let i=0;i<items.length;i++){
+      const A = items[i];
+      if (A.dead || A.pts.length < 2) continue;
+      const tail = A.pts[A.pts.length-1], td = dirAt(A.pts, true);
+      const gx = (tail.x/cell)|0, gy = (tail.y/cell)|0;
+      let best = -1, bestD = Infinity, bestRev = false;
+      for (let dy=-1;dy<=1;dy++) for (let dx=-1;dx<=1;dx++){
+        const bucket = grid.get((gx+dx) + ':' + (gy+dy));
+        if (!bucket) continue;
+        for (let q=0;q<bucket.length;q++){
+          const cand = bucket[q];
+          const B = items[cand.idx];
+          if (cand.idx === i || B.dead || B.pts.length < 2) continue;
+          const n = B.pts.length;
+          const head = cand.rev ? B.pts[n-1] : B.pts[0];
+          const d = Math.hypot(head.x-tail.x, head.y-tail.y);
+          if (d > maxGap || d >= bestD) continue;
+          let hd = dirAt(B.pts, cand.rev);
+          if (cand.rev){ hd = { x:-hd.x, y:-hd.y }; }
+          if (td.x*hd.x + td.y*hd.y < minDot) continue;
+          if (d > 0.9){
+            const L = d || 1;
+            if (td.x*((head.x-tail.x)/L) + td.y*((head.y-tail.y)/L) < 0.1) continue;
+          }
+          bestD = d; best = cand.idx; bestRev = cand.rev;
+        }
+      }
+      if (best >= 0){
+        const B = items[best];
+        A.pts = A.pts.concat(bestRev ? B.pts.slice().reverse() : B.pts);
+        B.dead = true; merged++;
+      }
+    }
+    if (!merged) break;
+  }
+  return items.filter(x => !x.dead).map(x => x.pts);
+}
+
+/* ---- ordem de desenho: contorno maior primeiro, depois sempre o mais próximo ---- */
+function orderStrokes(list, w, h){
+  const n = list.length;
+  if (!n) return list;
+  const used = new Uint8Array(n), out = [];
+  const diag = Math.hypot(w,h) || 1;
+  let maxLen = 0;
+  for (const s of list) if (s.len > maxLen) maxLen = s.len;
+  maxLen = maxLen || 1;
+
+  let cur = 0;
+  for (let i=1;i<n;i++) if (list[i].len > list[cur].len) cur = i;
+
+  for (let k=0;k<n;k++){
+    if (k > 0){
+      const last = out[out.length-1];
+      const px = last.pts[last.pts.length-1].x, py = last.pts[last.pts.length-1].y;
+      let best = -1, bestCost = Infinity, bestRev = false;
+      for (let i=0;i<n;i++){
+        if (used[i]) continue;
+        const s = list[i], a = s.pts[0], b = s.pts[s.pts.length-1];
+        const da = Math.hypot(a.x-px, a.y-py), db = Math.hypot(b.x-px, b.y-py);
+        const rev = db < da, d = rev ? db : da;
+        const cost = d/diag - 0.55 * (s.len/maxLen);
+        if (cost < bestCost){ bestCost = cost; best = i; bestRev = rev; }
+      }
+      cur = best;
+      if (bestRev){ list[cur].pts.reverse(); list[cur].segLen.reverse(); }
+    }
+    used[cur] = 1;
+    out.push(list[cur]);
+  }
+  return out;
+}
+
 function buildStrokes(gray,w,h,detail){
-  const map = edgeMap(blur(gray,w,h), w, h, detail);
+  const soft = blur(blur(gray,w,h),w,h);              // menos textura, contornos limpos
+  const map = edgeMap(soft, w, h, detail);
+  despeckle(map, w, h, 9);
+
   const raw = traceStrokes(map, w, h);
-  const minLen = Math.max(6, Math.min(w,h) * 0.014);
+  const joined = joinStrokes(raw, 3.2, 0.35, 3);      // fechar cortes de 1-3 px
+  const long   = joinStrokes(joined, 7, 0.62, 2);     // seguir a curva por cima de falhas maiores
+
+  const minLen = Math.max(12, Math.min(w,h) * 0.022);
   const out = [];
-  for (const pts of raw){
-    const simple = rdp(pts, 0.9);
+  for (const pts of long){
+    const simple = rdp(pts, 1.0);
     if (simple.length < 2) continue;
     const segLen = [];
     let len = 0;
@@ -682,8 +809,7 @@ function buildStrokes(gray,w,h,detail){
     if (len < minLen) continue;
     out.push({ pts:simple, segLen, len, i:0, t:0 });
   }
-  out.sort((a,b) => b.len - a.len);
-  return out.slice(0, 6000);
+  return orderStrokes(out.slice(0, 4000), w, h);
 }
 
 /* ============================================================
@@ -738,6 +864,8 @@ function buildDabs(data,w,h){
   const pal = palette(data,w,h,K);
   const cell = clamp(Math.round(Math.max(w,h)/165), 3, 9);
   const cols = Math.ceil(w/cell), rows = Math.ceil(h/cell);
+  const blocksX = 3, blocksY = 4;                     // pintar zona a zona, como quem pinta à mão
+  const blockCols = Math.ceil(cols/blocksX), blockRows = Math.ceil(rows/blocksY);
   const groups = []; for (let j=0;j<K;j++) groups.push([]);
   const mix = paper().fillMix;
 
@@ -764,16 +892,21 @@ function buildDabs(data,w,h){
         y:(y0+y1)/2 + (Math.random()-.5)*cell*.4,
         r:cell*(0.95 + Math.random()*0.35),
         col:'rgb('+cr+','+cg+','+cb+')',
-        row:ry, colm:rx
+        row:ry, colm:rx,
+        block:Math.floor(ry/blockRows)*blocksX + Math.floor(rx/blockCols)
       });
     }
   }
-  groups.sort((a,b) => b.length - a.length);          // as grandes manchas primeiro
+  // ordem: zona a zona; dentro de cada zona, cor a cor, em varrimento serpenteado
+  const rank = new Map();
+  groups.slice().sort((a,b) => b.length - a.length).forEach((g,i) => { if (g.length) rank.set(g[0].col, i); });
   const dabs = [];
-  for (const g of groups){
-    g.sort((a,b) => a.row - b.row || (a.row % 2 ? b.colm - a.colm : a.colm - b.colm));
-    for (const d of g) dabs.push(d);
-  }
+  for (const g of groups) for (const d of g) dabs.push(d);
+  dabs.sort((a,b) =>
+    a.block - b.block ||
+    (rank.get(a.col) || 0) - (rank.get(b.col) || 0) ||
+    a.row - b.row ||
+    (a.row % 2 ? b.colm - a.colm : a.colm - b.colm));
   return dabs;
 }
 
