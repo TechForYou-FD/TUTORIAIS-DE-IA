@@ -320,6 +320,7 @@ footer.foot{border-top:1px solid var(--border); padding:1.4rem 0 2.4rem; color:v
           <button class="btn btn-primary full" id="play" type="button" disabled>Desenhar</button>
           <button class="btn btn-ghost" id="restart" type="button" disabled>Recomeçar</button>
           <button class="btn btn-ghost" id="save" type="button" disabled>Guardar PNG</button>
+          <button class="btn btn-ghost" id="rec" type="button" disabled>⏺ Gravar vídeo</button>
           <button class="btn btn-ghost full" id="change" type="button">Trocar de foto</button>
         </div>
       </div>
@@ -415,7 +416,7 @@ const raf = () => new Promise(r => requestAnimationFrame(r));
 const view   = $('#view'), vctx = view.getContext('2d');
 const hold   = $('#hold'), drop = $('#drop'), stage = $('#stage');
 const fileEl = $('#file');
-const elPlay = $('#play'), elRestart = $('#restart'), elSave = $('#save'), elChange = $('#change');
+const elPlay = $('#play'), elRestart = $('#restart'), elSave = $('#save'), elRec = $('#rec'), elChange = $('#change');
 const elDetail = $('#detail'), elThick = $('#thick'), elDur = $('#dur'), elVol = $('#vol');
 const elSound = $('#sound'), elColor = $('#usecolor'), elHand = $('#usehand'), elPhoto = $('#usephoto');
 const handEl = $('#hand'), handImg = $('#handimg');
@@ -1209,6 +1210,7 @@ function nextPhase(){
   elPlay.textContent = 'Desenhar de novo';
   elPlay.disabled = false;
   render(); placeHand(); updateProgress();
+  if (S._recorder && S._recorder.state === 'recording') S._recorder.stop();
   if (!S._emailShown){ S._emailShown = true; setTimeout(() => document.getElementById('emailModal').classList.add('open'), 2200); }
 }
 
@@ -1332,7 +1334,7 @@ async function useBitmap(bmp){
 
   await analyse();
   resetDrawing();
-  elPlay.disabled = false; elRestart.disabled = false; elSave.disabled = false;
+  elPlay.disabled = false; elRestart.disabled = false; elSave.disabled = false; elRec.disabled = false;
   play();
 }
 
@@ -1514,6 +1516,42 @@ Audio_.setVolume((+elVol.value)/100);
 $('#dur-v').textContent = durSecs().toFixed(1).replace('.', ',') + ' s';
 $('#thick-v').textContent = thickMul().toFixed(1) + '×';
 updateProgress();
+
+/* ---------- gravar animação ---------- */
+function startRecording(){
+  if (!('MediaRecorder' in window)){ toast('O teu browser não suporta gravação de vídeo.'); return; }
+  const mimeType =
+    MediaRecorder.isTypeSupported('video/webm;codecs=vp9') ? 'video/webm;codecs=vp9' :
+    MediaRecorder.isTypeSupported('video/webm') ? 'video/webm' : '';
+  try {
+    const stream = view.captureStream(30);
+    const opts = mimeType ? { mimeType } : {};
+    S._recorder = new MediaRecorder(stream, opts);
+    const chunks = [];
+    S._recorder.ondataavailable = e => { if (e.data.size > 0) chunks.push(e.data); };
+    S._recorder.onstop = () => {
+      const blob = new Blob(chunks, { type: mimeType || 'video/webm' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url; a.download = 'desenho-techforyou.webm';
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 5000);
+      toast('Vídeo guardado ✓');
+      elRec.textContent = '⏺ Gravar vídeo'; elRec.disabled = false;
+      S._recorder = null;
+    };
+    S._recorder.start(80);
+    elRec.textContent = '⏹ A gravar…'; elRec.disabled = true;
+    toast('A gravar… o vídeo descarrega no fim.');
+  } catch(e){ toast('Não foi possível iniciar a gravação.'); }
+}
+
+elRec.addEventListener('click', () => {
+  if (!S.srcData){ toast('Carrega uma fotografia primeiro.'); return; }
+  resetDrawing();
+  startRecording();
+  play();
+});
 
 /* ---------- modal de email ---------- */
 const emailModal = $('#emailModal');
