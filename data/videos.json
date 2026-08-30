@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-08-30T03:07:14.753Z",
+  "updatedAt": "2026-08-30T06:07:41.428Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -124,78 +124,7 @@
       "title": "Uso Inteligente de IA",
       "slug": "uso-inteligente-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ4rNcGt5yGAI4xfQ9c0L5l",
-      "videos": [
-        {
-          "id": "1Iw1F5Gpv78",
-          "title": "Como utilizar a IA de forma inteligente?",
-          "publishedAt": "2026-07-01T18:30:30+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/1Iw1F5Gpv78/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=1Iw1F5Gpv78"
-        },
-        {
-          "id": "2tiNu9bHa0k",
-          "title": "Live 23 - Vamos criar imagens e vídeos com IA? Gratuito!",
-          "publishedAt": "2026-05-20T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/2tiNu9bHa0k/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=2tiNu9bHa0k"
-        },
-        {
-          "id": "iPIWXTdrFbg",
-          "title": "Live 21 Estratégia 5 -   Avaliar com IA",
-          "publishedAt": "2026-05-13T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/iPIWXTdrFbg/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=iPIWXTdrFbg"
-        },
-        {
-          "id": "ADwnSygxT2o",
-          "title": "Live 20 -Como avaliar um Trabalho na Era da IA",
-          "publishedAt": "2026-05-06T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/ADwnSygxT2o/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=ADwnSygxT2o"
-        },
-        {
-          "id": "TfB0mV9jjlE",
-          "title": "Live 18-  Aprender com Gemini e chat GPT (Estratégia para Professores)",
-          "publishedAt": "2026-04-28T23:00:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/TfB0mV9jjlE/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=TfB0mV9jjlE"
-        },
-        {
-          "id": "YHPRLjCRpBs",
-          "title": "Live 17 - Treino da Oralidade com IA- Gratuito!",
-          "publishedAt": "2026-04-22T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/YHPRLjCRpBs/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=YHPRLjCRpBs"
-        },
-        {
-          "id": "IcC57y-0y9k",
-          "title": "Live15 Notebooklm- Novidade",
-          "publishedAt": "2026-04-15T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/IcC57y-0y9k/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=IcC57y-0y9k"
-        },
-        {
-          "id": "2avuC3DAaFk",
-          "title": "LIVE 16 ESCRITA CRIATIVA COM IA",
-          "publishedAt": "2026-04-07T23:00:00+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/2avuC3DAaFk/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=2avuC3DAaFk"
-        },
-        {
-          "id": "YqwCXPFYCiQ",
-          "title": "LIVE 14  - Como Fazer 1 Trabalho de Grupo com IA de Forma Inteligente",
-          "publishedAt": "2026-04-01T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/YqwCXPFYCiQ/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=YqwCXPFYCiQ"
-        },
-        {
-          "id": "uvejCEu2xHU",
-          "title": "Vamos criar um Livro Lindíssimo!!!! Gratuito!",
-          "publishedAt": "2026-02-18T00:00:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/uvejCEu2xHU/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=uvejCEu2xHU"
-        }
-      ]
+      "videos": []
     }
   ]
 }
