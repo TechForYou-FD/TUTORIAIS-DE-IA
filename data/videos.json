@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-05T06:16:30.377Z",
+  "updatedAt": "2026-09-05T09:12:41.275Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -11,14 +11,191 @@
       "title": "Lives de IA",
       "slug": "lives-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
-      "videos": []
+      "videos": [
+        {
+          "id": "UxEbtCFok40",
+          "title": "Live 30 - Vamos Animar Desenhos com IA? Gratuito!",
+          "publishedAt": "2026-07-22T18:00:40+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/UxEbtCFok40/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=UxEbtCFok40"
+        },
+        {
+          "id": "hrxOQywjUoY",
+          "title": "Vamos Restaurar Fotos Antigas? Surpresa no Fim! Gratuito! Live 29",
+          "publishedAt": "2026-07-15T18:00:25+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/hrxOQywjUoY/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=hrxOQywjUoY"
+        },
+        {
+          "id": "_V4yBPrATDM",
+          "title": "Book Creator - Espetacular, para PRofessores!",
+          "publishedAt": "2026-07-12T19:26:08+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/_V4yBPrATDM/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=_V4yBPrATDM"
+        },
+        {
+          "id": "W_K492ETPjc",
+          "title": "Live 28 - Como Gravar o seu Ecrã?",
+          "publishedAt": "2026-07-08T18:00:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/W_K492ETPjc/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=W_K492ETPjc"
+        },
+        {
+          "id": "PjYd-MMFD1g",
+          "title": "Live 27 - CAPTCHA- Muito Cuidado!",
+          "publishedAt": "2026-06-17T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/PjYd-MMFD1g/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=PjYd-MMFD1g"
+        },
+        {
+          "id": "S5YJMclPK7E",
+          "title": "Live 26 - Como Evitar que o Google Oiça as Suas Conversas?",
+          "publishedAt": "2026-06-10T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/S5YJMclPK7E/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=S5YJMclPK7E"
+        },
+        {
+          "id": "lnl5hc6BuoU",
+          "title": "Live 25 - O Melhor Tradutor Simultâneo Gratuito",
+          "publishedAt": "2026-06-03T18:30:33+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/lnl5hc6BuoU/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=lnl5hc6BuoU"
+        },
+        {
+          "id": "IySDdWAf8sQ",
+          "title": "Live 24-  Notebooklm- 3 Novidades Gratuitas",
+          "publishedAt": "2026-05-27T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/IySDdWAf8sQ/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=IySDdWAf8sQ"
+        },
+        {
+          "id": "2tiNu9bHa0k",
+          "title": "Live 23 - Vamos criar imagens e vídeos com IA? Gratuito!",
+          "publishedAt": "2026-05-20T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/2tiNu9bHa0k/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=2tiNu9bHa0k"
+        },
+        {
+          "id": "byyf-QUFP3I",
+          "title": "Como Editar Imagens e Texto no Canva? - Live 22",
+          "publishedAt": "2026-05-18T20:56:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/byyf-QUFP3I/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=byyf-QUFP3I"
+        },
+        {
+          "id": "iPIWXTdrFbg",
+          "title": "Live 21 Estratégia 5 -   Avaliar com IA",
+          "publishedAt": "2026-05-13T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/iPIWXTdrFbg/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=iPIWXTdrFbg"
+        },
+        {
+          "id": "em2y3AWqi5w",
+          "title": "Whatsapp recolhe os seus dados",
+          "publishedAt": "2026-05-12T18:30:36+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/em2y3AWqi5w/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=em2y3AWqi5w"
+        },
+        {
+          "id": "ADwnSygxT2o",
+          "title": "Live 20 -Como avaliar um Trabalho na Era da IA",
+          "publishedAt": "2026-05-06T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/ADwnSygxT2o/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=ADwnSygxT2o"
+        },
+        {
+          "id": "8r6WauRoa1k",
+          "title": "Live 19 -Como obter o Canva Gratuito?",
+          "publishedAt": "2026-05-01T18:30:00+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/8r6WauRoa1k/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=8r6WauRoa1k"
+        },
+        {
+          "id": "TfB0mV9jjlE",
+          "title": "Live 18-  Aprender com Gemini e chat GPT (Estratégia para Professores)",
+          "publishedAt": "2026-04-28T23:00:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/TfB0mV9jjlE/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=TfB0mV9jjlE"
+        }
+      ]
     },
     {
       "id": "PL5FIAcrKghKZ4rNcGt5yGAI4xfQ9c0L5l",
       "title": "Uso Inteligente de IA",
       "slug": "uso-inteligente-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ4rNcGt5yGAI4xfQ9c0L5l",
-      "videos": []
+      "videos": [
+        {
+          "id": "1Iw1F5Gpv78",
+          "title": "Como utilizar a IA de forma inteligente?",
+          "publishedAt": "2026-07-01T18:30:30+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/1Iw1F5Gpv78/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=1Iw1F5Gpv78"
+        },
+        {
+          "id": "2tiNu9bHa0k",
+          "title": "Live 23 - Vamos criar imagens e vídeos com IA? Gratuito!",
+          "publishedAt": "2026-05-20T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/2tiNu9bHa0k/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=2tiNu9bHa0k"
+        },
+        {
+          "id": "iPIWXTdrFbg",
+          "title": "Live 21 Estratégia 5 -   Avaliar com IA",
+          "publishedAt": "2026-05-13T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/iPIWXTdrFbg/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=iPIWXTdrFbg"
+        },
+        {
+          "id": "ADwnSygxT2o",
+          "title": "Live 20 -Como avaliar um Trabalho na Era da IA",
+          "publishedAt": "2026-05-06T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/ADwnSygxT2o/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=ADwnSygxT2o"
+        },
+        {
+          "id": "TfB0mV9jjlE",
+          "title": "Live 18-  Aprender com Gemini e chat GPT (Estratégia para Professores)",
+          "publishedAt": "2026-04-28T23:00:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/TfB0mV9jjlE/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=TfB0mV9jjlE"
+        },
+        {
+          "id": "YHPRLjCRpBs",
+          "title": "Live 17 - Treino da Oralidade com IA- Gratuito!",
+          "publishedAt": "2026-04-22T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/YHPRLjCRpBs/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=YHPRLjCRpBs"
+        },
+        {
+          "id": "IcC57y-0y9k",
+          "title": "Live15 Notebooklm- Novidade",
+          "publishedAt": "2026-04-15T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/IcC57y-0y9k/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=IcC57y-0y9k"
+        },
+        {
+          "id": "2avuC3DAaFk",
+          "title": "LIVE 16 ESCRITA CRIATIVA COM IA",
+          "publishedAt": "2026-04-07T23:00:00+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/2avuC3DAaFk/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=2avuC3DAaFk"
+        },
+        {
+          "id": "YqwCXPFYCiQ",
+          "title": "LIVE 14  - Como Fazer 1 Trabalho de Grupo com IA de Forma Inteligente",
+          "publishedAt": "2026-04-01T18:30:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/YqwCXPFYCiQ/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=YqwCXPFYCiQ"
+        },
+        {
+          "id": "uvejCEu2xHU",
+          "title": "Vamos criar um Livro Lindíssimo!!!! Gratuito!",
+          "publishedAt": "2026-02-18T00:00:06+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/uvejCEu2xHU/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=uvejCEu2xHU"
+        }
+      ]
     }
   ]
 }
