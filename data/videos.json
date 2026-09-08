@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-08T12:19:02.596Z",
+  "updatedAt": "2026-09-08T15:15:27.947Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -13,6 +13,13 @@
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
       "videos": [
         {
+          "id": "T61agqF1F7Y",
+          "title": "CANVA - Isto vai mudar tudo! Woww!",
+          "publishedAt": "2026-08-10T13:06:18+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/T61agqF1F7Y/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=T61agqF1F7Y"
+        },
+        {
           "id": "UxEbtCFok40",
           "title": "Live 30 - Vamos Animar Desenhos com IA? Gratuito!",
           "publishedAt": "2026-07-22T18:00:40+00:00",
@@ -25,13 +32,6 @@
           "publishedAt": "2026-07-15T18:00:25+00:00",
           "thumbnail": "https://i.ytimg.com/vi/hrxOQywjUoY/hqdefault.jpg",
           "url": "https://www.youtube.com/watch?v=hrxOQywjUoY"
-        },
-        {
-          "id": "_V4yBPrATDM",
-          "title": "Book Creator - Espetacular, para PRofessores!",
-          "publishedAt": "2026-07-12T19:26:08+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/_V4yBPrATDM/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=_V4yBPrATDM"
         },
         {
           "id": "W_K492ETPjc",
