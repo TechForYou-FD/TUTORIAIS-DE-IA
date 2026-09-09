@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-09-09T15:13:52.087Z",
+  "updatedAt": "2026-09-09T18:16:58.126Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -15,9 +15,16 @@
         {
           "id": "T61agqF1F7Y",
           "title": "CANVA - Isto vai mudar tudo! Woww!",
-          "publishedAt": "2026-08-10T13:06:18+00:00",
+          "publishedAt": "2026-09-09T18:00:06+00:00",
           "thumbnail": "https://i.ytimg.com/vi/T61agqF1F7Y/hqdefault.jpg",
           "url": "https://www.youtube.com/watch?v=T61agqF1F7Y"
+        },
+        {
+          "id": "Ju73EpTDJrM",
+          "title": "Typeless - Dite em vez de escrever",
+          "publishedAt": "2026-09-08T11:35:15+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/Ju73EpTDJrM/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=Ju73EpTDJrM"
         },
         {
           "id": "UxEbtCFok40",
