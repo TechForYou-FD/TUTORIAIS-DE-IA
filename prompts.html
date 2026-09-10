@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prompts para Professores — TechForYou</title>
+<meta name="description" content="Banco de prompts de IA prontos a usar, escritos por perito e ancorados no currículo português: fichas, testes, rubricas, relatórios, atas, análise de resultados e estratégias para alunos.">
+<meta name="theme-color" content="#071130">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#071130; --bg-2:#0b1c48; --surface:#102254; --surface-2:#172c66;
+  --border:rgba(130,170,255,.20); --border-strong:rgba(130,170,255,.38);
+  --text:#eef3ff; --muted:#a6b6de; --faint:#6f80ad;
+  --blue:#5aa2ff; --violet:#8a63ff; --pink:#e0247d; --gold:#ffc24d;
+  --grad:linear-gradient(135deg,#5aa2ff 0%,#8a63ff 48%,#e0247d 100%);
+  --divider:linear-gradient(90deg,transparent,rgba(90,162,255,.5) 20%,rgba(224,36,125,.5) 80%,transparent);
+  --r:18px; --ease:cubic-bezier(.16,.84,.44,1); --fast:.18s; --dur:.45s;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;line-height:1.14;margin:0 0 .5em;letter-spacing:-.015em;text-wrap:balance;}
+p{margin:0 0 1em;color:var(--muted);}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+::selection{background:var(--pink);color:#fff;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px;}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}}
+
+/* fundo */
+.bg-fx{position:fixed;inset:0;z-index:-1;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.32;}
+.b1{width:540px;height:540px;background:var(--blue);top:-200px;left:-140px;animation:f1 24s ease-in-out infinite;}
+.b2{width:480px;height:480px;background:var(--pink);top:12%;right:-180px;animation:f2 28s ease-in-out infinite;}
+.b3{width:420px;height:420px;background:var(--violet);bottom:-180px;left:32%;animation:f3 32s ease-in-out infinite;}
+@keyframes f1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(60px,80px) scale(1.15);}}
+@keyframes f2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-70px,60px) scale(1.1);}}
+@keyframes f3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(50px,-40px) scale(1.2);}}
+.veil{position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,transparent 0%,var(--bg) 82%);}
+
+/* botões */
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform var(--fast) var(--ease),box-shadow var(--fast) var(--ease),border-color var(--fast) var(--ease);}
+.btn svg{transition:transform var(--fast) var(--ease);flex-shrink:0;}
+.btn:hover{transform:translateY(-3px);}
+.btn:active{transform:translateY(-1px) scale(.98);}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 14px 32px -12px rgba(224,36,125,.6);}
+.btn-main:hover{box-shadow:0 22px 46px -14px rgba(224,36,125,.75);}
+.btn-soft{background:var(--surface);color:var(--text);border:1px solid var(--border);}
+.btn-soft:hover{border-color:var(--border-strong);}
+
+/* barra topo */
+.top{position:sticky;top:0;z-index:60;border-bottom:1px solid transparent;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);}
+.top.stuck{background:rgba(7,17,48,.82);backdrop-filter:blur(16px) saturate(140%);border-color:var(--border);}
+.top-in{display:flex;align-items:center;gap:16px;height:70px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;}
+.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;font-size:.76rem;font-weight:800;transition:transform var(--fast) var(--ease);}
+.brand:hover .mark{transform:rotate(-8deg) scale(1.07);}
+.brand em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.top-nav{margin-left:auto;display:flex;gap:6px;align-items:center;}
+.top-nav a{padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:600;color:var(--muted);transition:color var(--fast) var(--ease),background var(--fast) var(--ease);}
+.top-nav a:hover{color:var(--text);background:var(--surface);}
+.top-nav a.cta{background:var(--grad);color:#fff;}
+.top-nav a.cta:hover{transform:translateY(-2px);}
+@media(max-width:720px){.top-nav a.hide-sm{display:none;}}
+
+/* herói */
+.hero{padding:56px 0 34px;}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:15px;}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px rgba(224,36,125,.22);}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);color:var(--gold);max-width:16ch;}
+.hero p{font-size:1.1rem;max-width:60ch;}
+
+/* como usar */
+.howto{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px;margin:26px 0 6px;}
+.howto-card{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
+.howto-n{flex-shrink:0;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--grad);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.85rem;}
+.howto-card p{margin:0;font-size:.9rem;color:var(--muted);}
+.howto-card strong{color:var(--text);}
+.tip{margin:18px 0 0;padding:14px 18px;border-radius:12px;background:rgba(255,194,77,.1);border:1px solid rgba(255,194,77,.3);font-size:.9rem;color:var(--text);}
+.tip b{color:var(--gold);}
+
+/* controlos */
+.controls{position:sticky;top:70px;z-index:40;padding:18px 0 14px;background:linear-gradient(180deg,var(--bg) 70%,transparent);}
+.search{position:relative;margin-bottom:14px;}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--faint);}
+.search input{width:100%;padding:14px 16px 14px 46px;border-radius:14px;background:var(--surface);border:1px solid var(--border-strong);color:var(--text);font:inherit;font-size:1rem;transition:border-color var(--fast) var(--ease),box-shadow var(--fast) var(--ease);}
+.search input::placeholder{color:var(--faint);}
+.search input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(90,162,255,.25);}
+.chips{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{padding:8px 15px;border-radius:999px;background:var(--surface);border:1px solid var(--border);font-size:.85rem;font-weight:600;color:var(--muted);transition:transform var(--fast) var(--ease),color var(--fast) var(--ease),border-color var(--fast) var(--ease),background var(--fast) var(--ease);}
+.chip:hover{transform:translateY(-2px);color:var(--text);border-color:var(--border-strong);}
+.chip.active{background:var(--grad);color:#fff;border-color:transparent;}
+.chip .n{opacity:.7;font-weight:700;margin-left:4px;}
+
+/* grelha de prompts */
+.count{margin:6px 0 16px;font-size:.85rem;color:var(--faint);}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:20px;padding-bottom:60px;align-items:start;}
+.card{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:transform var(--fast) var(--ease),box-shadow var(--fast) var(--ease),border-color var(--fast) var(--ease);}
+.card:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:0 22px 48px -26px #000;}
+.card-head{padding:20px 22px 0;}
+.tag{display:inline-block;padding:4px 11px;border-radius:999px;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);background:rgba(90,162,255,.12);border:1px solid rgba(90,162,255,.28);margin-bottom:12px;}
+.card h3{font-size:1.08rem;margin:0 0 6px;color:var(--text);}
+.card .use{font-size:.88rem;color:var(--muted);margin:0 0 14px;}
+.prompt-box{margin:0 22px;padding:14px 16px;background:rgba(7,17,48,.6);border:1px solid var(--border);border-radius:12px;max-height:190px;overflow:auto;}
+.prompt-box pre{margin:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.8rem;line-height:1.6;color:#d7e2fb;white-space:pre-wrap;word-break:break-word;}
+.prompt-box::-webkit-scrollbar{width:8px;}
+.prompt-box::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:8px;}
+.card-foot{display:flex;gap:10px;align-items:center;padding:14px 22px 20px;margin-top:auto;}
+.copy-btn{display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;background:var(--grad);color:#fff;font-weight:700;font-size:.88rem;transition:transform var(--fast) var(--ease),box-shadow var(--fast) var(--ease);box-shadow:0 10px 24px -12px rgba(224,36,125,.6);}
+.copy-btn:hover{transform:translateY(-2px);box-shadow:0 16px 30px -14px rgba(224,36,125,.7);}
+.copy-btn.done{background:var(--gold);color:#071130;}
+.expand{margin-left:auto;font-size:.82rem;font-weight:600;color:var(--faint);}
+.expand:hover{color:var(--blue);}
+.prompt-box.open{max-height:none;}
+
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);}
+.empty strong{display:block;color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;margin-bottom:6px;}
+
+/* rodapé */
+footer{border-top:1px solid var(--border);padding:40px 0;}
+.foot{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap;}
+.foot-links a{font-size:.88rem;font-weight:600;color:var(--muted);transition:color var(--fast) var(--ease);}
+.foot-links a:hover{color:var(--blue);}
+.foot-copy{width:100%;font-size:.78rem;color:var(--faint);border-top:1px solid var(--border);padding-top:18px;margin:6px 0 0;}
+
+/* aviso copiado */
+.toast{position:fixed;left:50%;bottom:26px;transform:translateX(-50%) translateY(20px);background:var(--gold);color:#071130;font-weight:700;padding:12px 22px;border-radius:999px;box-shadow:0 16px 40px -12px rgba(0,0,0,.6);opacity:0;pointer-events:none;transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);z-index:90;font-size:.9rem;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+</style>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <span class="veil"></span>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="mark">TF</span><span>Tech<em>For</em>You</span></a>
+    <nav class="top-nav">
+      <a href="index.html" class="hide-sm">Vídeos</a>
+      <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener" class="hide-sm">Tutoriais</a>
+      <a href="prompts.html">Prompts</a>
+      <a href="livro.html" class="cta">O livro</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Banco de prompts</p>
+      <h1>Prompts para professores, prontos a usar.</h1>
+      <p>
+        Uma biblioteca de instruções de IA escritas ao pormenor e pensadas para o
+        <strong>currículo português</strong> — Aprendizagens Essenciais, Perfil dos Alunos e
+        educação inclusiva. Escolhe o objetivo, copia, cola no ChatGPT, Gemini ou Copilot,
+        troca o que está <span style="color:var(--gold)">[entre parênteses]</span> e adapta o resultado.
+      </p>
+
+      <div class="howto">
+        <div class="howto-card"><span class="howto-n">1</span><p><strong>Escolhe</strong> o prompt pela categoria ou pela pesquisa.</p></div>
+        <div class="howto-card"><span class="howto-n">2</span><p><strong>Copia</strong> com um clique e cola na ferramenta de IA.</p></div>
+        <div class="howto-card"><span class="howto-n">3</span><p><strong>Substitui</strong> os campos [entre parênteses] pelos teus dados.</p></div>
+        <div class="howto-card"><span class="howto-n">4</span><p><strong>Revê sempre</strong> e ajusta — a IA propõe, o professor decide.</p></div>
+      </div>
+
+      <p class="tip">💡 <b>Dica de perita:</b> quanto mais contexto deres (ano, disciplina, nº de alunos, tempo da aula, dificuldades da turma), melhor fica o resultado. Podes sempre pedir à IA para “fazer 3 perguntas antes de começar”.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="controls">
+      <div class="search">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="search" id="search" placeholder="Pesquisar prompt (ex.: rubrica, teste, ata, encarregado de educação)…" aria-label="Pesquisar prompts">
+      </div>
+      <div class="chips" id="chips" role="tablist" aria-label="Categorias"></div>
+    </div>
+
+    <p class="count" id="count"></p>
+    <div class="grid" id="grid"></div>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="index.html"><span class="mark">TF</span><span>Tech<em>For</em>You</span></a>
+    <nav class="foot-links">
+      <a href="index.html">Vídeos</a>
+      <a href="livro.html">O livro</a>
+      <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener">Tutoriais</a>
+      <a href="https://www.youtube.com/@TechForYou-ww3zt" target="_blank" rel="noopener">YouTube</a>
+    </nav>
+    <p class="foot-copy">© <span id="yy"></span> Fátima Diogo · TechForYou. Prompts para uso pedagógico — revê sempre os resultados antes de os usar com os alunos.</p>
+  </div>
+</footer>
+
+<div class="toast" id="toast">Prompt copiado ✓</div>
+
+<script>
+(() => {
+  'use strict';
+
+  const CATS = [
+    ['all','Todos'],
+    ['plan','Planificação'],
+    ['fichas','Fichas e materiais'],
+    ['testes','Testes e avaliação'],
+    ['rubricas','Rubricas e critérios'],
+    ['nivelar','Nivelar e diferenciar'],
+    ['inclusao','Inclusão (DL 54)'],
+    ['aluno','Apoio ao aluno'],
+    ['resultados','Análise de resultados'],
+    ['relatorios','Relatórios e atas'],
+    ['comunicacao','Comunicação'],
+    ['feedback','Feedback'],
+  ];
+
+  const P = [
+    // ---------------- PLANIFICAÇÃO ----------------
+    { cat:'plan', title:'Plano de aula alinhado com as Aprendizagens Essenciais', use:'Uma aula completa, com objetivos, momentos e avaliação, ancorada no currículo nacional.',
+      text:`Assume o papel de um especialista em desenho curricular e planificação, conhecedor do currículo português.
+
+Cria um plano de aula com esta informação:
+- Disciplina: [DISCIPLINA]
+- Ano/ciclo: [ANO]
+- Tema/conteúdo: [TEMA]
+- Duração: [Nº] minutos
+- Nº de alunos: [Nº] | Características da turma: [EX.: turma heterogénea, 3 alunos com medidas de suporte]
+
+O plano deve incluir:
+1. Aprendizagens Essenciais e descritores do Perfil dos Alunos (PASEO) mobilizados;
+2. Objetivos de aprendizagem observáveis (o que o aluno será capaz de fazer);
+3. Sequência da aula por momentos (motivação/desafio inicial, desenvolvimento, consolidação, síntese) com tempos e o que faz o professor e o que fazem os alunos;
+4. Recursos e materiais necessários;
+5. Estratégias de diferenciação para alunos com mais e com menos facilidade;
+6. Avaliação formativa (como vou saber, durante a aula, se estão a aprender);
+7. Trabalho de casa opcional e proposta de extensão.
+
+Apresenta em tabela quando fizer sentido. No fim, faz-me até 3 perguntas para melhorar o plano.` },
+
+    { cat:'plan', title:'Planificação de uma unidade / sequência de aulas', use:'Distribuição de um tema por várias aulas, com progressão e avaliação.',
+      text:`És um especialista em planificação a médio prazo no ensino português.
+
+Planifica uma unidade didática:
+- Disciplina: [DISCIPLINA] | Ano: [ANO]
+- Tema/unidade: [TEMA]
+- Nº de aulas de [Nº] min disponíveis: [Nº]
+
+Entrega:
+1. Fio condutor da unidade e questão(ões) essencial(is);
+2. Aprendizagens Essenciais e áreas de competência do PASEO a desenvolver;
+3. Mapa aula a aula (título, objetivos, atividade central, recurso, avaliação formativa);
+4. Um momento de avaliação sumativa e o que valoriza;
+5. Sugestão de tarefa integradora final (produto do aluno);
+6. Pontos de diferenciação e de possível articulação com outra(s) disciplina(s).
+
+Organiza numa tabela clara. Assinala onde eu devo decidir/adaptar.` },
+
+    { cat:'plan', title:'Projeto interdisciplinar (DAC)', use:'Um domínio de autonomia curricular que cruza disciplinas à volta de um problema real.',
+      text:`Assume o papel de coordenador de projeto especialista em Domínios de Autonomia Curricular (DAC) e trabalho de projeto.
+
+Desenha um DAC:
+- Ano/ciclo: [ANO]
+- Disciplinas envolvidas: [EX.: Português, Cidadania, Ciências]
+- Tema/problema do mundo real: [TEMA]
+- Tempo total: [Nº] semanas / [Nº] blocos
+
+Inclui:
+1. Questão-problema mobilizadora e produto final autêntico;
+2. Contributo de cada disciplina (Aprendizagens Essenciais convocadas);
+3. Competências do PASEO desenvolvidas;
+4. Fases do projeto com tarefas e responsáveis;
+5. Instrumentos de avaliação (rubrica do produto + autoavaliação + coavaliação);
+6. Sugestões de articulação com a comunidade/Cidadania e Desenvolvimento.
+
+Sê concreto e exequível numa escola pública portuguesa.` },
+
+    // ---------------- FICHAS E MATERIAIS ----------------
+    { cat:'fichas', title:'Ficha de trabalho diferenciada (3 níveis)', use:'A mesma matéria em três graus de dificuldade, para turmas heterogéneas.',
+      text:`És um especialista em produção de materiais didáticos diferenciados.
+
+Cria uma ficha de trabalho sobre [TEMA], para [DISCIPLINA], [ANO], alinhada com as Aprendizagens Essenciais.
+
+Estrutura em TRÊS níveis, com os mesmos objetivos mas exigência crescente:
+- Nível A (apoio): exercícios guiados, com exemplos e vocabulário facilitado;
+- Nível B (padrão): exercícios de aplicação;
+- Nível C (desafio): questões de raciocínio, justificação e transferência.
+
+Para cada nível: 4 a 6 exercícios variados (não repetitivos). Inclui um pequeno enunciado de contexto real quando possível.
+No fim, apresenta a CHAVE DE CORREÇÃO completa dos três níveis e uma cotação sugerida.
+Formata pronta a imprimir, com espaços de resposta.` },
+
+    { cat:'fichas', title:'Questões de aula / exit ticket', use:'2 a 5 perguntas rápidas para verificar a aprendizagem no fim da aula.',
+      text:`Cria um conjunto de "questões de aula" (exit ticket) para verificar rapidamente a compreensão no fim da aula.
+
+- Disciplina/ano: [DISCIPLINA], [ANO]
+- Conteúdo dado hoje: [TEMA]
+- Tempo de resposta: [3-5] minutos
+
+Dá-me:
+1. 4 perguntas curtas e progressivas (da mais simples à que exige raciocínio), variando o formato (verdadeiro/falso justificado, resposta curta, um erro para corrigir);
+2. A resposta esperada de cada uma;
+3. Para cada resposta errada provável, o que ela revela e uma micro-estratégia de remediação para a aula seguinte.` },
+
+    { cat:'fichas', title:'Guião de exploração de texto/documento', use:'Perguntas de leitura por níveis de compreensão sobre um texto que colas.',
+      text:`És especialista em compreensão leitora e literacia.
+
+A partir do texto/documento que colo no fim, cria um guião de exploração para [ANO], [DISCIPLINA].
+
+Organiza as perguntas por níveis:
+1. Localizar e retirar informação explícita;
+2. Fazer inferências e relacionar;
+3. Refletir, avaliar criticamente e relacionar com a experiência do aluno.
+
+Inclui 1 pergunta de vocabulário em contexto e 1 tarefa de escrita curta final. Dá também as respostas orientadoras.
+
+TEXTO:
+[COLA AQUI O TEXTO]` },
+
+    // ---------------- TESTES E AVALIAÇÃO ----------------
+    { cat:'testes', title:'Teste de avaliação com matriz e cotações', use:'Um teste sumativo completo, com matriz, itens variados e critérios.',
+      text:`Assume o papel de especialista em avaliação pedagógica e construção de instrumentos.
+
+Constrói um teste de avaliação:
+- Disciplina: [DISCIPLINA] | Ano: [ANO]
+- Conteúdos a avaliar: [LISTA DE CONTEÚDOS]
+- Duração: [Nº] min | Cotação total: 100 pontos
+- Peso por nível cognitivo desejado: conhecimento/compreensão ~[40]%, aplicação ~[40]%, raciocínio/análise ~[20]%
+
+Entrega, por esta ordem:
+1. MATRIZ (tabela de especificação): conteúdo × objetivo/Aprendizagem Essencial × tipo de item × cotação;
+2. O TESTE, com itens variados (escolha múltipla, associação, resposta curta, resposta extensa) e enunciados claros;
+3. CRITÉRIOS DE CLASSIFICAÇÃO e cotação por item (com níveis de desempenho nas respostas extensas);
+4. Uma versão de correção/soluções.
+
+Garante rigor científico e linguagem adequada ao ano.` },
+
+    { cat:'testes', title:'Itens de escolha múltipla de qualidade', use:'Perguntas de escolha múltipla com distratores plausíveis e bem construídos.',
+      text:`És um especialista em construção de itens de escolha múltipla (psicometria aplicada à sala de aula).
+
+Cria [Nº] itens de escolha múltipla sobre [TEMA], para [DISCIPLINA], [ANO].
+
+Regras obrigatórias:
+- Enunciado claro e completo (o aluno deve perceber a pergunta sem ler as opções);
+- 4 opções, apenas 1 correta;
+- Distratores plausíveis, baseados em erros/conceções erradas frequentes dos alunos;
+- Sem "todas as anteriores", sem pistas gramaticais, opções de comprimento semelhante;
+- Varia o nível cognitivo (uns de memória, outros de aplicação/raciocínio).
+
+Para cada item indica: a resposta correta e, em uma linha, porque cada distrator está errado (o erro que representa).` },
+
+    { cat:'testes', title:'Matriz / tabela de especificação do teste', use:'A grelha que alinha conteúdos, objetivos e cotações antes de fazer o teste.',
+      text:`Cria a matriz (tabela de especificação) de um teste de [DISCIPLINA], [ANO].
+
+Dados:
+- Conteúdos e respetiva importância: [LISTA]
+- Duração do teste: [Nº] min | Total: 100 pontos
+
+A matriz deve cruzar, em tabela:
+- Conteúdo / Aprendizagem Essencial;
+- Objetivo por nível cognitivo (recordar, compreender, aplicar, analisar);
+- Tipo de item previsto;
+- Cotação e % do total.
+
+No fim, verifica se a distribuição de cotações é equilibrada face à importância dos conteúdos e alerta-me para desequilíbrios.` },
+
+    // ---------------- RUBRICAS E CRITÉRIOS ----------------
+    { cat:'rubricas', title:'Rubrica de avaliação da escrita', use:'Grelha por níveis de desempenho para classificar textos dos alunos.',
+      text:`És especialista em avaliação da escrita e em rubricas analíticas.
+
+Cria uma rubrica para avaliar um texto [EX.: narrativo/de opinião/expositivo] em [DISCIPLINA], [ANO].
+
+Critérios (adapta ao ano):
+- Tema e adequação à instrução;
+- Estrutura e coerência;
+- Coesão e conectores;
+- Riqueza e correção vocabular;
+- Ortografia, pontuação e sintaxe;
+- Criatividade/voz do autor (se aplicável).
+
+Para cada critério, descreve 4 níveis de desempenho (Insuficiente, Suficiente, Bom, Muito Bom) com descritores concretos e observáveis, e uma cotação por nível. Total 100 pontos.
+Acrescenta uma versão simplificada "para o aluno" (em linguagem que ele entenda, para autoavaliar-se antes de entregar).` },
+
+    { cat:'rubricas', title:'Rubrica de apresentação oral', use:'Critérios claros para avaliar oralidade e apresentações.',
+      text:`Cria uma rubrica de avaliação da ORALIDADE / apresentação oral para [DISCIPLINA], [ANO], alinhada com as Aprendizagens Essenciais do domínio da Oralidade.
+
+Critérios sugeridos (ajusta): conteúdo e rigor; organização do discurso; clareza e dicção; adequação vocabular e registo; recursos de apoio (se houver); postura, contacto visual e gestão do tempo; resposta a perguntas.
+
+Para cada critério: 4 níveis de desempenho com descritores observáveis e cotação. Total 100 pontos.
+Inclui uma grelha de registo rápida para eu usar em tempo real durante as apresentações e uma ficha de coavaliação para os colegas.` },
+
+    { cat:'rubricas', title:'Rubrica de trabalho de grupo / projeto', use:'Avaliar produto final e também o processo e a colaboração.',
+      text:`Cria uma rubrica para avaliar um trabalho de grupo/projeto em [DISCIPLINA], [ANO], tema [TEMA].
+
+Avalia duas dimensões:
+A) PRODUTO final (qualidade, rigor, criatividade, cumprimento dos objetivos);
+B) PROCESSO (colaboração, responsabilidade individual, autonomia, gestão do tempo).
+
+4 níveis de desempenho por critério, com descritores concretos e cotação.
+Inclui um instrumento de AUTOAVALIAÇÃO e de COAVALIAÇÃO entre elementos do grupo, para que a nota individual reflita o contributo real de cada um.` },
+
+    { cat:'rubricas', title:'Critérios de avaliação por domínios', use:'Definir o que vale cada domínio e como se classifica, para o início do ano.',
+      text:`Ajuda-me a redigir os critérios de avaliação de [DISCIPLINA], [ANO], para apresentar aos alunos e encarregados de educação.
+
+- Domínios/temas da disciplina: [LISTA]
+- Ponderações pretendidas: [EX.: conhecimentos 60% / competências e atitudes 40%]
+
+Entrega:
+1. Tabela de domínios, com o que se avalia em cada um e a ponderação;
+2. Instrumentos de recolha de informação previstos (testes, trabalhos, oralidade, observação...);
+3. Perfis de aprendizagem por menção (do "Insuficiente" ao "Muito Bom"), descritos de forma clara;
+4. Uma versão resumida e amigável para comunicar aos alunos no início do ano.
+Mantém coerência com o DL 55/2018 e com a avaliação formativa.` },
+
+    // ---------------- NIVELAR E DIFERENCIAR ----------------
+    { cat:'nivelar', title:'Nivelar um teste (versão acessível + versão desafio)', use:'Pega num teste que já tens e cria duas versões equivalentes.',
+      text:`És especialista em diferenciação de instrumentos de avaliação.
+
+Vou colar um teste/ficha que já tenho. Cria DUAS versões equivalentes (mesmos objetivos e conteúdos, mesma estrutura e cotação):
+
+1. VERSÃO DE APOIO: enunciados mais simples e diretos, com apoios (banco de palavras, exemplo resolvido, passos orientados), mantendo o mesmo que se avalia;
+2. VERSÃO DE DESAFIO: enunciados que exigem mais raciocínio, justificação e transferência.
+
+Mantém a numeração para eu poder gerir a turma facilmente. Assinala o que mudaste em cada item e entrega as soluções das duas versões.
+
+TESTE ORIGINAL:
+[COLA AQUI]` },
+
+    { cat:'nivelar', title:'Adaptar um texto a vários níveis de leitura', use:'O mesmo conteúdo em versões mais simples ou mais exigentes.',
+      text:`Adapta o texto que colo a diferentes níveis de leitura, mantendo a informação essencial.
+
+Cria 3 versões:
+- Versão simplificada (frases curtas, vocabulário acessível, ideias uma de cada vez);
+- Versão intermédia (a de referência para o ano [ANO]);
+- Versão enriquecida (vocabulário mais exigente e frases mais complexas).
+
+Preserva o rigor dos factos. Assinala, no fim, as palavras-chave que convém ensinar explicitamente.
+
+TEXTO:
+[COLA AQUI]` },
+
+    { cat:'nivelar', title:'Diferenciar uma atividade por perfis de aprendizagem', use:'Uma tarefa, vários caminhos, para chegar a todos os alunos.',
+      text:`Tenho esta atividade/objetivo: [DESCREVE A ATIVIDADE OU OBJETIVO], em [DISCIPLINA], [ANO].
+
+Como especialista em diferenciação pedagógica, propõe formas de a diferenciar por:
+- Conteúdo (o que cada aluno trabalha);
+- Processo (como trabalha — apoios, agrupamentos, tempo);
+- Produto (como demonstra o que aprendeu — texto, oral, esquema, vídeo...).
+
+Dá exemplos concretos para: alunos com dificuldades, alunos no nível esperado e alunos que precisam de desafio. Sugere também 2 opções de escolha para dar autonomia ao aluno.` },
+
+    // ---------------- INCLUSÃO (DL 54/2018) ----------------
+    { cat:'inclusao', title:'Medidas de suporte à aprendizagem (universais/seletivas)', use:'Ideias concretas de medidas ao abrigo do DL 54/2018.',
+      text:`És especialista em educação inclusiva e no Decreto-Lei n.º 54/2018.
+
+Para um aluno de [ANO] com [DESCREVE: ex. dificuldades de atenção/concentração; dislexia; PHDA; dificuldades de aprendizagem em leitura], sugere:
+1. Medidas UNIVERSAIS aplicáveis em sala de aula (diferenciação, acomodações, reforço, gestão do ambiente);
+2. Medidas SELETIVAS que eu possa propor, se as universais não bastarem;
+3. Acomodações na avaliação (ex.: tempo, formato, local, leitura de enunciados);
+4. Estratégias práticas do dia a dia para este perfil.
+
+Escreve de forma concreta e respeitadora, lembrando que a decisão formal envolve a equipa multidisciplinar (EMAEI). Não faças diagnósticos.` },
+
+    { cat:'inclusao', title:'Adaptar materiais para um aluno específico', use:'Transformar uma ficha para responder a uma necessidade concreta.',
+      text:`Vou colar uma ficha/material. Adapta-a para um aluno de [ANO] com [NECESSIDADE: ex. dislexia / baixa visão / dificuldade de concentração / português língua não materna].
+
+Aplica acomodações adequadas, por exemplo: linguagem mais clara e instruções passo a passo; menos itens por página e mais espaço; destaque das palavras-chave; apoios visuais; exemplo resolvido; enunciados sem ambiguidade.
+
+Mantém os mesmos objetivos de aprendizagem. Explica, no fim, que adaptações fizeste e porquê.
+
+MATERIAL:
+[COLA AQUI]` },
+
+    { cat:'inclusao', title:'Apoio à redação do RTP / relato de medidas', use:'Organizar a informação para o relatório técnico-pedagógico.',
+      text:`Ajuda-me a organizar e a redigir, em linguagem técnica e objetiva, o contributo do professor para o Relatório Técnico-Pedagógico de um aluno (DL 54/2018).
+
+Dou-te as minhas notas soltas: [COLA OBSERVAÇÕES: pontos fortes, dificuldades, medidas já experimentadas e resultados].
+
+Organiza em:
+1. Pontos fortes e interesses do aluno;
+2. Dificuldades observadas (factuais, sem juízos);
+3. Medidas já aplicadas e impacto;
+4. Sugestões de medidas de suporte a considerar.
+
+Usa uma linguagem profissional, centrada no aluno e nas evidências. Assinala onde faltam dados. A decisão final é da EMAEI.` },
+
+    // ---------------- APOIO AO ALUNO ----------------
+    { cat:'aluno', title:'Analisar a situação de um aluno e sugerir estratégias', use:'Descreve o caso e recebe hipóteses e um plano de ação pedagógico.',
+      text:`És um especialista em pedagogia e apoio ao aluno, com um olhar prático e humano.
+
+Descrevo a situação de um aluno de [ANO]:
+[DESCREVE: comportamento, desempenho, contexto, o que já tentei, o que observo].
+
+Ajuda-me a:
+1. Organizar o que se sabe (factos) e distinguir de interpretações;
+2. Levantar hipóteses possíveis para o que está a acontecer (académicas, emocionais, sociais, de método de estudo);
+3. Propor um plano de estratégias concretas para as próximas 2-3 semanas (na aula, com o aluno, com a família, com a escola);
+4. Indicar sinais que justificariam envolver o diretor de turma, a EMAEI ou os serviços de psicologia.
+
+Sê construtivo e realista. Não faças diagnósticos clínicos.` },
+
+    { cat:'aluno', title:'Estratégias de gestão de comportamento', use:'Plano positivo para uma dificuldade de comportamento na turma.',
+      text:`Como especialista em gestão de sala de aula e disciplina positiva, ajuda-me com esta situação:
+[DESCREVE O COMPORTAMENTO, frequência, contexto, o que já tentei], numa turma de [ANO] com [Nº] alunos.
+
+Propõe:
+1. Possíveis causas/funções do comportamento;
+2. Estratégias PREVENTIVAS (rotinas, regras, ambiente, envolvimento);
+3. Estratégias de RESPOSTA no momento, que preservem a relação e a dignidade do aluno;
+4. Um sistema simples de reforço positivo;
+5. Como e quando envolver o aluno, a família e o diretor de turma.
+Evita medidas punitivas ineficazes; foca-te no que muda o comportamento a médio prazo.` },
+
+    { cat:'aluno', title:'Plano de recuperação para aluno com dificuldades', use:'Um plano individual e realista para recuperar aprendizagens.',
+      text:`Cria um plano de recuperação de aprendizagens para um aluno de [ANO], [DISCIPLINA].
+
+Contexto: [descreve as principais dificuldades e o que o aluno já consegue].
+
+O plano deve ter:
+1. 3 a 5 objetivos prioritários (os pré-requisitos que faltam), por ordem;
+2. Para cada objetivo, uma micro-estratégia e uma tarefa curta de treino;
+3. Um calendário realista de [Nº] semanas;
+4. Como monitorizar o progresso (evidências simples);
+5. O que pedir em casa e como comunicar com o encarregado de educação.
+Mantém-no exequível para um professor com turma cheia.` },
+
+    // ---------------- ANÁLISE DE RESULTADOS ----------------
+    { cat:'resultados', title:'Analisar os resultados de um teste da turma', use:'Colas as notas/dados e recebes leitura pedagógica e próximos passos.',
+      text:`És especialista em análise de dados de avaliação para uso pedagógico.
+
+Vou colar os resultados de um teste da turma [ANO], [DISCIPLINA] (por aluno e/ou por questão).
+
+Analisa e devolve:
+1. Panorama geral (média, dispersão, distribuição por menções) em linguagem simples;
+2. Questões/conteúdos com pior desempenho e o que isso sugere sobre o que não ficou aprendido;
+3. Erros mais frequentes e conceções erradas prováveis;
+4. 3 a 5 estratégias concretas de remediação para as próximas aulas, priorizadas;
+5. Que alunos podem precisar de apoio adicional e que tipo.
+Não faças juízos sobre os alunos; foca-te no ensino e na aprendizagem.
+
+DADOS:
+[COLA AQUI as notas / percentagens por questão]` },
+
+    { cat:'resultados', title:'Analisar a evolução da turma ao longo do período', use:'Comparar momentos de avaliação e ver tendências.',
+      text:`Ajuda-me a interpretar a evolução dos resultados da turma [ANO], [DISCIPLINA] ao longo do período.
+
+Dados (vários momentos de avaliação): [COLA]
+
+Devolve:
+1. Tendências gerais (melhoria, estagnação, quebra) e possíveis causas pedagógicas;
+2. Alunos com evolução positiva a destacar e alunos em risco;
+3. Domínios que continuam frágeis apesar do trabalho feito;
+4. Recomendações para o próximo período (o que manter, o que mudar).
+Apresenta de forma clara, pronta a levar ao conselho de turma.` },
+
+    { cat:'resultados', title:'Identificar padrões de erro e planear remediação', use:'A partir dos erros dos alunos, um plano de recuperação focado.',
+      text:`Vou descrever/colar os erros mais comuns que os alunos deram em [TEMA], [DISCIPLINA], [ANO].
+
+Como especialista em análise de erros, ajuda-me a:
+1. Agrupar os erros por tipo e por conceção errada subjacente;
+2. Explicar a origem provável de cada tipo de erro;
+3. Propor, para cada um, uma atividade de remediação curta e eficaz;
+4. Sugerir uma ordem para trabalhar estes erros nas próximas aulas.
+
+ERROS OBSERVADOS:
+[COLA / DESCREVE]` },
+
+    // ---------------- RELATÓRIOS E ATAS ----------------
+    { cat:'relatorios', title:'Ata de reunião (conselho de turma / departamento)', use:'Transforma as tuas notas soltas numa ata organizada e formal.',
+      text:`És secretário experiente na redação de atas em contexto escolar português.
+
+Redige uma ata a partir das minhas notas, em linguagem formal e objetiva.
+
+Dados:
+- Tipo de reunião: [ex. conselho de turma / departamento / grupo disciplinar]
+- Data, hora e local: [PREENCHE]
+- Presentes/ausências: [PREENCHE]
+- Pontos da ordem de trabalhos: [LISTA]
+- As minhas notas do que foi tratado e decidido: [COLA]
+
+Estrutura a ata com: cabeçalho, ordem de trabalhos, desenvolvimento por ponto (deliberações e responsáveis), e encerramento. Usa fórmulas próprias de ata ("Aos … dias…"). Deixa em [ ] o que eu tenho de confirmar.` },
+
+    { cat:'relatorios', title:'Relatório de avaliação de final de período (turma)', use:'Síntese do desempenho e comportamento da turma para o conselho.',
+      text:`Ajuda-me a escrever o relatório de final de [período] da turma [ANO], enquanto [diretor de turma / professor de DISCIPLINA].
+
+Dou-te os dados: [aproveitamento global, disciplinas com mais dificuldades, comportamento, casos a assinalar, medidas em curso].
+
+Produz um relatório com:
+1. Caracterização breve da turma;
+2. Aproveitamento por área/disciplina (síntese factual);
+3. Comportamento e integração;
+4. Alunos em situação a acompanhar e medidas;
+5. Estratégias definidas para o período seguinte.
+Linguagem profissional, objetiva e centrada em evidências. Marca a [ ] o que devo verificar.` },
+
+    { cat:'relatorios', title:'Relatório individual do aluno', use:'Descrição rigorosa e equilibrada do percurso de um aluno.',
+      text:`Redige um relatório individual sobre o aluno [NOME/INICIAIS], [ANO], a partir das minhas observações: [COLA notas sobre desempenho, atitudes, evolução, medidas].
+
+O relatório deve:
+1. Começar pelos pontos fortes e interesses;
+2. Descrever o desempenho por domínios, com evidências;
+3. Referir atitudes, autonomia e relacionamento;
+4. Indicar dificuldades de forma factual e respeitadora;
+5. Terminar com recomendações e estratégias.
+Tom profissional e construtivo. Nada de rótulos ou diagnósticos. Deixa a [ ] o que eu tenho de confirmar.` },
+
+    // ---------------- COMUNICAÇÃO ----------------
+    { cat:'comunicacao', title:'Email ao encarregado de educação (situação a resolver)', use:'Uma mensagem firme mas cordial sobre desempenho ou comportamento.',
+      text:`Escreve um email a um encarregado de educação, em português de Portugal, tom cordial, respeitador e construtivo (nunca acusatório).
+
+- Aluno: [NOME] | Ano: [ANO]
+- Assunto: [ex. descida de resultados / comportamento / faltas / trabalhos por entregar]
+- Factos que quero comunicar: [COLA]
+- Objetivo do email: [ex. marcar reunião / pedir acompanhamento em casa / informar]
+
+O email deve: começar por algo positivo/contextualizar; expor os factos com objetividade; propor 1-2 ações concretas de colaboração; convidar ao diálogo; fechar com disponibilidade. Curto e claro. Sugere também um assunto (subject) para o email.` },
+
+    { cat:'comunicacao', title:'Mensagem de reforço positivo à família', use:'Valorizar um progresso ou esforço do aluno — cria relação.',
+      text:`Escreve uma mensagem curta e sincera a um encarregado de educação a destacar algo POSITIVO do aluno [NOME], [ANO]: [descreve o progresso, esforço ou atitude].
+
+Tom caloroso mas profissional. Que a família sinta orgulho e queira continuar a apoiar. Evita exageros. 4 a 6 linhas.` },
+
+    { cat:'comunicacao', title:'Convocatória / informação para reunião de pais', use:'Texto claro e formal para convocar ou informar encarregados.',
+      text:`Redige uma [convocatória / comunicação] para os encarregados de educação da turma [ANO].
+
+- Motivo: [ex. reunião de entrega de avaliações / apresentação do ano letivo / assunto específico]
+- Data, hora e local: [PREENCHE]
+- Pontos a tratar: [LISTA]
+- Necessário confirmar presença? [sim/não]
+
+Escreve de forma formal, clara e breve, adequada a enviar pela caderneta/plataforma da escola. Inclui um espaço de destacável para devolução, se pedir confirmação.` },
+
+    // ---------------- FEEDBACK ----------------
+    { cat:'feedback', title:'Feedback formativo a um texto do aluno', use:'Comentário que ensina — o que está bem, o que melhorar e como.',
+      text:`És especialista em feedback formativo eficaz (foco no trabalho, não na pessoa; concreto e acionável).
+
+Vou colar um texto de um aluno de [ANO]. Dá feedback formativo que:
+1. Comece por 2 pontos conseguidos, específicos (não "está bom");
+2. Aponte 2 a 3 aspetos a melhorar, os mais importantes primeiro;
+3. Para cada aspeto, mostre COMO melhorar com um exemplo concreto retirado do próprio texto;
+4. Termine com 1 objetivo claro para a próxima vez.
+Usa uma linguagem encorajadora e adequada à idade. Não reescrevas o texto todo por ele — orienta para que ele reescreva.
+
+TEXTO DO ALUNO:
+[COLA AQUI]` },
+
+    { cat:'feedback', title:'Guião de autoavaliação para o aluno', use:'Ficha para o aluno refletir e regular a própria aprendizagem.',
+      text:`Cria um guião de AUTOAVALIAÇÃO para alunos de [ANO], sobre [unidade/período/trabalho: DESCREVE].
+
+Inclui:
+1. Uma checklist "consegui…" com critérios em linguagem de aluno (1.ª pessoa);
+2. Uma escala simples (ex.: ainda não / às vezes / consigo bem);
+3. 3 perguntas de reflexão (o que aprendi melhor, o que ainda custa, o que vou fazer para melhorar);
+4. Um espaço para definir 1 meta pessoal.
+Adequa a linguagem à idade e mantém curto (uma página).` },
+
+    { cat:'feedback', title:'Comentários de avaliação por competência (banco)', use:'Frases-modelo de qualidade para preencher avaliações mais depressa.',
+      text:`Cria um banco de comentários de avaliação para [ANO], [DISCIPLINA], que eu possa adaptar.
+
+Para cada nível de desempenho (Insuficiente, Suficiente, Bom, Muito Bom), dá 3 a 4 comentários que:
+- Sejam específicos e centrados nas aprendizagens e atitudes;
+- Refiram um ponto forte e um caminho de melhoria;
+- Usem linguagem profissional, construtiva e respeitadora.
+Inclui campos [entre parênteses] para eu personalizar com o nome/situação do aluno.` },
+  ];
+
+  // ---- estado ----
+  let activeCat = 'all';
+  let query = '';
+  const norm = s => (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+
+  const grid = document.getElementById('grid');
+  const chipsBox = document.getElementById('chips');
+  const countEl = document.getElementById('count');
+  const searchEl = document.getElementById('search');
+  const toast = document.getElementById('toast');
+  const catLabel = Object.fromEntries(CATS.map(c => c));
+
+  // ---- chips ----
+  CATS.forEach(([id,label]) => {
+    const n = id === 'all' ? P.length : P.filter(p => p.cat === id).length;
+    if (id !== 'all' && n === 0) return;
+    const b = document.createElement('button');
+    b.className = 'chip' + (id === 'all' ? ' active' : '');
+    b.type = 'button';
+    b.dataset.cat = id;
+    b.innerHTML = label + ' <span class="n">' + n + '</span>';
+    b.addEventListener('click', () => {
+      activeCat = id;
+      chipsBox.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.cat === id));
+      render();
+    });
+    chipsBox.appendChild(b);
+  });
+
+  function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+
+  function render() {
+    const q = norm(query);
+    const list = P.filter(p => {
+      const okCat = activeCat === 'all' || p.cat === activeCat;
+      const okQ = !q || norm(p.title + ' ' + p.use + ' ' + p.text + ' ' + catLabel[p.cat]).includes(q);
+      return okCat && okQ;
+    });
+
+    countEl.textContent = list.length + (list.length === 1 ? ' prompt encontrado' : ' prompts encontrados');
+    grid.innerHTML = '';
+
+    if (!list.length) {
+      grid.innerHTML = '<div class="empty"><strong>Sem resultados</strong>Tenta outra palavra ou escolhe “Todos”.</div>';
+      return;
+    }
+
+    list.forEach(p => {
+      const card = document.createElement('article');
+      card.className = 'card';
+      card.innerHTML =
+        '<div class="card-head">' +
+          '<span class="tag">' + escapeHtml(catLabel[p.cat]) + '</span>' +
+          '<h3>' + escapeHtml(p.title) + '</h3>' +
+          '<p class="use">' + escapeHtml(p.use) + '</p>' +
+        '</div>' +
+        '<div class="prompt-box"><pre></pre></div>' +
+        '<div class="card-foot">' +
+          '<button class="copy-btn" type="button"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg><span>Copiar prompt</span></button>' +
+          '<button class="expand" type="button">ver tudo</button>' +
+        '</div>';
+      card.querySelector('pre').textContent = p.text;
+
+      const box = card.querySelector('.prompt-box');
+      const expand = card.querySelector('.expand');
+      expand.addEventListener('click', () => {
+        box.classList.toggle('open');
+        expand.textContent = box.classList.contains('open') ? 'ver menos' : 'ver tudo';
+      });
+
+      const copyBtn = card.querySelector('.copy-btn');
+      copyBtn.addEventListener('click', async () => {
+        try { await navigator.clipboard.writeText(p.text); }
+        catch {
+          const t = document.createElement('textarea');
+          t.value = p.text; t.style.position='fixed'; t.style.opacity='0';
+          document.body.appendChild(t); t.select();
+          try { document.execCommand('copy'); } catch {}
+          t.remove();
+        }
+        copyBtn.classList.add('done');
+        copyBtn.querySelector('span').textContent = 'Copiado ✓';
+        toast.classList.add('show');
+        clearTimeout(copyBtn._t);
+        copyBtn._t = setTimeout(() => {
+          copyBtn.classList.remove('done');
+          copyBtn.querySelector('span').textContent = 'Copiar prompt';
+          toast.classList.remove('show');
+        }, 2000);
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
+  searchEl.addEventListener('input', e => { query = e.target.value; render(); });
+
+  // barra topo
+  const top = document.getElementById('top');
+  const onScroll = () => top.classList.toggle('stuck', scrollY > 8);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+  document.getElementById('yy').textContent = new Date().getFullYear();
+
+  render();
+})();
+</script>
+</body>
+</html>
