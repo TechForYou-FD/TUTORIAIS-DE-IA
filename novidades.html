@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novidades por Email — TechForYou</title>
+<meta name="description" content="Inscreve-te para receberes novidades, tutoriais novos e prompts do TechForYou diretamente por email — basta iniciar sessão com a tua conta Google.">
+<meta name="theme-color" content="#071130">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#071130; --bg-2:#0b1c48; --surface:#102254; --surface-2:#172c66;
+  --border:rgba(130,170,255,.20); --border-strong:rgba(130,170,255,.38);
+  --text:#eef3ff; --muted:#a6b6de; --faint:#6f80ad;
+  --blue:#5aa2ff; --violet:#8a63ff; --pink:#e0247d; --gold:#ffc24d; --green:#3ddc97;
+  --grad:linear-gradient(135deg,#5aa2ff 0%,#8a63ff 48%,#e0247d 100%);
+  --divider:linear-gradient(90deg,transparent,rgba(90,162,255,.5) 20%,rgba(224,36,125,.5) 80%,transparent);
+  --r:18px; --ease:cubic-bezier(.16,.84,.44,1); --fast:.18s; --dur:.45s;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;line-height:1.14;margin:0 0 .5em;letter-spacing:-.015em;text-wrap:balance;}
+p{margin:0 0 1em;color:var(--muted);}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+::selection{background:var(--pink);color:#fff;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px;}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}}
+
+.bg-fx{position:fixed;inset:0;z-index:-1;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.32;}
+.b1{width:540px;height:540px;background:var(--blue);top:-200px;left:-140px;animation:f1 24s ease-in-out infinite;}
+.b2{width:480px;height:480px;background:var(--pink);top:12%;right:-180px;animation:f2 28s ease-in-out infinite;}
+.b3{width:420px;height:420px;background:var(--violet);bottom:-180px;left:32%;animation:f3 32s ease-in-out infinite;}
+@keyframes f1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(60px,80px) scale(1.15);}}
+@keyframes f2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-70px,60px) scale(1.1);}}
+@keyframes f3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(50px,-40px) scale(1.2);}}
+.veil{position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,transparent 0%,var(--bg) 82%);}
+
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform var(--fast) var(--ease),box-shadow var(--fast) var(--ease),border-color var(--fast) var(--ease);}
+.btn svg{transition:transform var(--fast) var(--ease);flex-shrink:0;}
+.btn:hover{transform:translateY(-3px);}
+.btn:active{transform:translateY(-1px) scale(.98);}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 14px 32px -12px rgba(224,36,125,.6);}
+.btn-main:hover{box-shadow:0 22px 46px -14px rgba(224,36,125,.75);}
+.btn-soft{background:var(--surface);color:var(--text);border:1px solid var(--border);}
+.btn-soft:hover{border-color:var(--border-strong);}
+
+.top{position:sticky;top:0;z-index:60;border-bottom:1px solid transparent;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);}
+.top.stuck{background:rgba(7,17,48,.82);backdrop-filter:blur(16px) saturate(140%);border-color:var(--border);}
+.top-in{display:flex;align-items:center;gap:16px;height:70px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;}
+.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;font-size:.76rem;font-weight:800;transition:transform var(--fast) var(--ease);}
+.brand:hover .mark{transform:rotate(-8deg) scale(1.07);}
+.brand em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.top-nav{margin-left:auto;display:flex;gap:6px;align-items:center;}
+.top-nav a{padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:600;color:var(--muted);transition:color var(--fast) var(--ease),background var(--fast) var(--ease);}
+.top-nav a:hover{color:var(--text);background:var(--surface);}
+.top-nav a.cta{background:var(--grad);color:#fff;}
+.top-nav a.cta:hover{transform:translateY(-2px);}
+@media(max-width:720px){.top-nav a.hide-sm{display:none;}}
+
+.hero{padding:56px 0 30px;text-align:center;}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:15px;justify-content:center;}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px rgba(224,36,125,.22);}
+.hero h1{font-size:clamp(2.1rem,5vw,3.2rem);color:var(--gold);max-width:18ch;margin-left:auto;margin-right:auto;}
+.hero p.lede{font-size:1.1rem;max-width:60ch;margin-left:auto;margin-right:auto;}
+
+.benefits{list-style:none;margin:36px 0;padding:0;display:grid;gap:14px;max-width:640px;margin-left:auto;margin-right:auto;}
+.benefits li{display:flex;gap:14px;align-items:flex-start;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:16px 20px;font-size:.95rem;color:var(--text);text-align:left;}
+.benefits li .ico{font-size:1.2rem;flex-shrink:0;line-height:1.3;}
+
+.signup-wrap{max-width:640px;margin:34px auto;}
+.signup-card{background:#fff;border-radius:var(--r);padding:8px;box-shadow:0 24px 60px -20px rgba(0,0,0,.55);}
+.signup-card iframe{width:100%;height:620px;border:none;border-radius:12px;display:block;}
+.signup-fallback{text-align:center;font-size:.85rem;color:var(--faint);padding:14px 6px 4px;}
+.signup-fallback a{color:var(--blue);font-weight:700;}
+.signup-fallback a:hover{text-decoration:underline;}
+
+.tip{margin:18px 0;padding:14px 18px;border-radius:12px;font-size:.9rem;color:var(--text);display:flex;gap:10px;align-items:flex-start;text-align:left;background:rgba(90,162,255,.1);border:1px solid rgba(90,162,255,.32);}
+.privacy{max-width:640px;margin:0 auto 60px;}
+
+footer{border-top:1px solid var(--border);padding:40px 0;}
+.foot{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap;}
+.foot-links a{font-size:.88rem;font-weight:600;color:var(--muted);transition:color var(--fast) var(--ease);}
+.foot-links a:hover{color:var(--blue);}
+.foot-copy{width:100%;font-size:.78rem;color:var(--faint);border-top:1px solid var(--border);padding-top:18px;margin:6px 0 0;}
+
+@media(max-width:640px){
+  .signup-card iframe{height:720px;}
+}
+</style>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <span class="veil"></span>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="mark">TF</span><span>Tech<em>For</em>You</span></a>
+    <nav class="top-nav">
+      <a href="index.html" class="hide-sm">Vídeos</a>
+      <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener" class="hide-sm">Tutoriais</a>
+      <a href="prompts.html" class="hide-sm">Prompts</a>
+      <a href="radar.html" class="hide-sm">Radar de Fontes</a>
+      <a href="novidades.html" class="cta">Novidades</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">📬 Novidades por email</p>
+      <h1>Tutoriais e prompts novos, direto na tua caixa de entrada.</h1>
+      <p class="lede">Inscreve-te com a tua conta Google — sem escrever nada, sem passwords novas — e recebe um aviso sempre que houver um tutorial, prompt ou guia novo no TechForYou.</p>
+
+      <ul class="benefits">
+        <li><span class="ico">🆕</span><div><strong>Tutoriais novos</strong> assim que são publicados, antes de chegarem às redes sociais.</div></li>
+        <li><span class="ico">💬</span><div><strong>Prompts prontos a usar</strong>, como os da biblioteca de Prompts para Professores.</div></li>
+        <li><span class="ico">⚡</span><div><strong>Sem esforço</strong> — inicia sessão com o Google e a tua morada de email fica registada automaticamente.</div></li>
+      </ul>
+
+      <div class="signup-wrap">
+        <div class="signup-card">
+          <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScRrPYMNGzYnWpDpT-5weYxWIG0dO7rWBf3ok5xKHcWz6Vbww/viewform?embedded=true" title="Formulário de inscrição — Novidades TechForYou">A carregar formulário…</iframe>
+          <p class="signup-fallback">O formulário não aparece? <a href="https://docs.google.com/forms/d/e/1FAIpQLScRrPYMNGzYnWpDpT-5weYxWIG0dO7rWBf3ok5xKHcWz6Vbww/viewform" target="_blank" rel="noopener">Abrir numa nova aba →</a></p>
+        </div>
+      </div>
+
+      <div class="tip privacy">🔒 <div>Este formulário recolhe apenas o teu endereço de email verificado pelo Google, para te avisar de novidades do TechForYou. Não é partilhado com terceiros nem usado para outro fim.</div></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="index.html"><span class="mark">TF</span><span>Tech<em>For</em>You</span></a>
+    <nav class="foot-links">
+      <a href="index.html">Vídeos</a>
+      <a href="prompts.html">Prompts</a>
+      <a href="livro.html">O livro</a>
+      <a href="radar.html">Radar de Fontes</a>
+      <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener">Tutoriais</a>
+      <a href="https://www.youtube.com/@TechForYou-ww3zt" target="_blank" rel="noopener">YouTube</a>
+    </nav>
+    <p class="foot-copy">© <span id="yy"></span> Fátima Diogo · TechForYou.</p>
+  </div>
+</footer>
+
+<script>
+  const top = document.getElementById('top');
+  const onScroll = () => top.classList.toggle('stuck', scrollY > 8);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+  document.getElementById('yy').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
+
