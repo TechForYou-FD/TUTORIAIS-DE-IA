@@ -181,7 +181,7 @@
       <a href="#videos">Vídeos</a>
       <a href="#sobre">Sobre</a>
     </nav>
-    <p class="footer-copy">© <span id="year"></span> TechForYou — Fátima Diogo. Todos os direitos reservados.</p>
+    <p class="footer-copy">© <span id="year"></span> TechForYou — Fátima Diogo. Todos os direitos reservados.</p><div class="visit-counter" id="visitCounter" aria-label="Contador de visitas"><span class="vc-dot"></span><span>👀 <strong id="vcNum">—</strong> visitas ao site</span></div>
   </div>
 </footer>
 
@@ -195,6 +195,6 @@
   </div>
 </div>
 
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/app.js" defer></script><script>(function(){var el=document.getElementById('vcNum');if(el){fetch('https://abacus.jasoncameron.dev/hit/techforyou-fd.github.io/tutoriais-de-ia-homepage').then(function(r){return r.json();}).then(function(data){var target=data.value||0;var start=Math.max(0,target-40);var cur=start;var step=Math.max(1,Math.round((target-start)/30));var timer=setInterval(function(){cur+=step;if(cur>=target){cur=target;clearInterval(timer);}el.textContent=cur.toLocaleString('pt-PT');},30);}).catch(function(){el.textContent='—';});}})();</script>
 </body>
 </html>
