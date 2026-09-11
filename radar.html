@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Radar de Fontes — TechForYou</title>
+<meta name="description" content="Guia gratuito para professores: 8 sinais para avaliar se um site é fidedigno, como identificar texto, imagem e vídeo gerados por IA, os métodos SIFT e CRAAP e uma atividade pronta para a aula.">
+<meta name="theme-color" content="#071130">
+<link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#071130; --bg-2:#0b1c48; --surface:#102254; --surface-2:#172c66;
+  --border:rgba(130,170,255,.20); --border-strong:rgba(130,170,255,.38);
+  --text:#eef3ff; --muted:#a6b6de; --faint:#6f80ad;
+  --blue:#5aa2ff; --violet:#8a63ff; --pink:#e0247d; --gold:#ffc24d; --green:#3ddc97;
+  --grad:linear-gradient(135deg,#5aa2ff 0%,#8a63ff 48%,#e0247d 100%);
+  --divider:linear-gradient(90deg,transparent,rgba(90,162,255,.5) 20%,rgba(224,36,125,.5) 80%,transparent);
+  --r:18px; --ease:cubic-bezier(.16,.84,.44,1); --fast:.18s; --dur:.45s;
+  color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;background:var(--bg);color:var(--text);font-family:'DM Sans',system-ui,-apple-system,Segoe UI,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+h1,h2,h3{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:800;line-height:1.14;margin:0 0 .5em;letter-spacing:-.015em;text-wrap:balance;}
+p{margin:0 0 1em;color:var(--muted);}
+a{color:inherit;text-decoration:none;}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+img{max-width:100%;display:block;}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px;}
+::selection{background:var(--pink);color:#fff;}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px;}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important;}}
+
+.bg-fx{position:fixed;inset:0;z-index:-1;overflow:hidden;}
+.blob{position:absolute;border-radius:50%;filter:blur(100px);opacity:.32;}
+.b1{width:540px;height:540px;background:var(--blue);top:-200px;left:-140px;animation:f1 24s ease-in-out infinite;}
+.b2{width:480px;height:480px;background:var(--pink);top:12%;right:-180px;animation:f2 28s ease-in-out infinite;}
+.b3{width:420px;height:420px;background:var(--violet);bottom:-180px;left:32%;animation:f3 32s ease-in-out infinite;}
+@keyframes f1{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(60px,80px) scale(1.15);}}
+@keyframes f2{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-70px,60px) scale(1.1);}}
+@keyframes f3{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(50px,-40px) scale(1.2);}}
+.veil{position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,transparent 0%,var(--bg) 82%);}
+
+.btn{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:13px 26px;border-radius:999px;font-weight:700;font-size:.95rem;transition:transform var(--fast) var(--ease),box-shadow var(--fast) var(--ease),border-color var(--fast) var(--ease);}
+.btn svg{transition:transform var(--fast) var(--ease);flex-shrink:0;}
+.btn:hover{transform:translateY(-3px);}
+.btn:active{transform:translateY(-1px) scale(.98);}
+.btn-main{background:var(--grad);color:#fff;box-shadow:0 14px 32px -12px rgba(224,36,125,.6);}
+.btn-main:hover{box-shadow:0 22px 46px -14px rgba(224,36,125,.75);}
+.btn-soft{background:var(--surface);color:var(--text);border:1px solid var(--border);}
+.btn-soft:hover{border-color:var(--border-strong);}
+
+.top{position:sticky;top:0;z-index:60;border-bottom:1px solid transparent;transition:background var(--dur) var(--ease),border-color var(--dur) var(--ease);}
+.top.stuck{background:rgba(7,17,48,.82);backdrop-filter:blur(16px) saturate(140%);border-color:var(--border);}
+.top-in{display:flex;align-items:center;gap:16px;height:70px;}
+.brand{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;}
+.mark{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:var(--grad);color:#fff;font-size:.76rem;font-weight:800;transition:transform var(--fast) var(--ease);}
+.brand:hover .mark{transform:rotate(-8deg) scale(1.07);}
+.brand em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;}
+.top-nav{margin-left:auto;display:flex;gap:6px;align-items:center;}
+.top-nav a{padding:9px 15px;border-radius:999px;font-size:.9rem;font-weight:600;color:var(--muted);transition:color var(--fast) var(--ease),background var(--fast) var(--ease);}
+.top-nav a:hover{color:var(--text);background:var(--surface);}
+.top-nav a.cta{background:var(--grad);color:#fff;}
+.top-nav a.cta:hover{transform:translateY(-2px);}
+@media(max-width:720px){.top-nav a.hide-sm{display:none;}}
+
+.hero{padding:56px 0 30px;}
+.eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:.76rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:15px;}
+.eyebrow::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--pink);box-shadow:0 0 0 4px rgba(224,36,125,.22);}
+.hero h1{font-size:clamp(2.1rem,5vw,3.4rem);color:var(--gold);max-width:20ch;}
+.hero p.lede{font-size:1.1rem;max-width:66ch;}
+
+.idx{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin:28px 0 8px;}
+.idx-label{font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--faint);}
+.idx-list{list-style:none;margin:14px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;}
+.idx-list a{display:block;padding:6px 0;font-size:.92rem;font-weight:500;color:var(--text);border-bottom:1px dashed transparent;transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease);}
+.idx-list a:hover{color:var(--blue);border-color:var(--border-strong);}
+@media(max-width:640px){.idx-list{grid-template-columns:1fr;}}
+
+.section{padding:44px 0;border-top:1px solid var(--border);}
+.section:first-of-type{border-top:none;}
+.section-head{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.section-num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.92rem;color:var(--bg);background:var(--grad);width:42px;height:42px;border-radius:13px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.section h2{font-size:1.45rem;margin:0;display:flex;align-items:center;gap:10px;color:var(--text);}
+.section-lede{max-width:70ch;}
+
+.aspect{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px 24px;margin:16px 0;}
+.aspect-head{display:flex;align-items:center;gap:12px;margin-bottom:8px;}
+.aspect-num{flex-shrink:0;width:30px;height:30px;border-radius:9px;background:var(--grad);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.82rem;display:flex;align-items:center;justify-content:center;}
+.aspect-head h3{margin:0;font-size:1.05rem;color:var(--text);}
+.aspect-desc{margin:0 0 10px;font-size:.92rem;}
+.example{background:rgba(7,17,48,.55);border:1px dashed var(--border-strong);border-radius:12px;padding:14px 18px;margin-top:10px;}
+.example-label{font-size:.7rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);margin:0 0 6px;}
+.example p{margin:0 0 6px;font-size:.9rem;color:var(--text);}
+.example p:last-child{margin-bottom:0;}
+
+.tip,.warn,.ok{margin:18px 0;padding:14px 18px;border-radius:12px;font-size:.9rem;color:var(--text);display:flex;gap:10px;align-items:flex-start;}
+.tip{background:rgba(90,162,255,.1);border:1px solid rgba(90,162,255,.32);}
+.warn{background:rgba(255,194,77,.1);border:1px solid rgba(255,194,77,.32);}
+.ok{background:rgba(61,220,151,.1);border:1px solid rgba(61,220,151,.32);}
+.tip b,.warn b,.ok b{color:var(--gold);}
+
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0;}
+.compare-col{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:18px 20px;}
+.compare-col h4{margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;}
+.compare-col.good h4{color:var(--green);}
+.compare-col.bad h4{color:var(--pink);}
+.compare-col ul{list-style:none;margin:0;padding:0;}
+.compare-col li{padding:9px 0;border-bottom:1px solid var(--border);font-size:.88rem;color:var(--text);}
+.compare-col li:last-child{border-bottom:none;}
+@media(max-width:720px){.compare{grid-template-columns:1fr;}}
+
+.steps{list-style:none;margin:22px 0;padding:0;position:relative;}
+.steps::before{content:"";position:absolute;left:16px;top:6px;bottom:6px;width:1px;background:var(--border-strong);}
+.steps li{display:flex;gap:16px;padding:10px 0;position:relative;}
+.step-n{flex-shrink:0;width:34px;height:34px;border-radius:50%;background:var(--surface);border:1px solid var(--border-strong);display:flex;align-items:center;justify-content:center;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.8rem;color:var(--blue);position:relative;z-index:1;}
+.steps li>div{padding-top:6px;font-size:.94rem;color:var(--text);}
+.steps li>div strong{color:var(--text);}
+
+.worked{background:var(--surface);border:1px solid var(--border-strong);border-left:3px solid var(--violet);border-radius:12px;padding:18px 22px;margin:20px 0;}
+.worked h4{margin:0 0 10px;font-size:.92rem;color:var(--text);display:flex;align-items:center;gap:8px;}
+.worked dt{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:.82rem;color:var(--blue);margin-top:10px;}
+.worked dt:first-of-type{margin-top:0;}
+.worked dd{margin:2px 0 0;font-size:.9rem;color:var(--muted);}
+.worked .concl{margin-top:12px;font-size:.86rem;color:var(--faint);}
+
+.checklist{list-style:none;margin:18px 0;padding:0;}
+.checklist li{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);font-size:.94rem;color:var(--text);}
+.checklist li:last-child{border-bottom:none;}
+.checklist li::before{content:"☐";color:var(--blue);flex-shrink:0;}
+
+.tools-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:22px 0;}
+.tool-card{padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
+.tool-card h4{margin:0 0 6px;font-family:'Bricolage Grotesque',sans-serif;font-size:.95rem;color:var(--text);}
+.tool-card p{margin:0;font-size:.85rem;color:var(--muted);}
+
+.biblio{list-style:decimal;margin:18px 0;padding-left:22px;}
+.biblio li{padding:9px 0 9px 6px;border-bottom:1px solid var(--border);font-size:.92rem;color:var(--text);}
+.biblio li:last-child{border-bottom:none;}
+.biblio li::marker{color:var(--blue);font-weight:700;}
+.biblio a{color:var(--blue);text-decoration:underline;text-underline-offset:2px;}
+
+footer{border-top:1px solid var(--border);padding:40px 0;}
+.foot{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;}
+.foot-links{display:flex;gap:20px;flex-wrap:wrap;}
+.foot-links a{font-size:.88rem;font-weight:600;color:var(--muted);transition:color var(--fast) var(--ease);}
+.foot-links a:hover{color:var(--blue);}
+.foot-copy{width:100%;font-size:.78rem;color:var(--faint);border-top:1px solid var(--border);padding-top:18px;margin:6px 0 0;}
+</style>
+</head>
+<body>
+
+<div class="bg-fx" aria-hidden="true">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <span class="veil"></span>
+</div>
+
+<header class="top" id="top">
+  <div class="wrap top-in">
+    <a class="brand" href="index.html"><span class="mark">TF</span><span>Tech<em>For</em>You</span></a>
+    <nav class="top-nav">
+      <a href="index.html" class="hide-sm">Vídeos</a>
+      <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener" class="hide-sm">Tutoriais</a>
+      <a href="prompts.html" class="hide-sm">Prompts</a>
+      <a href="radar.html" class="cta">Radar de Fontes</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">📡 Literacia mediática</p>
+      <h1>Como saber se um site — ou um conteúdo de IA — é fidedigno.</h1>
+      <p class="lede">
+        Oito sinais para avaliar qualquer site, como identificar texto, imagem, vídeo e áudio
+        gerados por inteligência artificial, os métodos <strong>SIFT</strong> e <strong>CRAAP</strong> para
+        confirmar uma fonte, e uma atividade pronta a usar com os alunos — com exemplo em cada ponto.
+      </p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="idx" aria-label="Índice do guia">
+      <span class="idx-label">Neste guia</span>
+      <ol class="idx-list">
+        <li><a href="#porque">01 · Porque é que isto importa</a></li>
+        <li><a href="#sinais">02 · 8 sinais a verificar num site</a></li>
+        <li><a href="#ia">03 · Conteúdo gerado por IA</a></li>
+        <li><a href="#rapido">04 · Confiança vs. alerta</a></li>
+        <li><a href="#sift">05 · Método SIFT</a></li>
+        <li><a href="#craap">06 · Teste CRAAP</a></li>
+        <li><a href="#atividade">07 · Atividade para a aula</a></li>
+        <li><a href="#ferramentas">08 · Ferramentas úteis</a></li>
+        <li><a href="#biblio">09 · Bibliografia</a></li>
+      </ol>
+    </nav>
+    <section id="porque" class="section">
+      <div class="section-head"><span class="section-num">01</span><h2>Porque é que isto importa</h2></div>
+      <p>Nem toda a informação online tem o mesmo grau de rigor. Um site pode parecer profissional e, ainda assim, divulgar dados desatualizados, opiniões disfarçadas de factos ou conteúdo copiado sem verificação. Antes de usar uma fonte numa aula, num trabalho de pesquisa dos alunos ou numa comunicação com encarregados de educação, vale a pena aplicar uma verificação sistemática.</p>
+      <p>A isto soma-se um desafio novo: cada vez mais texto, imagem, áudio e vídeo que circulam online são gerados ou alterados por inteligência artificial. Um artigo bem escrito, uma fotografia realista ou um vídeo convincente já não são, por si só, sinal de que a informação é verdadeira.</p>
+      <div class="tip">💡 <div>As secções seguintes juntam critérios concretos com exemplos reais, dois métodos testados — SIFT e CRAAP — e uma atividade pronta a aplicar com os alunos.</div></div>
+    </section>
+
+    <section id="sinais" class="section">
+      <div class="section-head"><span class="section-num">02</span><h2>8 sinais a verificar num site</h2></div>
+      <p class="section-lede">Nenhum sinal isolado é decisivo — é a combinação de vários que indica se uma fonte é fidedigna.</p>
+
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">1</span><h3>Autoria e credenciais</h3></div>
+        <p class="aspect-desc">É possível identificar quem escreveu o conteúdo e se tem competência reconhecida sobre o tema.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>Um artigo sobre saúde assinado por um médico com número de cédula profissional é mais fiável do que um artigo sem autor identificado; a ausência total de uma página "Sobre nós" verificável é um sinal de alerta.</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">2</span><h3>Domínio, URL e protocolo de segurança</h3></div>
+        <p class="aspect-desc">O endereço do site revela quem o regista, se imita outra marca e se protege os dados transmitidos.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>URLs que trocam carateres para imitar marcas conhecidas — <strong>g0v.pt</strong> em vez de gov.pt, ou <strong>faceb00k-seguranca.com</strong> — são "typosquatting"; a ausência de <strong>https://</strong> num site que pede dados pessoais é um alerta imediato.</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">3</span><h3>Data de publicação e de atualização</h3></div>
+        <p class="aspect-desc">Informação correta numa data pode estar desatualizada ou fora de contexto noutra.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>Um artigo de 2015 sobre uma vacina, partilhado nas redes sociais como se fosse notícia atual, sem indicação da data original.</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">4</span><h3>Objetivo, tom e possível viés</h3></div>
+        <p class="aspect-desc">Perceber se o site pretende informar, vender, persuadir ou entreter ajuda a calibrar o grau de confiança.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>Um "portal de notícias" que na verdade existe para vender um produto, com artigos patrocinados não identificados como tal, e títulos sensacionalistas em vez de descritivos.</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">5</span><h3>Citação de fontes e possibilidade de verificação</h3></div>
+        <p class="aspect-desc">Uma fonte fidedigna mostra de onde vêm os dados e permite confirmá-los.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>"Estudos comprovam que…" sem hiperligação ao estudo original é bem mais fraco do que uma estatística que identifica claramente a fonte (INE, Eurostat, DGEEC).</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">6</span><h3>Qualidade editorial e apresentação</h3></div>
+        <p class="aspect-desc">O cuidado com a forma costuma acompanhar o cuidado com o conteúdo.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>Erros ortográficos frequentes, pop-ups agressivos e avisos falsos de "vírus detetado" contrastam com o cuidado editorial visível num site de referência.</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">7</span><h3>Confirmação cruzada (leitura lateral)</h3></div>
+        <p class="aspect-desc">É mais eficaz sair do site e procurar o que outros dizem sobre a mesma informação.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>Pesquisar o nome da organização junto com "fact-check", ou consultar diretamente o <strong>Polígrafo</strong>, a <strong>Prova dos Factos</strong> (Público) ou o <strong>EDMO</strong>.</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">8</span><h3>Reputação, certificações e ligações externas</h3></div>
+        <p class="aspect-desc">Sites fidedignos são reconhecidos por terceiros e ligam-se a outras fontes; sites problemáticos citam-se apenas a si mesmos.</p>
+        <div class="example"><p class="example-label">Exemplo</p><p>Um selo do <strong>IFCN</strong> indica um código de práticas auditado; verificar a reputação do domínio em <strong>NewsGuard</strong> ou <strong>Media Bias/Fact Check</strong> antes de o usar como referência regular.</p></div>
+      </div>
+    </section>
+    <section id="ia" class="section">
+      <div class="section-head"><span class="section-num">03</span><h2>Como verificar conteúdo gerado por IA</h2></div>
+      <p class="section-lede">Texto, imagem, áudio e vídeo gerados por IA já não são fáceis de distinguir a olho nu. Estes sinais ajudam — mas nenhum é prova definitiva.</p>
+
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">T</span><h3>Texto</h3></div>
+        <div class="example"><p class="example-label">Sinais possíveis</p><p>Tom uniforme e genérico do início ao fim; estruturas repetidas ("é importante notar que…"); afirmações com aparência de facto mas sem fonte real — as chamadas "alucinações".</p></div>
+        <div class="warn">⚠️ <div><strong>Cuidado com os detetores automáticos</strong> (GPTZero e semelhantes) — têm taxas de falsos positivos significativas, sinalizando com frequência alunos não-nativos ou muito estruturados. Servem, no máximo, de ponto de partida para uma conversa com o aluno, nunca como prova.</div></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">I</span><h3>Imagem e vídeo (incluindo deepfakes)</h3></div>
+        <div class="example"><p class="example-label">Sinais possíveis</p><p>Mãos ou dentes com formas estranhas; texto ilegível em cartazes dentro da imagem; iluminação inconsistente; em vídeo, piscar de olhos pouco natural ou sincronização labial imperfeita.</p></div>
+        <div class="tip">🔖 <div><strong>Content Credentials (C2PA)</strong> — já usado pelo ChatGPT, Google Gemini/SynthID e Adobe Firefly, permite consultar a origem de algumas imagens em <strong>contentcredentials.org/verify</strong>. É um sinal forte quando presente, mas a ausência não prova nada.</div></div>
+        <div class="example"><p class="example-label">Exemplo</p><p>Uma fotografia "histórica" chocante partilhada num grupo de pais: guardar a imagem e carregá-la no Google Imagens ou TinEye revela muitas vezes que é gerada por IA ou de outro contexto.</p></div>
+      </div>
+      <div class="aspect">
+        <div class="aspect-head"><span class="aspect-num">A</span><h3>Áudio</h3></div>
+        <p class="aspect-desc" style="margin-top:8px">Vozes clonadas por IA já enganam em chamadas ou áudios de voz. Perante um áudio alarmante atribuído a alguém conhecido: parar antes de reagir ou partilhar, e confirmar por outro canal.</p>
+      </div>
+    </section>
+
+    <section id="rapido" class="section">
+      <div class="section-head"><span class="section-num">04</span><h2>Sinais rápidos: confiança vs. alerta</h2></div>
+      <p class="section-lede">Uma referência de bolso, útil também para partilhar com os alunos.</p>
+      <div class="compare">
+        <div class="compare-col good">
+          <h4>✓ Sinal de confiança</h4>
+          <ul>
+            <li>Autor identificado, com credenciais verificáveis</li>
+            <li>Domínio institucional (.gov.pt, .edu) ou marca reconhecida</li>
+            <li>Data de publicação e atualização visíveis</li>
+            <li>Afirmações com hiperligação à fonte primária</li>
+            <li>Tom neutro e descritivo</li>
+            <li>O mesmo facto é noticiado por outros órgãos credíveis</li>
+            <li>https://, design cuidado, sem publicidade enganosa</li>
+            <li>Credenciais de conteúdo (C2PA) presentes numa imagem</li>
+          </ul>
+        </div>
+        <div class="compare-col bad">
+          <h4>✕ Sinal de alerta</h4>
+          <ul>
+            <li>Sem autor, ou apenas um pseudónimo genérico</li>
+            <li>Domínio genérico gratuito ou grafia alterada de uma marca</li>
+            <li>Sem data, ou desatualizada para o contexto</li>
+            <li>Afirmações sem qualquer referência</li>
+            <li>Título sensacionalista, excesso de maiúsculas</li>
+            <li>Só o próprio site "confirma" a notícia</li>
+            <li>http:// inseguro, pop-ups agressivos, erros ortográficos</li>
+            <li>Imagem "perfeita demais", sem metadados</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sift" class="section">
+      <div class="section-head"><span class="section-num">05</span><h2>Método SIFT</h2></div>
+      <p>Desenvolvido por Mike Caulfield, resume-se a quatro passos aplicáveis em menos de um minuto.</p>
+      <ol class="steps">
+        <li><span class="step-n">S</span><div><strong>Stop — Parar.</strong> Antes de partilhar ou citar: conhece-se esta fonte?</div></li>
+        <li><span class="step-n">I</span><div><strong>Investigate — Investigar a fonte.</strong> 30 segundos a pesquisar o autor ou a organização.</div></li>
+        <li><span class="step-n">F</span><div><strong>Find better coverage — Procurar melhor cobertura.</strong> Outras fontes credíveis noticiam o mesmo?</div></li>
+        <li><span class="step-n">T</span><div><strong>Trace — Rastrear até à origem.</strong> Seguir citações e imagens até à fonte primária.</div></li>
+      </ol>
+      <div class="worked">
+        <h4>📎 Exemplo aplicado</h4>
+        <p style="font-size:.86rem;color:var(--faint);margin:0 0 6px">Um encarregado de educação partilha: "Estudo comprova que ecrãs reduzem o QI das crianças — ler antes que apaguem isto".</p>
+        <dl style="margin:0">
+          <dt>Stop</dt><dd>Parar antes de reenviar — não se conhece a fonte.</dd>
+          <dt>Investigate</dt><dd>O texto não tem autor nem instituição associada.</dd>
+          <dt>Find better coverage</dt><dd>Os estudos reais existentes são bem mais cautelosos e não usam esse título.</dd>
+          <dt>Trace</dt><dd>O "estudo" citado não existe com esse nome — sinal de que foi inventado.</dd>
+        </dl>
+      </div>
+    </section>
+    <section id="craap" class="section">
+      <div class="section-head"><span class="section-num">06</span><h2>Teste CRAAP</h2></div>
+      <p>Para fontes citadas num trabalho ou material didático, o teste CRAAP — usado em bibliotecas académicas — aprofunda a avaliação em cinco critérios.</p>
+      <div class="worked">
+        <h4>📎 Exemplo aplicado — avaliar um artigo sobre "IA na educação"</h4>
+        <dl style="margin:0">
+          <dt>Currency (Atualidade)</dt><dd>Publicado há dois anos, sem atualização — num tema que muda depressa.</dd>
+          <dt>Relevance (Relevância)</dt><dd>Fala de ensino superior nos EUA; precisa de adaptação para o secundário em Portugal.</dd>
+          <dt>Authority (Autoridade)</dt><dd>Autor identificado apenas como "consultor de IA", sem instituição.</dd>
+          <dt>Accuracy (Precisão)</dt><dd>Afirmações sem hiperligação; alguns números não se confirmam noutras fontes.</dd>
+          <dt>Purpose (Propósito)</dt><dd>Termina com uma ligação para comprar um curso — objetivo também promocional.</dd>
+        </dl>
+        <p class="concl">Conclusão: pode inspirar ideias, mas não deve ser citado como fonte de autoridade.</p>
+      </div>
+    </section>
+
+    <section id="atividade" class="section">
+      <div class="section-head"><span class="section-num">07</span><h2>Atividade para a aula</h2></div>
+      <p class="section-lede">20 a 30 minutos para trabalhar literacia de fontes com os alunos.</p>
+      <ol class="steps">
+        <li><span class="step-n">1</span><div><strong>Escolher.</strong> Cada par recebe uma notícia, publicação ou imagem — verdadeira ou falsa, à escolha do professor.</div></li>
+        <li><span class="step-n">2</span><div><strong>Aplicar o radar.</strong> Preencher a checklist, assinalando sinais de confiança e de alerta.</div></li>
+        <li><span class="step-n">3</span><div><strong>Confirmação cruzada.</strong> Em 5 minutos, procurar se outra fonte credível confirma a informação.</div></li>
+        <li><span class="step-n">4</span><div><strong>Partilhar.</strong> Cada par apresenta a conclusão em 1 minuto, citando dois sinais concretos.</div></li>
+      </ol>
+      <h3 style="font-size:1rem;margin:24px 0 4px">Checklist para os alunos</h3>
+      <ul class="checklist">
+        <li>Consigo identificar quem escreveu ou publicou isto?</li>
+        <li>O endereço/domínio parece legítimo?</li>
+        <li>Tem data visível e recente ou adequada ao contexto?</li>
+        <li>As afirmações principais têm uma fonte?</li>
+        <li>O texto tenta informar ou vender/alarmar/persuadir?</li>
+        <li>Outra fonte credível confirma a mesma informação?</li>
+        <li>Se há imagem ou vídeo: há algo visualmente estranho?</li>
+      </ul>
+    </section>
+
+    <section id="ferramentas" class="section">
+      <div class="section-head"><span class="section-num">08</span><h2>Ferramentas úteis</h2></div>
+      <div class="tools-grid">
+        <div class="tool-card"><h4>Polígrafo</h4><p>Verificação de factos em Portugal, com escala de avaliação.</p></div>
+        <div class="tool-card"><h4>Prova dos Factos (Público)</h4><p>Secção de fact-checking do jornal Público.</p></div>
+        <div class="tool-card"><h4>Lusa Verifica</h4><p>Ponto de acesso da Agência Lusa aos verificadores em Portugal.</p></div>
+        <div class="tool-card"><h4>EDMO</h4><p>Observatório europeu de desinformação, com hub português.</p></div>
+        <div class="tool-card"><h4>IFCN</h4><p>Rede internacional que certifica organizações de fact-checking.</p></div>
+        <div class="tool-card"><h4>NewsGuard / Media Bias-Fact Check</h4><p>Avaliam a fiabilidade e o viés de sites de notícias.</p></div>
+        <div class="tool-card"><h4>Google Imagens / TinEye</h4><p>Pesquisa inversa — confirma se uma foto já foi usada noutro contexto.</p></div>
+        <div class="tool-card"><h4>Content Credentials Verify</h4><p>Consulta os metadados C2PA de uma imagem, quando existem.</p></div>
+        <div class="tool-card"><h4>GPTZero e semelhantes</h4><p>Estimam probabilidade de texto gerado por IA — usar só como indício.</p></div>
+      </div>
+    </section>
+
+    <section id="biblio" class="section">
+      <div class="section-head"><span class="section-num">09</span><h2>Bibliografia</h2></div>
+      <ol class="biblio">
+        <li>Eastern Michigan University Library — "CRAAP Test for Evaluating Websites" — <a href="https://guides.emich.edu/craap" target="_blank" rel="noopener">guides.emich.edu/craap</a></li>
+        <li>"CRAAP test", Wikipédia — <a href="https://en.wikipedia.org/wiki/CRAAP_test" target="_blank" rel="noopener">en.wikipedia.org/wiki/CRAAP_test</a></li>
+        <li>Caulfield, M. — "SIFT (The Four Moves)", Hapgood, 2019 — <a href="https://hapgood.us/2019/06/19/sift-the-four-moves/" target="_blank" rel="noopener">hapgood.us</a></li>
+        <li>IFLA — "How To Spot Fake News" (infográfico) — <a href="https://repository.ifla.org/items/c5dbfa34-7d00-47ac-8057-0183a5056438" target="_blank" rel="noopener">repository.ifla.org</a></li>
+        <li>Polígrafo — "O nosso método" — <a href="https://poligrafo.sapo.pt/institucional/o-nosso-metodo/" target="_blank" rel="noopener">poligrafo.sapo.pt</a></li>
+        <li>PÚBLICO, Prova dos Factos — "Serão fake news? Como confirmar se uma notícia é falsa", abril de 2025 — <a href="https://www.publico.pt/2025/04/22/sociedade/noticia/serao-fake-news-confirmar-noticia-falsa-2130484" target="_blank" rel="noopener">publico.pt</a></li>
+        <li>Agência Lusa — "Verificadores em Portugal", Lusa Verifica — <a href="https://lusaverifica.pt/verificadores-em-portugal/" target="_blank" rel="noopener">lusaverifica.pt</a></li>
+        <li>C2PA / Content Authenticity Initiative — "Content Credentials" — <a href="https://contentcredentials.org/verify" target="_blank" rel="noopener">contentcredentials.org</a></li>
+        <li>EDMO — European Digital Media Observatory — <a href="https://edmo.eu" target="_blank" rel="noopener">edmo.eu</a></li>
+      </ol>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="index.html"><span class="mark">TF</span><span>Tech<em>For</em>You</span></a>
+    <nav class="foot-links">
+      <a href="index.html">Vídeos</a>
+      <a href="prompts.html">Prompts</a>
+      <a href="livro.html">O livro</a>
+      <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener">Tutoriais</a>
+      <a href="https://www.youtube.com/@TechForYou-ww3zt" target="_blank" rel="noopener">YouTube</a>
+    </nav>
+    <p class="foot-copy">© <span id="yy"></span> Fátima Diogo · TechForYou. Guia elaborado com apoio de Claude Sonnet.</p>
+  </div>
+</footer>
+
+<script>
+  const top = document.getElementById('top');
+  const onScroll = () => top.classList.toggle('stuck', scrollY > 8);
+  onScroll(); addEventListener('scroll', onScroll, { passive: true });
+  document.getElementById('yy').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
