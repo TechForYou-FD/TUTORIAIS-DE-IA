@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Prompts para Professores — TechForYou</title>
-<meta name="description" content="Banco de prompts de IA prontos a usar, escritos por perito e ancorados no currículo português: fichas, testes, rubricas, relatórios, atas, análise de resultados e estratégias para alunos.">
+<meta name="description" content="Banco de prompts de IA prontos a usar, escritos por perito e ancorados no currículo português, e biblioteca de códigos do ChatGPT para alunos, professores e imagens.">
 <meta name="theme-color" content="#071130">
 <link rel="icon" type="image/svg+xml" href="assets/img/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -68,7 +68,7 @@ img{max-width:100%;display:block;}
 .top-nav a:hover{color:var(--text);background:var(--surface);}
 .top-nav a.cta{background:var(--grad);color:#fff;}
 .top-nav a.cta:hover{transform:translateY(-2px);}
-@media(max-width:720px){.top-nav a.hide-sm{display:none;}}
+@media(max-width:720px){.top-nav a.hide-sm{display:none;}.top-nav a{padding:8px 11px;}}
 
 /* herói */
 .hero{padding:56px 0 34px;}
@@ -85,6 +85,7 @@ img{max-width:100%;display:block;}
 .howto-card strong{color:var(--text);}
 .tip{margin:18px 0 0;padding:14px 18px;border-radius:12px;background:rgba(255,194,77,.1);border:1px solid rgba(255,194,77,.3);font-size:.9rem;color:var(--text);}
 .tip b{color:var(--gold);}
+.jump{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px;}
 
 /* controlos */
 .controls{position:sticky;top:70px;z-index:40;padding:18px 0 14px;background:linear-gradient(180deg,var(--bg) 70%,transparent);}
@@ -119,9 +120,91 @@ img{max-width:100%;display:block;}
 .expand{margin-left:auto;font-size:.82rem;font-weight:600;color:var(--faint);}
 .expand:hover{color:var(--blue);}
 .prompt-box.open{max-height:none;}
+@media(max-width:420px){.grid{grid-template-columns:1fr;}}
 
 .empty{grid-column:1/-1;text-align:center;padding:60px 20px;color:var(--muted);}
 .empty strong{display:block;color:var(--text);font-family:'Bricolage Grotesque',sans-serif;font-size:1.2rem;margin-bottom:6px;}
+
+/* ===== secção CÓDIGOS DO CHATGPT ===== */
+.codes{position:relative;padding:70px 0 70px;border-top:1px solid var(--border);}
+.codes::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--divider);}
+.codes h2{font-size:clamp(1.8rem,4vw,2.6rem);color:var(--gold);}
+.codes .lede{font-size:1.05rem;max-width:66ch;}
+.codes h3.sub{font-size:1.35rem;color:var(--text);margin:46px 0 8px;}
+.codes p.sub-lede{max-width:66ch;}
+.warn{display:flex;gap:14px;align-items:flex-start;margin:22px 0 8px;padding:16px 20px;border-radius:14px;background:rgba(224,36,125,.10);border:1px solid rgba(224,36,125,.35);}
+.warn .ico{flex-shrink:0;font-size:1.2rem;line-height:1.4;}
+.warn p{margin:0;font-size:.92rem;color:var(--text);}
+.warn b{color:#ff8fc2;}
+.how-codes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin:26px 0 0;}
+.hc{padding:18px 20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
+.hc h4{margin:0 0 6px;font-family:'Bricolage Grotesque',sans-serif;font-size:1rem;color:var(--text);}
+.hc p{margin:0;font-size:.9rem;}
+.mono{font-family:'JetBrains Mono',ui-monospace,monospace;}
+.hc code,.inline-code{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.84rem;padding:2px 7px;border-radius:6px;background:rgba(7,17,48,.7);border:1px solid var(--border);color:var(--gold);white-space:normal;word-break:break-word;}
+
+/* exemplo completo */
+.demo{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:22px;}
+@media(max-width:820px){.demo{grid-template-columns:1fr;}}
+.demo-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;}
+.demo-card .tag{margin-bottom:10px;}
+.demo-card h4{margin:0 0 12px;font-family:'Bricolage Grotesque',sans-serif;font-size:1.05rem;color:var(--text);}
+.demo-input{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.86rem;padding:10px 14px;border-radius:10px;background:rgba(7,17,48,.7);border:1px solid var(--border-strong);color:var(--gold);margin-bottom:14px;word-break:break-word;}
+.notes{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px;}
+.note{padding:12px 12px 14px;border-radius:4px;font-size:.82rem;line-height:1.4;color:#1a1a1a;box-shadow:0 8px 16px -8px rgba(0,0,0,.6);}
+.note b{display:block;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;opacity:.75;}
+.note:nth-child(4n+1){background:#ffe27a;transform:rotate(-1.5deg);}
+.note:nth-child(4n+2){background:#9ee6ff;transform:rotate(1deg);}
+.note:nth-child(4n+3){background:#ffb3d4;transform:rotate(-.6deg);}
+.note:nth-child(4n+4){background:#b8f5b0;transform:rotate(1.4deg);}
+.chat{display:flex;flex-direction:column;gap:10px;}
+.msg{max-width:88%;padding:10px 14px;border-radius:14px;font-size:.88rem;line-height:1.45;}
+.msg.ai{background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-bottom-left-radius:4px;}
+.msg.me{align-self:flex-end;background:rgba(90,162,255,.18);border:1px solid rgba(90,162,255,.35);color:var(--text);border-bottom-right-radius:4px;}
+.msg small{display:block;font-size:.7rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--faint);margin-bottom:2px;}
+.demo-foot{margin:14px 0 0;font-size:.85rem;color:var(--muted);}
+
+/* percurso */
+.flow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:20px;counter-reset:st;}
+@media(max-width:820px){.flow{grid-template-columns:1fr 1fr;}}
+@media(max-width:460px){.flow{grid-template-columns:1fr;}}
+.step{position:relative;padding:18px;background:var(--surface);border:1px solid var(--border);border-radius:14px;}
+.step::before{counter-increment:st;content:counter(st);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--grad);color:#fff;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:.8rem;margin-bottom:10px;}
+.step .phase{font-size:.72rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue);}
+.step .inline-code{display:inline-block;margin:6px 0 8px;white-space:normal;word-break:break-word;}
+.step p{margin:0;font-size:.86rem;}
+
+/* muda o comando */
+.think{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:20px;}
+.think-item{display:flex;flex-direction:column;gap:4px;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:12px;border-left:3px solid var(--pink);}
+.think-item .inline-code{align-self:flex-start;white-space:normal;word-break:break-word;}
+.think-item span.goal{font-size:.9rem;color:var(--text);font-weight:600;}
+
+/* biblioteca de códigos */
+.code-tabs{display:flex;flex-wrap:wrap;gap:8px;margin:22px 0 14px;}
+.code-search{position:relative;margin-bottom:10px;}
+.code-search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--faint);}
+.code-search input{width:100%;padding:13px 16px 13px 46px;border-radius:14px;background:var(--surface);border:1px solid var(--border-strong);color:var(--text);font:inherit;font-size:1rem;}
+.code-search input::placeholder{color:var(--faint);}
+.code-search input:focus{outline:none;border-color:var(--blue);box-shadow:0 0 0 3px rgba(90,162,255,.25);}
+.code-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;align-items:start;}
+@media(max-width:420px){.code-grid{grid-template-columns:1fr;}}
+.ccard{position:relative;display:flex;flex-direction:column;gap:10px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);transition:transform var(--fast) var(--ease),border-color var(--fast) var(--ease),box-shadow var(--fast) var(--ease);}
+.ccard:hover{transform:translateY(-4px);border-color:var(--border-strong);box-shadow:0 22px 48px -26px #000;}
+.ccard .cmd{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:1.08rem;font-weight:500;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;word-break:break-word;padding-right:70px;}
+.ccard .fav{position:absolute;top:16px;right:16px;font-size:.66rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:rgba(255,194,77,.14);border:1px solid rgba(255,194,77,.4);color:var(--gold);}
+.ccard .serve{margin:0;font-size:.92rem;color:var(--text);}
+.ex{display:flex;align-items:center;gap:8px;padding:9px 10px 9px 14px;border-radius:10px;background:rgba(7,17,48,.65);border:1px solid var(--border);}
+.ex code{flex:1;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:.8rem;color:#d7e2fb;word-break:break-word;}
+.mini-copy{flex-shrink:0;display:grid;place-items:center;width:32px;height:32px;border-radius:8px;background:var(--surface-2);border:1px solid var(--border);color:var(--muted);transition:color var(--fast) var(--ease),border-color var(--fast) var(--ease),background var(--fast) var(--ease);}
+.mini-copy:hover{color:var(--text);border-color:var(--border-strong);}
+.mini-copy.done{background:var(--gold);color:#071130;border-color:transparent;}
+.meta-row{display:flex;flex-direction:column;gap:6px;padding-top:4px;border-top:1px dashed var(--border);}
+.meta-row div{font-size:.84rem;color:var(--muted);line-height:1.45;}
+.meta-row b{display:inline-block;min-width:78px;font-size:.7rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--blue);}
+.meta-row .res b{color:var(--pink);}
+.codes-count{margin:4px 0 16px;font-size:.85rem;color:var(--faint);}
+.code-tip{margin:20px 0 0;}
 
 /* rodapé */
 footer{border-top:1px solid var(--border);padding:40px 0;}
@@ -137,7 +220,6 @@ footer{border-top:1px solid var(--border);padding:40px 0;}
 </style>
 </head>
 <body>
-
 <div class="bg-fx" aria-hidden="true">
   <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
   <span class="veil"></span>
@@ -149,10 +231,11 @@ footer{border-top:1px solid var(--border);padding:40px 0;}
     <nav class="top-nav">
       <a href="index.html" class="hide-sm">Vídeos</a>
       <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener" class="hide-sm">Tutoriais</a>
-      <a href="prompts.html">Prompts</a>
-      <a href="radar.html">Radar de Fontes</a>
+      <a href="#prompts" class="hide-sm">Prompts</a>
+      <a href="#codigos">Códigos</a>
+      <a href="radar.html" class="hide-sm">Radar de Fontes</a>
+      <a href="novidades.html" class="hide-sm">Novidades</a>
       <a href="livro.html" class="cta">O livro</a>
-      <a href="novidades.html">Novidades</a>
     </nav>
   </div>
 </header>
@@ -177,10 +260,15 @@ footer{border-top:1px solid var(--border);padding:40px 0;}
       </div>
 
       <p class="tip">💡 <b>Dica de perita:</b> quanto mais contexto deres (ano, disciplina, nº de alunos, tempo da aula, dificuldades da turma), melhor fica o resultado. Podes sempre pedir à IA para “fazer 3 perguntas antes de começar”.</p>
+
+      <div class="jump">
+        <a class="btn btn-main" href="#prompts">Ver os prompts</a>
+        <a class="btn btn-soft" href="#codigos"><span class="mono" style="color:var(--gold)">/</span> Códigos do ChatGPT <span style="color:var(--pink);font-size:.72rem;font-weight:800;letter-spacing:.08em">NOVO</span></a>
+      </div>
     </div>
   </section>
 
-  <div class="wrap">
+  <div class="wrap" id="prompts">
     <div class="controls">
       <div class="search">
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
@@ -192,6 +280,98 @@ footer{border-top:1px solid var(--border);padding:40px 0;}
     <p class="count" id="count"></p>
     <div class="grid" id="grid"></div>
   </div>
+
+  <!-- ===================== CÓDIGOS DO CHATGPT ===================== -->
+  <section class="codes" id="codigos">
+    <div class="wrap">
+      <p class="eyebrow">Nova secção</p>
+      <h2>Códigos do ChatGPT</h2>
+      <p class="lede">
+        São pequenos <strong>códigos</strong> que começam por <span class="inline-code">/</span> e se escrevem antes do tema
+        (por exemplo, <span class="inline-code">/socrates fotossíntese</span>). Servem para dizer à IA,
+        numa só palavra, <strong>como</strong> quer que a informação apareça: em apontamentos, post-its, perguntas de teste,
+        um mapa mental, um diálogo socrático ou uma imagem. Mudar o código muda o tipo de resultado — e a forma de pensar sobre o tema.
+      </p>
+
+      <div class="warn">
+        <span class="ico" aria-hidden="true">⚠️</span>
+        <p><b>Importante:</b> estes códigos <b>não são comandos oficiais do ChatGPT</b>, isto é, não são funções integradas na aplicação. Funcionam como <b>instruções de formato</b> que o modelo interpreta. Os cinco mais divulgados são <span class="inline-code">/handwritten</span> <span class="inline-code">/make-sticky-notes</span> <span class="inline-code">/visualize-learning</span> <span class="inline-code">/question-predictor</span> <span class="inline-code">/socrates</span>; os restantes funcionam como prompts curtos e o resultado pode variar conforme o modelo e a ferramenta utilizados.</p>
+      </div>
+
+      <div class="how-codes">
+        <div class="hc"><h4>1 · Escreva o código + o tema</h4><p>Abra o ChatGPT (ou o Gemini, ou o Copilot) e escreva, por exemplo, <code>/flashcards Revolução Industrial</code>.</p></div>
+        <div class="hc"><h4>2 · Acrescente contexto</h4><p>Indique o ano, a disciplina ou a língua: <code>/quiz-me sistema solar, 7.º ano, 10 perguntas</code>.</p></div>
+        <div class="hc"><h4>3 · Combine códigos</h4><p>Use o mesmo tema com vários códigos seguidos: primeiro explicar, depois organizar, por fim testar.</p></div>
+        <div class="hc"><h4>4 · Se a IA não entender</h4><p>Explique o código na primeira mensagem: <em>“Quando eu escrever /socrates, ensine-me só com perguntas.”</em></p></div>
+      </div>
+
+      <!-- Exemplo completo -->
+      <h3 class="sub">Exemplo prático: que resultado se obtém?</h3>
+      <p class="sub-lede">Dois códigos aplicados a disciplinas diferentes, com uma amostra do tipo de resposta que o ChatGPT devolve.</p>
+
+      <div class="demo">
+        <article class="demo-card">
+          <span class="tag">História · 8.º ano</span>
+          <h4>Resumir o essencial em post-its</h4>
+          <div class="demo-input">/make-sticky-notes Revolução Francesa</div>
+          <div class="notes">
+            <div class="note"><b>Quando</b>1789 – 1799</div>
+            <div class="note"><b>Causa</b>Crise financeira e fome</div>
+            <div class="note"><b>Causa</b>Sociedade de ordens injusta</div>
+            <div class="note"><b>Marco</b>Tomada da Bastilha, 14 jul. 1789</div>
+            <div class="note"><b>Ideias</b>Liberdade, Igualdade, Fraternidade</div>
+            <div class="note"><b>Documento</b>Declaração dos Direitos do Homem</div>
+            <div class="note"><b>Fim</b>Golpe de Napoleão, 1799</div>
+            <div class="note"><b>Legado</b>Fim do absolutismo na Europa</div>
+          </div>
+          <p class="demo-foot"><strong>Resultado:</strong> 6 a 10 ideias-chave, uma por nota, ideais para uma revisão rápida antes do teste.</p>
+        </article>
+
+        <article class="demo-card">
+          <span class="tag">Ciências Naturais · 8.º ano</span>
+          <h4>Aprender a pensar, sem receber a resposta</h4>
+          <div class="demo-input">/socrates fotossíntese</div>
+          <div class="chat">
+            <div class="msg ai"><small>ChatGPT</small>Uma planta cresce e fica mais pesada. De onde achas que vem essa matéria nova?</div>
+            <div class="msg me"><small>Aluno</small>Da terra?</div>
+            <div class="msg ai"><small>ChatGPT</small>Boa hipótese! Se fosse da terra, o que aconteceria à quantidade de terra no vaso ao fim de um ano?</div>
+            <div class="msg me"><small>Aluno</small>Diminuía muito… mas isso não acontece.</div>
+            <div class="msg ai"><small>ChatGPT</small>Exato. Então, que outras coisas a planta recebe do ambiente? Pensa no ar e na luz…</div>
+          </div>
+          <p class="demo-foot"><strong>Resultado:</strong> um diálogo guiado, pergunta a pergunta, em que o aluno chega à resposta pelo próprio raciocínio.</p>
+        </article>
+      </div>
+
+      <!-- Percurso pedagógico -->
+      <h3 class="sub">Combinação poderosa para professores</h3>
+      <p class="sub-lede">Conteúdo → estrutura → atividade → avaliação. O mesmo tema percorre várias fases pedagógicas, em vez de pedir apenas “faça-me uma ficha”.</p>
+      <div class="flow">
+        <div class="step"><span class="phase">Conteúdo</span><br><span class="inline-code">/visualize-learning fotossíntese</span><p>Esquema visual do processo para projetar e explicar.</p></div>
+        <div class="step"><span class="phase">Estrutura</span><br><span class="inline-code">/lesson-plan fotossíntese 8.º ano 50 minutos</span><p>Plano de aula com objetivos, momentos e tempos.</p></div>
+        <div class="step"><span class="phase">Atividade</span><br><span class="inline-code">/differentiation fotossíntese</span><p>A mesma tarefa em três níveis de dificuldade.</p></div>
+        <div class="step"><span class="phase">Avaliação</span><br><span class="inline-code">/exit-ticket fotossíntese</span><p>Perguntas rápidas para verificar o que ficou aprendido.</p></div>
+      </div>
+
+      <!-- Muda o comando -->
+      <h3 class="sub">Muda o comando → muda a forma de pensar</h3>
+      <p class="sub-lede">Mais do que dar aos alunos uma lista de códigos, vale a pena mostrar-lhes que cada código corresponde a um objetivo de estudo diferente. Tema: <strong style="color:var(--text)">A Revolução Francesa</strong>.</p>
+      <div class="think" id="think"></div>
+
+      <!-- Biblioteca -->
+      <h3 class="sub">Biblioteca de 75 códigos</h3>
+      <p class="sub-lede">Escolha o separador, copie o exemplo com um clique e troque o tema pelo da sua aula. Cada código indica a disciplina de exemplo e o tipo de resultado que se obtém.</p>
+
+      <div class="code-tabs" id="code-tabs" role="tablist" aria-label="Tipo de códigos"></div>
+      <div class="code-search">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="search" id="code-search" placeholder="Pesquisar código ou disciplina (ex.: timeline, Inglês, Ciências)…" aria-label="Pesquisar códigos">
+      </div>
+      <p class="codes-count" id="codes-count"></p>
+      <div class="code-grid" id="code-grid"></div>
+
+      <p class="tip code-tip">🎨 <b>Códigos de imagem:</b> para obter uma imagem, use uma ferramenta que gere imagens (por exemplo, o ChatGPT com criação de imagens). Numa conversa só de texto, a IA devolve a estrutura ou a descrição do visual. O resultado pode variar consoante o modelo de imagem.</p>
+    </div>
+  </section>
 </main>
 
 <footer>
@@ -203,6 +383,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;}
       <a href="radar.html">Radar de Fontes</a>
       <a href="novidades.html">Novidades</a>
       <a href="https://techforyou-fd.github.io" target="_blank" rel="noopener">Tutoriais</a>
+      <a href="#codigos">Códigos do ChatGPT</a>
       <a href="https://www.youtube.com/@TechForYou-ww3zt" target="_blank" rel="noopener">YouTube</a>
     </nav>
     <p class="foot-copy">© <span id="yy"></span> Fátima Diogo · TechForYou. Prompts para uso pedagógico — revê sempre os resultados antes de os usar com os alunos.</p>
@@ -210,7 +391,6 @@ footer{border-top:1px solid var(--border);padding:40px 0;}
 </footer>
 
 <div class="toast" id="toast">Prompt copiado ✓</div>
-
 <script>
 (() => {
   'use strict';
@@ -679,19 +859,37 @@ Para cada nível de desempenho (Insuficiente, Suficiente, Bom, Muito Bom), dá 3
 Inclui campos [entre parênteses] para eu personalizar com o nome/situação do aluno.` },
   ];
 
-  // ---- estado ----
+  // ---- utilitários partilhados ----
+  const norm = s => (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+  function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  const toast = document.getElementById('toast');
+  let toastT;
+  function showToast(msg){
+    toast.textContent = msg;
+    toast.classList.add('show');
+    clearTimeout(toastT);
+    toastT = setTimeout(() => toast.classList.remove('show'), 2000);
+  }
+  async function copyText(text){
+    try { await navigator.clipboard.writeText(text); }
+    catch {
+      const t = document.createElement('textarea');
+      t.value = text; t.style.position='fixed'; t.style.opacity='0';
+      document.body.appendChild(t); t.select();
+      try { document.execCommand('copy'); } catch {}
+      t.remove();
+    }
+  }
+
+  // =================== PROMPTS ===================
   let activeCat = 'all';
   let query = '';
-  const norm = s => (s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
-
   const grid = document.getElementById('grid');
   const chipsBox = document.getElementById('chips');
   const countEl = document.getElementById('count');
   const searchEl = document.getElementById('search');
-  const toast = document.getElementById('toast');
   const catLabel = Object.fromEntries(CATS.map(c => c));
 
-  // ---- chips ----
   CATS.forEach(([id,label]) => {
     const n = id === 'all' ? P.length : P.filter(p => p.cat === id).length;
     if (id !== 'all' && n === 0) return;
@@ -707,8 +905,6 @@ Inclui campos [entre parênteses] para eu personalizar com o nome/situação do 
     });
     chipsBox.appendChild(b);
   });
-
-  function escapeHtml(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 
   function render() {
     const q = norm(query);
@@ -751,39 +947,214 @@ Inclui campos [entre parênteses] para eu personalizar com o nome/situação do 
 
       const copyBtn = card.querySelector('.copy-btn');
       copyBtn.addEventListener('click', async () => {
-        try { await navigator.clipboard.writeText(p.text); }
-        catch {
-          const t = document.createElement('textarea');
-          t.value = p.text; t.style.position='fixed'; t.style.opacity='0';
-          document.body.appendChild(t); t.select();
-          try { document.execCommand('copy'); } catch {}
-          t.remove();
-        }
+        await copyText(p.text);
         copyBtn.classList.add('done');
         copyBtn.querySelector('span').textContent = 'Copiado ✓';
-        toast.classList.add('show');
+        showToast('Prompt copiado ✓');
         clearTimeout(copyBtn._t);
         copyBtn._t = setTimeout(() => {
           copyBtn.classList.remove('done');
           copyBtn.querySelector('span').textContent = 'Copiar prompt';
-          toast.classList.remove('show');
         }, 2000);
       });
 
       grid.appendChild(card);
     });
   }
-
   searchEl.addEventListener('input', e => { query = e.target.value; render(); });
+  render();
+
+  // =================== CÓDIGOS DO CHATGPT ===================
+  // [código, para que serve, exemplo, disciplina de exemplo, resultado obtido, favorito]
+  const CODES = {
+    alunos: [
+      ['/handwritten','Explica o tema de forma simples, como apontamentos manuscritos.','/handwritten fotossíntese','Ciências Naturais · 8.º ano','Apontamentos curtos, com setas, palavras sublinhadas e pequenos esquemas, como num caderno.'],
+      ['/make-sticky-notes','Transforma o tema em pequenas notas com as ideias-chave.','/make-sticky-notes Revolução Francesa','História · 8.º ano','6 a 10 “post-its”, cada um com uma ideia: datas, causas, figuras e consequências.'],
+      ['/visualize-learning','Converte um conceito numa explicação visual.','/visualize-learning sistema digestivo','Ciências Naturais · 9.º ano','Esquema do percurso dos alimentos, órgão a órgão, com a função de cada um.'],
+      ['/question-predictor','Cria as perguntas que podem surgir num teste.','/question-predictor alterações climáticas','Geografia · 9.º ano','Lista de perguntas prováveis, das mais simples às de desenvolvimento, com o que cada uma avalia.'],
+      ['/socrates','Ensina através de perguntas, sem dar logo a resposta.','/socrates Segunda Guerra Mundial','História · 9.º ano','Diálogo guiado: a IA pergunta, espera pela resposta do aluno e conduz o raciocínio.'],
+      ['/exam-mode','Faz perguntas como num teste e corrige as respostas.','/exam-mode fotossíntese','Ciências Naturais · 8.º ano','Perguntas uma a uma, correção de cada resposta e balanço final com o que rever.'],
+      ['/quiz-me','Cria um quiz interativo.','/quiz-me sistema solar','Ciências Naturais · 7.º ano','Quiz de escolha múltipla com feedback imediato depois de cada resposta.'],
+      ['/flashcards','Cria cartões de estudo.','/flashcards Revolução Industrial','História · 8.º ano','Pares pergunta/resposta prontos a imprimir ou a copiar para o Quizlet.'],
+      ['/mind-map','Organiza o conhecimento num mapa mental.','/mind-map literatura portuguesa','Português · Secundário','Tema central com ramos para épocas, autores, obras e características.'],
+      ['/concept-map','Liga conceitos e mostra as relações entre eles.','/concept-map ecossistemas','Ciências Naturais · 8.º ano','Conceitos ligados por frases de ligação (“produz”, “é consumido por”…).'],
+      ['/explain-like-im-12','Explica com linguagem adequada a um aluno mais novo.','/explain-like-im-12 energia nuclear','Físico-Química · 9.º ano','Explicação com comparações do dia a dia e sem vocabulário técnico.'],
+      ['/teach-back','Pede ao aluno que explique o tema e identifica falhas.','/teach-back fotossíntese','Ciências Naturais · 8.º ano','A IA pede uma explicação por palavras do aluno e aponta o que falta ou está errado.'],
+      ['/feynman','Usa a técnica de Feynman para compreender um conceito.','/feynman gravidade','Físico-Química · 7.º ano','Explicação simples, deteção das lacunas e uma nova versão mais clara.'],
+      ['/compare','Compara dois conceitos.','/compare mitose e meiose','Biologia · 11.º ano','Tabela de semelhanças e diferenças (n.º de divisões, células-filhas, função).'],
+      ['/timeline','Organiza acontecimentos por ordem cronológica.','/timeline Descobrimentos Portugueses','História · 8.º ano','Linha do tempo com datas, navegadores e acontecimentos principais.'],
+      ['/cause-and-effect','Mostra causas e consequências.','/cause-and-effect terramoto de 1755','História · 8.º ano','Esquema causas → acontecimento → consequências (ex.: reconstrução pombalina).'],
+      ['/pros-cons','Organiza argumentos a favor e contra.','/pros-cons energia nuclear','Físico-Química / Cidadania','Tabela de vantagens e desvantagens, com exemplos concretos.'],
+      ['/vocabulary','Extrai e explica o vocabulário essencial.','/vocabulary The Environment','Inglês · B1','Lista de palavras com definição, frase de exemplo e tradução.'],
+      ['/simplify','Simplifica um texto ou conceito complexo.','/simplify teoria da relatividade','Física · Secundário','Versão curta e acessível, com uma ideia de cada vez.'],
+      ['/summarize','Resume a informação essencial.','/summarize Revolução Industrial','História · 8.º ano','Resumo em tópicos ou em poucos parágrafos, só com o essencial.'],
+      ['/question-me','Faz perguntas uma de cada vez.','/question-me sobre Os Lusíadas','Português · 9.º ano','Perguntas sucessivas, que se ajustam às respostas do aluno.'],
+      ['/mistake-detector','Procura erros numa resposta do aluno.','/mistake-detector [cole aqui a resposta]','Matemática · 3.º ciclo','Lista dos erros, explicação de cada um e versão corrigida.'],
+      ['/study-plan','Cria um plano de estudo.','/study-plan teste de Biologia daqui a 7 dias','Biologia · 10.º ano','Calendário dia a dia com tarefas, revisões e um autoteste final.'],
+      ['/debate','Prepara argumentos e contra-argumentos.','/debate inteligência artificial na educação','Português / Cidadania','Argumentos, contra-argumentos e possíveis respostas para preparar um debate.'],
+      ['/practice','Cria exercícios progressivos.','/practice equações do 2.º grau','Matemática · 9.º ano','Série de exercícios do mais fácil ao mais difícil, com soluções.'],
+    ],
+    professores: [
+      ['/lesson-plan','Cria um plano de aula.','/lesson-plan fotossíntese 50 minutos 8.º ano','Ciências Naturais · 8.º ano','Plano com objetivos, momentos da aula, tempos, recursos e avaliação.'],
+      ['/learning-objectives','Define objetivos de aprendizagem.','/learning-objectives Revolução Francesa 9.º ano','História · 9.º ano','Objetivos observáveis do tipo “O aluno será capaz de…”.'],
+      ['/starter-activity','Cria uma atividade para o início da aula.','/starter-activity alterações climáticas','Geografia · 9.º ano','Atividade de 5–10 minutos (imagem, pergunta ou desafio) para despertar o interesse.'],
+      ['/exit-ticket','Cria perguntas rápidas para o final da aula.','/exit-ticket sistema digestivo','Ciências Naturais · 9.º ano','3 a 4 perguntas curtas para verificar o que ficou aprendido.'],
+      ['/differentiation','Adapta a atividade a diferentes níveis.','/differentiation fotossíntese','Ciências Naturais · 8.º ano','A mesma tarefa em três níveis: apoio, padrão e desafio.'],
+      ['/scaffold','Cria apoios graduais para alunos com dificuldades.','/scaffold writing a formal email','Inglês · 10.º ano','Passos guiados, modelo, banco de expressões e lista de verificação.'],
+      ['/extension-task','Cria uma tarefa de aprofundamento.','/extension-task Shakespeare','Inglês · Secundário','Tarefa de desafio para os alunos que terminam mais cedo.'],
+      ['/group-work','Cria uma atividade de trabalho de grupo.','/group-work diversidade cultural','Cidadania e Desenvolvimento','Atividade com papéis, tarefas, tempos e produto final.'],
+      ['/jigsaw','Estrutura uma atividade Jigsaw.','/jigsaw climate change','Inglês / Geografia','Grupos de “especialistas”, textos por subtema e tarefa de partilha.'],
+      ['/project-based-learning','Transforma o conteúdo num projeto.','/project-based-learning água e sustentabilidade','DAC · Ciências e Geografia','Questão-problema, fases do projeto, produto final e avaliação.'],
+      ['/inquiry-based','Cria aprendizagem baseada em questões.','/inquiry-based energia renovável','Físico-Química · 8.º ano','Pergunta de investigação, hipóteses, recolha de dados e conclusões.'],
+      ['/debate','Prepara um debate para a turma.','/debate inteligência artificial na escola','Cidadania e Desenvolvimento','Moção, papéis, regras, tempos e grelha de avaliação do debate.'],
+      ['/role-play','Cria uma simulação ou role-play.','/role-play Conferência de Yalta','História · 9.º ano','Personagens, objetivos de cada uma e guião da simulação.'],
+      ['/escape-room','Cria desafios para um escape room educativo.','/escape-room sistema solar','Ciências Naturais · 7.º ano','Sequência de enigmas com pistas, códigos e soluções.'],
+      ['/station-rotation','Cria estações de aprendizagem.','/station-rotation genética','Biologia · 12.º ano','4 a 5 estações com tarefa, tempo e materiais de cada uma.'],
+      ['/question-bank','Cria um banco de perguntas.','/question-bank English B2 environment','Inglês · B2','Perguntas variadas por nível de dificuldade, com soluções.'],
+      ['/rubric','Cria uma grelha de avaliação.','/rubric apresentação oral B1','Inglês / Alemão · B1','Critérios com quatro níveis de desempenho e pontuação.'],
+      ['/success-criteria','Define critérios de sucesso.','/success-criteria creative writing','Inglês · 3.º ciclo','Lista “Consigo…” em linguagem de aluno, para autoavaliação.'],
+      ['/misconceptions','Identifica erros conceptuais frequentes.','/misconceptions electric circuits','Físico-Química · 9.º ano','Ideias erradas comuns, porque surgem e como as corrigir.'],
+      ['/prior-knowledge','Cria uma atividade para descobrir conhecimentos prévios.','/prior-knowledge fractions','Matemática · 5.º ano','Diagnóstico curto para saber o que a turma já sabe.'],
+      ['/formative-assessment','Cria avaliação formativa.','/formative-assessment mitose e meiose','Biologia · 11.º ano','Tarefas e perguntas para recolher evidências durante a aula.'],
+      ['/feedback','Cria feedback sobre um trabalho.','/feedback [cole aqui o trabalho do aluno]','Português / Inglês','Pontos fortes, aspetos a melhorar e um próximo passo concreto.'],
+      ['/worksheet','Cria uma ficha de trabalho.','/worksheet The Environment B1','Inglês · B1','Ficha com exercícios variados e chave de correção.'],
+      ['/infographic','Transforma o conteúdo numa infografia.','/infographic ciclo da água','Ciências Naturais · 7.º ano','Estrutura da infografia (títulos, blocos, ícones) ou a própria imagem.'],
+      ['/visualize-learning','Transforma o conteúdo numa representação visual para ensinar.','/visualize-learning aparelho respiratório','Ciências Naturais · 9.º ano','Esquema visual pronto a projetar durante a explicação.'],
+    ],
+    imagens: [
+      ['/visualize-learning','Explicação visual educativa.','/visualize-learning fotossíntese','Ciências Naturais · 8.º ano','Imagem do conceito com legendas e setas — o conceito transforma-se numa representação visual.',1],
+      ['/make-sticky-notes','Informação organizada em post-its.','/make-sticky-notes causas da Primeira Guerra Mundial','História · 9.º ano','Painel de post-its coloridos, ótimo para revisão rápida.',1],
+      ['/handwritten','Apontamentos manuscritos visuais.','/handwritten leis de Newton','Físico-Química · 9.º ano','Imagem que parece uma folha de estudo feita à mão.',1],
+      ['/infographic','Infografia educativa.','/infographic ciclo da água','Ciências Naturais · 7.º ano','Infografia com etapas, ícones e pouco texto.'],
+      ['/mind-map','Mapa mental.','/mind-map William Shakespeare','Inglês · Secundário','Mapa mental colorido, excelente para revisão.',1],
+      ['/concept-map','Mapa conceptual.','/concept-map alterações climáticas','Geografia · 9.º ano','Mapa mais relacional do que um simples mapa mental.',1],
+      ['/flowchart','Fluxograma.','/flowchart ciclo da água','Ciências Naturais · 7.º ano','Processo em etapas ligadas por setas — perfeito para processos.',1],
+      ['/timeline','Linha temporal.','/timeline evolução dos computadores','TIC / História','Linha do tempo ilustrada, excelente para História, Tecnologia e Ciências.',1],
+      ['/exploded-view','Vista explodida de um objeto ou sistema.','/exploded-view aparelho digestivo','Ciências Naturais · 9.º ano','As partes separadas, mostrando a relação entre os componentes.',1],
+      ['/cutaway','Corte que mostra o interior.','/cutaway vulcão em erupção','Ciências Naturais · 7.º ano','Vemos o interior sem “abrir” literalmente o objeto.',1],
+      ['/cross-section','Corte transversal.','/cross-section estrutura interna da Terra','Ciências Naturais · 7.º ano (Geologia)','Camadas da Terra identificadas, excelente para Geologia.',1],
+      ['/isometric','Representação isométrica.','/isometric classroom of the future','Inglês / TIC','Cena em perspetiva 3D isométrica, como uma maqueta.'],
+      ['/blueprint','Desenho técnico ou planta.','/blueprint sistema solar','Físico-Química / Educação Visual','Estilo planta técnica, com linhas claras sobre fundo azul.'],
+      ['/scientific-illustration','Ilustração científica.','/scientific-illustration estrutura de uma célula','Biologia · 10.º ano','Ilustração rigorosa, com legendas, muito útil para Ciências.',1],
+      ['/anatomical','Representação anatómica.','/anatomical human heart','Ciências Naturais · 9.º ano','Representação anatómica detalhada, com as estruturas identificadas.'],
+      ['/diagram','Diagrama explicativo.','/diagram funcionamento de uma turbina','Físico-Química · 8.º ano','Diagrama com setas que explicam o funcionamento.'],
+      ['/comic','Banda desenhada educativa.','/comic Newton descobre a gravidade','Físico-Química · 7.º ano','Tiras de BD com diálogos: conteúdo curricular + narrativa visual.',1],
+      ['/storyboard','História em vinhetas ou cenas.','/storyboard O Terramoto de 1755','História · 8.º ano','Sequência de cenas, ótima para depois transformar em vídeo.',1],
+      ['/paper-cut','Estética de papel recortado.','/paper-cut cadeia alimentar','Estudo do Meio / Ciências','Imagem apelativa para materiais destinados a alunos mais novos.',1],
+      ['/collage','Colagem visual.','/collage cultura portuguesa','Português / Cidadania','Composição de vários elementos visuais ligados ao tema.'],
+      ['/3d-model','Modelo 3D.','/3d-model molécula de ADN','Biologia · 11.º ano','Imagem com aspeto tridimensional do objeto.'],
+      ['/x-ray','Aparência de raio-X ou transparência.','/x-ray motor de automóvel','Físico-Química / TIC','Objeto transparente com os componentes internos visíveis.'],
+      ['/museum-exhibit','Objeto apresentado como peça de museu.','/museum-exhibit armadura medieval','História · 7.º ano','Objeto numa vitrina, com placa informativa.'],
+      ['/before-after','Comparação antes/depois.','/before-after Lisboa antes e depois de 1755','História · 8.º ano','Imagem dividida em duas metades para comparar.'],
+      ['/educational-poster','Cartaz educativo.','/educational-poster regras para utilizar IA de forma responsável','Cidadania / TIC','Cartaz pronto a imprimir e afixar na sala.',1],
+    ],
+  };
+  const CODE_TABS = [
+    ['alunos','🎓 Para alunos'],
+    ['professores','👩‍🏫 Para professores'],
+    ['imagens','🎨 Imagens e visual'],
+    ['favoritos','⭐ 15 favoritos'],
+  ];
+
+  // muda o comando → muda a forma de pensar
+  const THINK = [
+    ['/handwritten Revolução Francesa','Quero compreender.'],
+    ['/make-sticky-notes Revolução Francesa','Quero identificar o essencial.'],
+    ['/timeline Revolução Francesa','Quero perceber a sequência.'],
+    ['/cause-and-effect Revolução Francesa','Quero perceber relações.'],
+    ['/mind-map Revolução Francesa','Quero organizar o conhecimento.'],
+    ['/question-predictor Revolução Francesa','Quero preparar-me para o teste.'],
+    ['/socrates Revolução Francesa','Quero ser levado a pensar.'],
+    ['/exam-mode Revolução Francesa','Quero testar se realmente aprendi.'],
+  ];
+  const thinkBox = document.getElementById('think');
+  THINK.forEach(([c,g]) => {
+    const d = document.createElement('div');
+    d.className = 'think-item';
+    d.innerHTML = '<span class="inline-code">' + escapeHtml(c) + '</span><span class="goal">→ ' + escapeHtml(g) + '</span>';
+    thinkBox.appendChild(d);
+  });
+
+  let codeTab = 'alunos';
+  let codeQ = '';
+  const codeTabs = document.getElementById('code-tabs');
+  const codeGrid = document.getElementById('code-grid');
+  const codeCount = document.getElementById('codes-count');
+  const favs = CODES.imagens.filter(c => c[5]);
+
+  CODE_TABS.forEach(([id,label]) => {
+    const n = id === 'favoritos' ? favs.length : CODES[id].length;
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'chip' + (id === codeTab ? ' active' : '');
+    b.dataset.tab = id;
+    b.setAttribute('role','tab');
+    b.innerHTML = label + ' <span class="n">' + n + '</span>';
+    b.addEventListener('click', () => {
+      codeTab = id;
+      codeTabs.querySelectorAll('.chip').forEach(c => c.classList.toggle('active', c.dataset.tab === id));
+      renderCodes();
+    });
+    codeTabs.appendChild(b);
+  });
+
+  const copySvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 012-2h10"/></svg>';
+  const checkSvg = '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+
+  function renderCodes(){
+    const q = norm(codeQ);
+    // com pesquisa, procura em todos os separadores
+    let pool;
+    if (q) {
+      pool = [];
+      ['alunos','professores','imagens'].forEach(k => CODES[k].forEach(c => pool.push([k,c])));
+    } else if (codeTab === 'favoritos') {
+      pool = favs.map(c => ['imagens',c]);
+    } else {
+      pool = CODES[codeTab].map(c => [codeTab,c]);
+    }
+    const list = pool.filter(([,c]) => !q || norm(c.join(' ')).includes(q));
+    const grpLabel = {alunos:'Alunos', professores:'Professores', imagens:'Imagens'};
+
+    codeCount.textContent = list.length + (list.length === 1 ? ' código' : ' códigos') + (q ? ' encontrados em todos os separadores' : '');
+    codeGrid.innerHTML = '';
+    if (!list.length) {
+      codeGrid.innerHTML = '<div class="empty"><strong>Sem resultados</strong>Experimente outra palavra.</div>';
+      return;
+    }
+    list.forEach(([grp,[cmd,serve,ex,disc,res,fav]]) => {
+      const el = document.createElement('article');
+      el.className = 'ccard';
+      el.innerHTML =
+        (fav ? '<span class="fav">⭐ Favorito</span>' : '') +
+        '<div class="cmd">' + escapeHtml(cmd) + '</div>' +
+        '<p class="serve">' + escapeHtml(serve) + (q ? ' <span style="color:var(--faint);font-size:.78rem">(' + grpLabel[grp] + ')</span>' : '') + '</p>' +
+        '<div class="ex"><code>' + escapeHtml(ex) + '</code><button class="mini-copy" type="button" aria-label="Copiar exemplo">' + copySvg + '</button></div>' +
+        '<div class="meta-row">' +
+          '<div><b>Disciplina</b> ' + escapeHtml(disc) + '</div>' +
+          '<div class="res"><b>Resultado</b> ' + escapeHtml(res) + '</div>' +
+        '</div>';
+      const btn = el.querySelector('.mini-copy');
+      btn.addEventListener('click', async () => {
+        await copyText(ex);
+        btn.classList.add('done'); btn.innerHTML = checkSvg;
+        showToast('Código copiado ✓');
+        clearTimeout(btn._t);
+        btn._t = setTimeout(() => { btn.classList.remove('done'); btn.innerHTML = copySvg; }, 1800);
+      });
+      codeGrid.appendChild(el);
+    });
+  }
+  document.getElementById('code-search').addEventListener('input', e => { codeQ = e.target.value; renderCodes(); });
+  renderCodes();
 
   // barra topo
   const top = document.getElementById('top');
   const onScroll = () => top.classList.toggle('stuck', scrollY > 8);
   onScroll(); addEventListener('scroll', onScroll, { passive: true });
   document.getElementById('yy').textContent = new Date().getFullYear();
-
-  render();
 })();
 </script>
+
 </body>
 </html>
