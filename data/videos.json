@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T09:59:55.151Z",
+  "updatedAt": "2026-10-07T18:39:41.159Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -12,6 +12,13 @@
       "slug": "lives-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
       "videos": [
+        {
+          "id": "YkMnoP4n3D0",
+          "title": "A Melhor Ferramenta de IA- Novidade (vídeos) Gratuita!",
+          "publishedAt": "2026-10-07T18:00:20+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/YkMnoP4n3D0/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=YkMnoP4n3D0"
+        },
         {
           "id": "Ju73EpTDJrM",
           "title": "Typeless - Dite em vez de escrever",
@@ -109,13 +116,6 @@
           "publishedAt": "2026-05-06T18:30:06+00:00",
           "thumbnail": "https://i.ytimg.com/vi/ADwnSygxT2o/hqdefault.jpg",
           "url": "https://www.youtube.com/watch?v=ADwnSygxT2o"
-        },
-        {
-          "id": "8r6WauRoa1k",
-          "title": "Live 19 -Como obter o Canva Gratuito?",
-          "publishedAt": "2026-05-01T18:30:00+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/8r6WauRoa1k/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=8r6WauRoa1k"
         }
       ]
     },
