@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T16:49:50.421Z",
+  "updatedAt": "2026-10-14T21:23:56.241Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -12,6 +12,13 @@
       "slug": "lives-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
       "videos": [
+        {
+          "id": "oaf7UzOUF18",
+          "title": "Como utilizar o Chat GPT no Ensino - Códigos Gratuitos",
+          "publishedAt": "2026-10-14T18:00:30+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/oaf7UzOUF18/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=oaf7UzOUF18"
+        },
         {
           "id": "YkMnoP4n3D0",
           "title": "A Melhor Ferramenta de IA- Novidade (vídeos) Gratuita!",
@@ -109,13 +116,6 @@
           "publishedAt": "2026-05-12T18:30:36+00:00",
           "thumbnail": "https://i.ytimg.com/vi/em2y3AWqi5w/hqdefault.jpg",
           "url": "https://www.youtube.com/watch?v=em2y3AWqi5w"
-        },
-        {
-          "id": "ADwnSygxT2o",
-          "title": "Live 20 -Como avaliar um Trabalho na Era da IA",
-          "publishedAt": "2026-05-06T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/ADwnSygxT2o/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=ADwnSygxT2o"
         }
       ]
     },
@@ -125,6 +125,13 @@
       "slug": "uso-inteligente-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ4rNcGt5yGAI4xfQ9c0L5l",
       "videos": [
+        {
+          "id": "oaf7UzOUF18",
+          "title": "Como utilizar o Chat GPT no Ensino - Códigos Gratuitos",
+          "publishedAt": "2026-10-14T18:00:30+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/oaf7UzOUF18/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=oaf7UzOUF18"
+        },
         {
           "id": "1Iw1F5Gpv78",
           "title": "Como utilizar a IA de forma inteligente?",
