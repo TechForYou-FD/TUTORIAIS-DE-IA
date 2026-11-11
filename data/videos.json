@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-11T13:48:18.833Z",
+  "updatedAt": "2026-11-11T21:47:42.782Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -12,6 +12,13 @@
       "slug": "lives-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
       "videos": [
+        {
+          "id": "juTEpBH3OIE",
+          "title": "Crie Simuladores e Jogos Gratuitamente!",
+          "publishedAt": "2026-11-11T19:00:10+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/juTEpBH3OIE/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=juTEpBH3OIE"
+        },
         {
           "id": "oaf7UzOUF18",
           "title": "Como utilizar o Chat GPT no Ensino - Códigos Gratuitos",
@@ -109,13 +116,6 @@
           "publishedAt": "2026-05-13T18:30:06+00:00",
           "thumbnail": "https://i.ytimg.com/vi/iPIWXTdrFbg/hqdefault.jpg",
           "url": "https://www.youtube.com/watch?v=iPIWXTdrFbg"
-        },
-        {
-          "id": "em2y3AWqi5w",
-          "title": "Whatsapp recolhe os seus dados",
-          "publishedAt": "2026-05-12T18:30:36+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/em2y3AWqi5w/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=em2y3AWqi5w"
         }
       ]
     },
@@ -128,7 +128,7 @@
         {
           "id": "juTEpBH3OIE",
           "title": "Crie Simuladores e Jogos Gratuitamente!",
-          "publishedAt": "2026-11-07T14:36:28+00:00",
+          "publishedAt": "2026-11-11T19:00:10+00:00",
           "thumbnail": "https://i.ytimg.com/vi/juTEpBH3OIE/hqdefault.jpg",
           "url": "https://www.youtube.com/watch?v=juTEpBH3OIE"
         },
