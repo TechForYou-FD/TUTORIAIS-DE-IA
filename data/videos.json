@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T07:41:34.553Z",
+  "updatedAt": "2026-11-25T19:01:09.912Z",
   "channel": {
     "name": "TechForYou",
     "handle": "@TechForYou-ww3zt",
@@ -12,6 +12,13 @@
       "slug": "lives-de-ia",
       "url": "https://youtube.com/playlist?list=PL5FIAcrKghKZ3Pc1V4dNotyh_uJejn8sC",
       "videos": [
+        {
+          "id": "Nu5STik_PNA",
+          "title": "Caricaturas Gratuitas!",
+          "publishedAt": "2026-11-25T19:00:09+00:00",
+          "thumbnail": "https://i.ytimg.com/vi/Nu5STik_PNA/hqdefault.jpg",
+          "url": "https://www.youtube.com/watch?v=Nu5STik_PNA"
+        },
         {
           "id": "juTEpBH3OIE",
           "title": "Crie Simuladores e Jogos Gratuitamente!",
@@ -109,13 +116,6 @@
           "publishedAt": "2026-05-18T20:56:06+00:00",
           "thumbnail": "https://i.ytimg.com/vi/byyf-QUFP3I/hqdefault.jpg",
           "url": "https://www.youtube.com/watch?v=byyf-QUFP3I"
-        },
-        {
-          "id": "iPIWXTdrFbg",
-          "title": "Live 21 Estratégia 5 -   Avaliar com IA",
-          "publishedAt": "2026-05-13T18:30:06+00:00",
-          "thumbnail": "https://i.ytimg.com/vi/iPIWXTdrFbg/hqdefault.jpg",
-          "url": "https://www.youtube.com/watch?v=iPIWXTdrFbg"
         }
       ]
     },
